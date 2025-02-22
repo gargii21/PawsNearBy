@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { Sequelize } from "sequelize";
 import userRoutes from './routes/userRoutes.js';
 import {syncdb} from './Config/db1.js';
+import cookieParser from "cookie-parser";
 //import User from './models/User.js'
 //import {Pet, initPetModel} from './models/Pet.js'
 
@@ -12,6 +13,7 @@ import {syncdb} from './Config/db1.js';
 const app = express();
 
 // Middleware
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

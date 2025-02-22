@@ -21,6 +21,10 @@ import { DataTypes} from "sequelize";
             type: DataTypes.STRING,
             allowNull: false,
         
+        },
+        role:{
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     },
     {timestamps: false}
