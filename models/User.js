@@ -11,6 +11,23 @@ import { DataTypes} from "sequelize";
             autoIncrement: true,
 
         },
+        name:{
+            type: DataTypes.STRING,
+            //allowNull: false,
+            //unique: true,
+        
+        },
+        phone:{
+            type: DataTypes.BIGINT,
+            //allowNull: false,
+            //unique: true,
+        
+        },
+        address:{
+            type: DataTypes.TEXT,
+            //allowNull: false,
+            //unique: true,
+        },
         email:{
             type: DataTypes.STRING,
             allowNull: false,

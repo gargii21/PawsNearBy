@@ -3,7 +3,7 @@ import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
  
 const login = async(req,res)=> {
-    console.log(userModel);
+    //console.log(userModel);
     
         const {email , password}=req.body
 
@@ -17,9 +17,9 @@ const login = async(req,res)=> {
             return res.status(404).json({message:'user not found'});
             
         }
-        console.log("User found:", data);
-        console.log(data.password)
-        console.log(password)
+        // console.log("User found:", data);
+        // console.log(data.password)
+        // console.log(password)
         const isPasswordValid = await bcrypt.compare(password, data.password)
         
         if(!isPasswordValid){
