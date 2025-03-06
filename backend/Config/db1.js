@@ -21,6 +21,7 @@ const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
 //Models
 const userModel = User(sequelize);
 const petModel = Pet(sequelize);
+const providerModel = provider(sequelize);
     
 async function syncdb(){
   try{

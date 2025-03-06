@@ -5,13 +5,19 @@ import { DataTypes} from "sequelize";
  export const User = (sequelize) => {
     return sequelize.define('User1',
     {
-        id:{
+        prId:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
 
         },
-        name:{
+        daycare_name:{
+            type: DataTypes.STRING,
+            //allowNull: false,
+            //unique: true,
+        
+        },
+        owner_name:{
             type: DataTypes.STRING,
             //allowNull: false,
             //unique: true,
@@ -43,10 +49,10 @@ import { DataTypes} from "sequelize";
         //     type: DataTypes.STRING,
         //     allowNull: false,
         // }
-        latitude:{
+        prLatitude:{
             type: DataTypes.DECIMAL(9,6),
         },
-        longitude:{
+        prLongitude:{
             type: DataTypes.DECIMAL(9,6),
         }
     },
