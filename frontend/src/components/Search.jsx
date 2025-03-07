@@ -60,7 +60,7 @@ const Search = () => {
         <h2>Find Trusted Pet Care</h2>
         <div className="search-input">
            {/* Service Selection */}
-           <p>I am looking for: </p>
+           <p>I am looking for </p>
         <div className="service-buttons">
           {["pet-sitting","boarding", "dog-walking"].map((item) => (
             <button
@@ -75,7 +75,7 @@ const Search = () => {
         </div>
 
         {/* Location Input */}
-       <p>Near:</p>
+       <p>Near</p>
        <div className="loc-container">
         <input
           type="text" id="loc"

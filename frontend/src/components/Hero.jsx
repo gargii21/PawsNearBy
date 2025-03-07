@@ -4,7 +4,7 @@ function Hero() {
   return (
     <section className="hero">
       <div>
-        <h2>Welcome to<br/> PawsNearBy</h2>
+        <h2>Welcome to<br/> PawsNearby</h2>
         <p>Swipe Right on the<br/> Best Pet-Sitters Near You!</p>
       </div>
       
