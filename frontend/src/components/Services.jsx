@@ -9,7 +9,6 @@ function Services() {
           { title: "Pet Sitting", text: "Trusted sitters available for in-home care." },
           { title: "Dog Walking", text: "Daily walks for happy, healthy pets." },
           { title: "Boarding", text: "Overnight stays with verified caregivers." },
-          { title: "Training", text: "Professional trainers to help your pet." }
         ].map(({ title, text }, index) => (
           <div className="service-card" key={index}>
             <h3>{title}</h3>

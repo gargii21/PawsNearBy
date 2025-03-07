@@ -13,7 +13,6 @@ function Search() {
               <option value="pet-sitting">Pet Sitting</option>
               <option value="dog-walking">Dog Walking</option>
               <option value="boarding">Boarding</option>
-              <option value="training">Training</option>
             </select>
           </div>
           <div>

@@ -14,15 +14,22 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: rgba(181, 225, 233, 0.716);
-    
+    background-color: rgba(198, 195, 185, 0.748);
     /*position:sticky;*/
     top:0px;
-    height:10vh;   
+    height:7vh;   
 }
-header h1{
+header a{
+    text-decoration: none;  
+}
+header h1 a{
     font-family:'Cherry Bomb One';
     font-weight: lighter;
+    /*color:rgba(181, 142, 59, 0.922);*/
+    color:rgb(182, 150, 80);
+}
+header h1 a:hover{
+    color:rgba(200, 105, 123, 0.723); 
 }
 nav{
     display: flex;
@@ -30,41 +37,43 @@ nav{
 }
 nav div{
     margin:10px;
-    font-family: 'Gamja Flower';    
-}
-header a{
-    text-decoration: none;
-    color:rgb(80, 79, 79);
+    font-family: 'Gamja Flower';
+    font-weight:600;
 }
 nav div a{ 
     border-radius: 10px;
     padding:10px 20px 10px 20px;
     text-align: center;
     font-size: 25px;
-}
-nav div a:hover{
-    background-color: rgba(143, 219, 227, 0.736);  
+    background-color: rgba(186, 164, 107, 0.148);
+    color:rgba(177, 143, 69, 0.922);
 }
 
+nav div a:hover{
+    background-color: rgba(234, 126, 146, 0.568);  
+    color:white;
+}
 .signup-btn {
-    background-color: rgba(248, 236, 183, 0.671);
-    color: black;
+    
+    background-color: rgba(234, 126, 146, 0.568); 
+    color: rgb(255, 255, 255);
 }
 .signup-btn:hover{
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.656);
+    color:rgba(234, 126, 146, 0.737);
 }
 .menu-toggle {
     display: none;
     font-size: 24px;
     cursor: pointer;
 }
-
+/*
 @media (max-width: 768px) {
     .navbar {
         display: none;
         flex-direction: column;
         position: absolute;
-        background: rgba(142, 225, 224, 0.9);
+        background: rgba(231, 126, 190, 0.9);
         width: 100%;
         left: 0;
         top: 60px;
@@ -76,19 +85,19 @@ nav div a:hover{
     .menu-toggle {
         display: block;
     }
-}
+}*/
 
 .hero {
     background: url('/images/dogcat3.jpg') center/cover no-repeat;
-    height: 82vh;
+    height: 86vh;
     display: flex;
     flex-direction: column;
     align-items:center;
-    justify-content:end;
+    justify-content:flex-end;
     text-align: center;
-    color: rgb(69, 67, 67);
+    color: rgb(63, 63, 63);
     padding-bottom: 20px;
-    
+
 }
 
 .hero h2 {
@@ -103,7 +112,7 @@ nav div a:hover{
 }
 
 .btn {
-    padding: 12px 25px;
+    padding: 12px 20px;
     background-color: rgba(217, 211, 223, 0.9);
     border-radius: 5px;
     color: black;
@@ -113,27 +122,24 @@ nav div a:hover{
 }
 
 .btn:hover {
-    background-color: rgba(223, 223, 223, 0.9);
-    color: rgb(106, 110, 110);
+    background-color:rgba(255, 255, 255, 0.536); 
 }
-
 
 .search {
     justify-content: center;
     align-items: center;
     justify-items: center;
-    background-color: rgba(245, 233, 188, 0.933);
+    background-color:rgba(234, 126, 146, 0.375); 
     text-align: center;
     padding:40px;
-
 }
 
 .search-box {
     align-self: center;
     margin-top:10px;
-    background-color: rgba(255, 255, 255, 0.237);
+    background-color: rgba(251, 251, 251, 0.41);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: inline-block;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width:50vw;
@@ -162,12 +168,12 @@ button:hover {
 .features {
     padding: 40px;
     text-align: center;
-    background-color: #b6e8f6;
+    background-color:rgba(234, 126, 146, 0.329); 
 }
 .steps {
     padding: 40px;
     text-align: center;
-    background-color: #f7f7f7;
+    background-color:rgba(234, 126, 146, 0.568); 
 }
 
 .features h3 {
@@ -188,7 +194,7 @@ button:hover {
 }
 
 .service-card{
-    background-color: rgb(239, 239, 239);
+    background-color: rgb(203, 230, 232);
     padding: 30px 50px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -218,8 +224,8 @@ button:hover {
 
 .testimonials {
     padding: 40px;
-    background-color: rgb(255, 255, 255);
     text-align: center;
+    background-color:rgba(234, 126, 146, 0.568); 
 }
 
 .testimonial-cards {
@@ -253,20 +259,24 @@ footer {
     color: white;
     text-align: center;
     padding: 30px 20px;
-    margin-top: 20px;
 }
+.footer-up{
+    display: flex;
+    justify-content: center;
+    gap:300px;
+}
+
 
 .about-us, .message {
     margin-bottom: 20px;
 }
-
+hr{
+    color:white;
+}
 textarea {
-    width: 80%;
+    width: 300px;
     height: 100px;
     border-radius: 5px;
     padding: 10px;
 }
 
-.footer-bottom p {
-    margin-top: 20px;
-}
