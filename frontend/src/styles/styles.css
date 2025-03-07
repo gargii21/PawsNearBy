@@ -155,6 +155,8 @@ nav div a:hover{
     padding: 15px;
     border: 1px solid #ddd;
     cursor: pointer;
+    font-family: "Itim";
+    font-size: 15px;
   }
   
   .service-buttons .selected {
@@ -324,5 +326,7 @@ textarea {
 .service-buttons img{
     width:20px;
     height:20px;
+    margin-right: 5px;
 }
+
 
