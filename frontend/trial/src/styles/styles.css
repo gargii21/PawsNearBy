@@ -125,7 +125,44 @@ nav div a:hover{
     background-color:rgba(255, 255, 255, 0.536); 
 }
 
-.search {
+.search-box {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .suggestions {
+    background: white;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    width: 90%;
+    z-index: 10;
+  }
+  
+  .suggestions li {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .suggestions li:hover {
+    background: #f2f2f2;
+  }
+  
+  .service-buttons button {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .service-buttons .selected {
+    background: rgba(200, 105, 123, 0.723); 
+    color: white;
+  }
+  
+/*.search {
     justify-content: center;
     align-items: center;
     justify-items: center;
@@ -145,7 +182,7 @@ nav div a:hover{
     width:50vw;
 }
 
-input, select, button {
+input{
     padding: 10px 15px;
     margin: 5px;
     border-radius: 5px;
@@ -162,7 +199,7 @@ button {
 button:hover {
     background-color: rgb(160, 135, 214);
     color: white;
-}
+}*/
 
 
 .features {
@@ -194,7 +231,7 @@ button:hover {
 }
 
 .service-card{
-    background-color: rgb(203, 230, 232);
+    background-color: rgb(242, 249, 249);
     padding: 30px 50px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -267,8 +304,13 @@ footer {
 }
 
 
-.about-us, .message {
+.message {
     margin-bottom: 20px;
+}
+.about-us{
+    margin-bottom: 20px;
+    width:500px;
+    padding:10px;
 }
 hr{
     color:white;
@@ -278,5 +320,9 @@ textarea {
     height: 100px;
     border-radius: 5px;
     padding: 10px;
+}
+.service-buttons img{
+    width:20px;
+    height:20px;
 }
 

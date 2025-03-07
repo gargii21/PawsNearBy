@@ -1,16 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";  // Import Home page
 import Footer from "./components/Footer";
-import "./styles/styles.css"; 
+import Home from "./pages/Home";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Home />  {/* Loads the homepage */}
-      <Footer />
-    </>
+    <Router>
+      <Navbar /> {/* Navbar appears on every page */}
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search-results" element={<SearchResults />} />
+        </Routes>
+      </div>
+      <Footer /> {/* Footer appears on every page */}
+    </Router>
   );
 }
 
