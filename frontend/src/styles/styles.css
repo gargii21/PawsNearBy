@@ -13,19 +13,18 @@ header{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
     background-color: rgba(198, 195, 185, 0.748);
     /*position:sticky;*/
     top:0px;
-    height:7vh;   
+    height:12vh;   
 }
 header a{
     text-decoration: none;  
 }
 header h1 a{
+    margin-left: 20px;
     font-family:'Cherry Bomb One';
     font-weight: lighter;
-    /*color:rgba(181, 142, 59, 0.922);*/
     color:rgb(182, 150, 80);
 }
 header h1 a:hover{
@@ -45,7 +44,7 @@ nav div a{
     padding:10px 20px 10px 20px;
     text-align: center;
     font-size: 25px;
-    background-color: rgba(186, 164, 107, 0.148);
+    background-color: rgba(125, 113, 76, 0.148);
     color:rgba(177, 143, 69, 0.922);
 }
 
@@ -67,77 +66,104 @@ nav div a:hover{
     font-size: 24px;
     cursor: pointer;
 }
-/*
-@media (max-width: 768px) {
-    .navbar {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        background: rgba(231, 126, 190, 0.9);
-        width: 100%;
-        left: 0;
-        top: 60px;
-        padding: 10px;
-    }
-    .navbar.active {
-        display: flex;
-    }
-    .menu-toggle {
-        display: block;
-    }
-}*/
 
 .hero {
     background: url('/images/dogcat3.jpg') center/cover no-repeat;
-    height: 86vh;
+    background-position: 20% center;
+    background-size: 110%; 
+    height: 88vh;
     display: flex;
     flex-direction: column;
-    align-items:center;
-    justify-content:flex-end;
+    justify-content: center; 
+    align-items: center;
     text-align: center;
-    color: rgb(63, 63, 63);
-    padding-bottom: 20px;
+    /*padding: 20px;*/
+    position: relative; 
+}
 
+.hero div {
+    background-color: rgba(70, 70, 70, 0.174);
+    padding: 40px;
+    color: rgba(234, 126, 146, 0.568);  
+    max-width: 500px;
+    border-radius: 40%;
+    width:25%;      
 }
 
 .hero h2 {
-    font-size: 40px;
+    font-size: 50px;
     font-family: 'Barriecito', cursive;
     margin-bottom: 10px;
+    text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
+               1px 1px #ffffff;    
 }
 
 .hero p {
-    font-size: 20px;
+    font-size: 25px;
     margin-bottom: 20px;
+    color:#ffffff;
+    padding:5px;
+    font-family: "Itim"; 
 }
 
 .btn {
     padding: 12px 20px;
-    background-color: rgba(217, 211, 223, 0.9);
+    background-color: rgba(217, 211, 223, 0);
     border-radius: 5px;
     color: black;
     text-decoration: none;
     font-weight: bold;
-    border-style:dashed
+    border-style: dashed;
+    position: absolute;
+    bottom: 40px;
 }
 
 .btn:hover {
-    background-color:rgba(255, 255, 255, 0.536); 
+    background-color: rgba(255, 255, 255, 0.536);
 }
 
 .search-box {
     text-align: center;
     padding: 20px;
+    background-color:rgba(178, 168, 137, 0.214);
+    height:300px;
+  }
+ 
+  .search-input{
+    align-self: center;
+    justify-self: center;
+    margin-top:10px;
+    width:fit-content;
+    background-color: rgba(255, 255, 245, 0.144);
+    align-self: center;
+    margin-top:10px;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width:50vw;
   }
   
   .suggestions {
-    background: white;
-    border: 1px solid #ccc;
-    max-height: 150px;
-    overflow-y: auto;
-    position: absolute;
-    width: 90%;
-    z-index: 10;
+        list-style: none;
+        position: absolute;
+        top: 100%; /* Place dropdown just below input field */
+        left: 50%; /* Start from the center */
+        transform: translateX(-50%); /* Shift back by 50% of its own width */
+        width: 100%; /* Match input width */
+        max-width: 400px; /* Set a max width */
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000; 
+  }
+  .loc-container{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
   }
   
   .suggestions li {
@@ -160,48 +186,34 @@ nav div a:hover{
   }
   
   .service-buttons .selected {
-    background: rgba(200, 105, 123, 0.723); 
+    background: rgba(234, 126, 146, 0.568);  
     color: white;
   }
-  
-/*.search {
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    background-color:rgba(234, 126, 146, 0.375); 
-    text-align: center;
-    padding:40px;
-}
-
-.search-box {
-    align-self: center;
-    margin-top:10px;
-    background-color: rgba(251, 251, 251, 0.41);
-    padding: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width:50vw;
-}
-
+ 
 input{
     padding: 10px 15px;
     margin: 5px;
     border-radius: 5px;
     border: none;
+    width: 30vw;
 }
-
-button {
+.search-btn {
     background-color: white;
-    color: black;
+    color: rgb(0, 0, 0);  
     font-weight: bold;
     cursor: pointer;
+    font-size: 15px;
+    padding:10px 20px;
+    border-radius: 5px;
+    border-color: rgb(0, 0, 0);  
+    border-style: solid;
+
 }
 
-button:hover {
-    background-color: rgb(160, 135, 214);
+.search-btn:hover {
+    background-color: rgba(232, 205, 117, 0.585);  
     color: white;
-}*/
+}
 
 
 .features {
@@ -248,7 +260,6 @@ button:hover {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 200px;
     text-align: center;
-
 }
 
 .service-card h3 {
@@ -259,7 +270,6 @@ button:hover {
     font-size: 22px;
     margin-bottom: 10px;
 }
-
 
 .testimonials {
     padding: 40px;
@@ -292,7 +302,6 @@ button:hover {
     font-weight: bold;
 }
 
-
 footer {
     background-color: rgba(93, 93, 96, 0.8);
     color: white;
@@ -304,7 +313,6 @@ footer {
     justify-content: center;
     gap:300px;
 }
-
 
 .message {
     margin-bottom: 20px;
