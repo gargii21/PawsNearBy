@@ -13,51 +13,56 @@ header{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(198, 195, 185, 0.748);
+    /*background-color: rgba(198, 195, 185, 0.748);*/
+    background-color: ivory;
     /*position:sticky;*/
     top:0px;
     height:12vh;   
 }
-header a{
+header .nav-link {
     text-decoration: none;  
 }
-header h1 a{
+header h1 .nav-logo {
     margin-left: 20px;
     font-family:'Cherry Bomb One';
     font-weight: lighter;
-    color:rgb(182, 150, 80);
+    color:rgba(234, 163, 69, 0.74); 
+    text-decoration: none;
 }
-header h1 a:hover{
+header h1 .nav-logo:hover {
     color:rgba(200, 105, 123, 0.723); 
 }
-nav{
+nav {
     display: flex;
     flex-wrap: wrap;
 }
-nav div{
+nav div {
     margin:10px;
     font-family: 'Gamja Flower';
     font-weight:600;
 }
-nav div a{ 
+nav div .nav-link { 
     border-radius: 10px;
     padding:10px 20px 10px 20px;
     text-align: center;
     font-size: 25px;
-    background-color: rgba(125, 113, 76, 0.148);
-    color:rgba(177, 143, 69, 0.922);
+    background-color: rgba(250, 230, 170, 0.158);
+    color:rgb(235, 187, 115);
 }
-
-nav div a:hover{
+nav div .nav-link:hover {
     background-color: rgba(234, 126, 146, 0.568);  
     color:white;
 }
 .signup-btn {
-    
+    border-radius: 10px;
+    padding:10px 20px 10px 20px;
+    text-align: center;
+    font-size: 25px;
     background-color: rgba(234, 126, 146, 0.568); 
     color: rgb(255, 255, 255);
+    text-decoration: none;
 }
-.signup-btn:hover{
+.signup-btn:hover {
     background-color: rgba(255, 255, 255, 0.656);
     color:rgba(234, 126, 146, 0.737);
 }
@@ -84,7 +89,6 @@ nav div a:hover{
 .hero div {
     background-color: rgba(90, 90, 90, 0.203);
     padding: 40px;
-    color: rgba(207, 110, 128, 0.568);  
     max-width: 500px;
     border-radius: 35%;
     width:30%;      
@@ -94,6 +98,7 @@ nav div a:hover{
     font-size: 50px;
     font-family: 'Cherry Bomb One','Barriecito', cursive;
     font-weight: lighter;
+    color: rgba(234, 126, 146, 0.858);
     margin-bottom: 10px;
     text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
                1px 1px #ffffff;    
@@ -104,7 +109,8 @@ nav div a:hover{
     margin-bottom: 20px;
     color:#ffffff;
     padding:5px;
-    font-family: "Itim"; 
+    font-family: "Gamja Flower"; 
+    font-weight: bold;
 }
 
 .btn {
@@ -217,7 +223,8 @@ input{
 .steps {
     text-align: center;
     padding: 50px 20px;
-    background-color: rgba(234, 126, 146, 0.568);  
+     
+    background-color: rgba(241, 166, 180, 0.568);   
 }
 
 .steps-container {
@@ -228,7 +235,7 @@ input{
 }
 
 .step-card {
-    background: rgb(246, 239, 215);
+    background: rgb(232, 203, 160);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -272,7 +279,7 @@ input{
 .services {
     text-align: center;
     padding: 50px 20px;
-    background-color: rgba(241, 166, 180, 0.568);  
+    background-color: rgba(234, 126, 146, 0.568);
 }
 
 .services-container {
@@ -283,7 +290,7 @@ input{
 }
 
 .service-card {
-    background: rgb(234, 235, 196);
+    background: rgb(246, 239, 215);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -320,7 +327,7 @@ input{
 .testimonials {
     text-align: center;
     padding: 50px 20px;
-    background-color: rgba(234, 126, 146, 0.568);  
+    background-color: rgb(232, 203, 160);
 }
 
 .section-title {
@@ -421,7 +428,7 @@ footer {
 .message button {
     margin-top: 10px;
     padding: 10px;
-    background-color: rgb(234, 126, 146);  
+    background-color: rgb(235, 187, 115);
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -448,7 +455,7 @@ footer {
 
 .social-icons a:hover {
     transform: scale(1.2);
-    color: #ffcc70;
+    color: rgb(235, 187, 115);
 }
 
 .footer-bottom {
@@ -512,7 +519,7 @@ footer {
   .profile-card button {
     margin-top: 10px;
     padding: 8px 12px;
-    background: #007bff;
+    background: rgb(235, 187, 115);
     color: white;
     border: none;
     cursor: pointer;
@@ -520,7 +527,7 @@ footer {
   }
   
   .profile-card button:hover {
-    background: #0056b3;
+    background: rgb(235, 187, 115);
   }
   
   /* MAP */
@@ -532,11 +539,124 @@ footer {
     height: 100%;
     border-radius: 10px;
   }
+
+
+ /* Full-screen container */
+.auth-container {
+    display: flex;
+    height: 100vh;
+    background: url('/images/auth.png') no-repeat left center/cover;
+    background-size: 80%;
+    font-family: 'Gamja Flower';
+  }
+  
+  /* Left side with heading */
+  .auth-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    color: white;
+    background: rgba(0, 0, 0, 0.068); /* Overlay effect */
+  }
+  
+  .auth-left h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Right side (Login/Signup form) */
+  .auth-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(235, 187, 115);
+    box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.1);
+    animation: slideInRight 0.6s ease-in-out;
+  }
+  
+  /* Form box */
+  .auth-box {
+    width: 350px;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s ease-in-out;
+    background-color:ivory;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideInRight {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  /* Input fields */
+  .input-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  /* Password field */
+  .password-field {
+    position: relative;
+  }
+  
+  .password-field span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(234, 163, 69); 
+  }
+  
+  .password-field span:hover {
+    color: rgb(234, 163, 69); 
+  }
+  
+  /* Auth button */
+  .auth-button {
+    width: 80%;
+    padding: 12px;
+    background: rgb(234, 163, 69); 
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s ease-in-out;
+    font-family: 'Itim';
+  }
+  
+  .auth-button:hover {
+    background: rgb(224, 118, 138); 
+    transform: scale(1.05);
+  }
   
 
-
-
-   
-
   
-
