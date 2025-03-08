@@ -2,8 +2,8 @@ import { DataTypes} from "sequelize";
 
 
 
- export const User = (sequelize) => {
-    return sequelize.define('User1',
+ export const provider = (sequelize) => {
+    return sequelize.define('provider',
     {
         prId:{
             type: DataTypes.INTEGER,
@@ -45,10 +45,10 @@ import { DataTypes} from "sequelize";
             allowNull: false,
         
         },
-        // role:{
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // }
+        service:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         prLatitude:{
             type: DataTypes.DECIMAL(9,6),
         },
@@ -61,4 +61,4 @@ import { DataTypes} from "sequelize";
 
 };
 
-export default User;
+export default provider;

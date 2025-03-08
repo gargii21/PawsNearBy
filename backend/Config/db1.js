@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import User from '../models/User.js';
 import Pet from '../models/Pet.js';
+import provider from '../models/provider.js';
 dotenv.config();
 
 const{DB_HOST,DB_USER,DB_DB, DB_PASS } = process.env;
@@ -35,4 +36,4 @@ async function syncdb(){
     }
 };   
 
-export {sequelize, userModel, petModel, syncdb}
+export {sequelize, userModel, petModel, providerModel, syncdb}

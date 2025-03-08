@@ -10,7 +10,7 @@ const login = async(req,res)=> {
     
     try{
         const data=await userModel.findOne({
-            attributes: ['email','password','id','role'],
+            attributes: ['email','password','id'],
             where: {email:email}
         })
         if (!data){

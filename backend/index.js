@@ -6,6 +6,9 @@ import {syncdb} from './Config/db1.js';
 import cookieParser from "cookie-parser";
 //import User from './models/User.js'
 //import {Pet, initPetModel} from './models/Pet.js'
+import cors from "cors";
+
+
 
 
 
@@ -16,9 +19,11 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: "http://localhost:5000" }));
 
 //Routes
 app.use('/', userRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;
