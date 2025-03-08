@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Gamja+Flower&family=Sigmar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Itim&display=swap');
+*{
+    margin:0px;
+    padding:0px;
+}
+
+body{
+    background-color:ivory;
+    font-family: 'Itim';
+}
+header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: rgba(198, 195, 185, 0.748);
+    /*position:sticky;*/
+    top:0px;
+    height:7vh;   
+}
+header a{
+    text-decoration: none;  
+}
+header h1 a{
+    font-family:'Cherry Bomb One';
+    font-weight: lighter;
+    /*color:rgba(181, 142, 59, 0.922);*/
+    color:rgb(182, 150, 80);
+}
+header h1 a:hover{
+    color:rgba(200, 105, 123, 0.723); 
+}
+nav{
+    display: flex;
+    flex-wrap: wrap;
+}
+nav div{
+    margin:10px;
+    font-family: 'Gamja Flower';
+    font-weight:600;
+}
+nav div a{ 
+    border-radius: 10px;
+    padding:10px 20px 10px 20px;
+    text-align: center;
+    font-size: 25px;
+    background-color: rgba(186, 164, 107, 0.148);
+    color:rgba(177, 143, 69, 0.922);
+}
+
+nav div a:hover{
+    background-color: rgba(234, 126, 146, 0.568);  
+    color:white;
+}
+.signup-btn {
+    
+    background-color: rgba(234, 126, 146, 0.568); 
+    color: rgb(255, 255, 255);
+}
+.signup-btn:hover{
+    background-color: rgba(255, 255, 255, 0.656);
+    color:rgba(234, 126, 146, 0.737);
+}
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+/*
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background: rgba(231, 126, 190, 0.9);
+        width: 100%;
+        left: 0;
+        top: 60px;
+        padding: 10px;
+    }
+    .navbar.active {
+        display: flex;
+    }
+    .menu-toggle {
+        display: block;
+    }
+}*/
+
+.hero {
+    background: url('/images/dogcat3.jpg') center/cover no-repeat;
+    height: 86vh;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:flex-end;
+    text-align: center;
+    color: rgb(63, 63, 63);
+    padding-bottom: 20px;
+
+}
+
+.hero h2 {
+    font-size: 40px;
+    font-family: 'Barriecito', cursive;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 20px;
+    background-color: rgba(217, 211, 223, 0.9);
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-style:dashed
+}
+
+.btn:hover {
+    background-color:rgba(255, 255, 255, 0.536); 
+}
+
+.search {
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    background-color:rgba(234, 126, 146, 0.375); 
+    text-align: center;
+    padding:40px;
+}
+
+.search-box {
+    align-self: center;
+    margin-top:10px;
+    background-color: rgba(251, 251, 251, 0.41);
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width:50vw;
+}
+
+input, select, button {
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(160, 135, 214);
+    color: white;
+}
+
+
+.features {
+    padding: 40px;
+    text-align: center;
+    background-color:rgba(234, 126, 146, 0.329); 
+}
+.steps {
+    padding: 40px;
+    text-align: center;
+    background-color:rgba(234, 126, 146, 0.568); 
+}
+
+.features h3 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.steps h3{
+    font-size: 30px;
+    margin-bottom: 20px;
+
+}
+
+.service-cards,.step-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-card{
+    background-color: rgb(203, 230, 232);
+    padding: 30px 50px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+
+}
+.step {
+    background-color: rgb(255, 250, 195);
+    padding: 30px 50px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+
+}
+
+.service-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.step h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+
+.testimonials {
+    padding: 40px;
+    text-align: center;
+    background-color:rgba(234, 126, 146, 0.568); 
+}
+
+.testimonial-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.testimonial-card p {
+    font-style: italic;
+}
+
+.testimonial-card h4 {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+footer {
+    background-color: rgba(93, 93, 96, 0.8);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+.footer-up{
+    display: flex;
+    justify-content: center;
+    gap:300px;
+}
+
+
+.about-us, .message {
+    margin-bottom: 20px;
+}
+hr{
+    color:white;
+}
+textarea {
+    width: 300px;
+    height: 100px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
