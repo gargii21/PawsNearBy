@@ -1,21 +1,22 @@
 import React from "react";
 
-const services = [
-  { id: 1, name: "Pet Sitting", description: "Reliable sitters to care for your pets at home.", icon: "🐶" },
-  { id: 2, name: "Dog Walking", description: "Daily walks to keep your pet active & happy.", icon: "🚶‍♂️" },
-  { id: 3, name: "Boarding", description: "Overnight stays in a cozy home environment.", icon: "🏡" },
-];
 
 function Services() {
+  const services = [
+    { title: "Pet Sitting", text: "Loving care at home.", img: "/images/pet-sitting.png" },
+    { title: "Dog Walking", text: "Fun outdoor walks for your pup.", img: "/images/dog-walking.png" },
+    { title: "Pet Boarding", text: "Overnight stays with trusted sitters.", img: "/images/pet-boarding.png" },
+  ];
+
   return (
     <section className="services">
-      <h2 className="section-title">Our Services</h2>
+      <h2>All in One Place!</h2>
       <div className="services-container">
-        {services.map((service) => (
-          <div className="service-card" key={service.id}>
-            <div className="service-icon">{service.icon}</div>
-            <h3>{service.name}</h3>
-            <p>{service.description}</p>
+        {services.map((service, index) => (
+          <div className="service-card" key={index}>
+            <img src={service.img} alt={service.title} className="service-image" />
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
           </div>
         ))}
       </div>

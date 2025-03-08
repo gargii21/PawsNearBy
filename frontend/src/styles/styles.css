@@ -1,8 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Gamja+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Itim&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Itim&family=Patrick+Hand&family=Rampart+One&display=swap');
+ *{
     margin:0px;
     padding:0px;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 body{
@@ -13,9 +59,9 @@ header{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    /*background-color: rgba(198, 195, 185, 0.748);*/
+    animation: slideIn 0.8s ease-in-out;
     background-color: ivory;
-    /*position:sticky;*/
+
     top:0px;
     height:12vh;   
 }
@@ -28,13 +74,15 @@ header h1 .nav-logo {
     font-weight: lighter;
     color:rgba(234, 163, 69, 0.74); 
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
 }
 header h1 .nav-logo:hover {
     color:rgba(200, 105, 123, 0.723); 
 }
 nav {
     display: flex;
-    flex-wrap: wrap;
+    gap:15px;
+    animation: fadeIn 1s ease-in-out;
 }
 nav div {
     margin:10px;
@@ -48,10 +96,12 @@ nav div .nav-link {
     font-size: 25px;
     background-color: rgba(250, 230, 170, 0.158);
     color:rgb(235, 187, 115);
+    transition: all 0.3s ease-in-out;
 }
 nav div .nav-link:hover {
     background-color: rgba(234, 126, 146, 0.568);  
     color:white;
+    transform: scale(1.05);
 }
 .signup-btn {
     border-radius: 10px;
@@ -61,56 +111,62 @@ nav div .nav-link:hover {
     background-color: rgba(234, 126, 146, 0.568); 
     color: rgb(255, 255, 255);
     text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 .signup-btn:hover {
     background-color: rgba(255, 255, 255, 0.656);
     color:rgba(234, 126, 146, 0.737);
+    transform: scale(1.05);
 }
 .menu-toggle {
     display: none;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
 }
 
 .hero {
     background: url('/images/dogcat3.jpg') center/cover no-repeat;
     background-position: 20% center;
-    background-size: 110%; 
+    background-size: cover;
     height: 88vh;
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
     text-align: center;
-    /*padding: 20px;*/
     position: relative; 
+    animation: heroFadeIn 1s ease-in-out;
 }
 
 .hero div {
-    background-color: rgba(90, 90, 90, 0.203);
+    background-color: rgba(255, 255, 255, 0.275);
     padding: 40px;
     max-width: 500px;
     border-radius: 35%;
-    width:30%;      
+    width:30%;
+    animation: fadeIn 1s ease-in-out;    
 }
 
 .hero h2 {
     font-size: 50px;
     font-family: 'Cherry Bomb One','Barriecito', cursive;
-    font-weight: lighter;
-    color: rgba(234, 126, 146, 0.858);
+    font-weight: bold;
+    color: rgba(200, 105, 123, 0.723); 
+
     margin-bottom: 10px;
     text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
-               1px 1px #ffffff;    
+               1px 1px #ffffff;   
+    animation: fadeIn 1.2s ease-in-out; 
 }
 
 .hero p {
     font-size: 25px;
     margin-bottom: 20px;
-    color:#ffffff;
+    color:rgba(19, 19, 19, 0.789);
     padding:5px;
     font-family: "Gamja Flower"; 
     font-weight: bold;
+    animation: fadeIn 1.4s ease-in-out;
 }
 
 .btn {
@@ -123,15 +179,19 @@ nav div .nav-link:hover {
     border-style: dashed;
     position: absolute;
     bottom: 40px;
+    transition: all 0.3s ease-in-out;
+    
 }
 
 .btn:hover {
     background-color: rgba(255, 255, 255, 0.536);
-}
+    animation: bounce 0.5s ease-in-out;
+} 
 
 .search-box {
+    padding-bottom: 20px;
     text-align: center;
-    padding: 20px;
+    padding: 50px;
     background-color:rgba(178, 168, 137, 0.214);
     height:300px;
   }
@@ -220,10 +280,10 @@ input{
 .search-btn:hover {
     background-color: rgba(232, 205, 117, 0.585);  
 }
+
 .steps {
     text-align: center;
     padding: 50px 20px;
-     
     background-color: rgba(241, 166, 180, 0.568);   
 }
 
@@ -232,6 +292,17 @@ input{
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+}
+.step-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+h2{
+    font-family: 'Rampart One';
+    margin-bottom: 15px;
+    font-size: 30px;
+    color:rgb(0, 0, 0)
 }
 
 .step-card {
@@ -251,11 +322,6 @@ input{
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.step-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -264,14 +330,6 @@ input{
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .steps-container {
-        flex-direction: column;
-        align-items: center;
     }
 }
 
@@ -287,6 +345,12 @@ input{
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.service-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .service-card {
@@ -342,6 +406,7 @@ input{
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+
 }
 
 .testimonial-card {
@@ -380,13 +445,7 @@ input{
     font-style: italic;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .testimonial-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
+
 footer {
     background-color: #4b4a4a;
     color: white;
@@ -576,7 +635,7 @@ footer {
     justify-content: center;
     background-color: rgb(235, 187, 115);
     box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.1);
-    animation: slideInRight 0.6s ease-in-out;
+    
   }
   
   /* Form box */
@@ -588,6 +647,7 @@ footer {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.8s ease-in-out;
     background-color:ivory;
+    animation: slideInRight 0.6s ease-in-out;
   }
   
   /* Animations */
