@@ -1,30 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Use navigate for smooth redirection
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // React Router navigation
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       const response = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
-
+  
       console.log("Login successful:", response.data);
-      localStorage.setItem("token", response.data.token); // Store JWT token
-      window.location.href = "/dashboard"; // Redirect after successful login
+  
+      // Store login state in localStorage
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userLoggedIn", "true");
+  
+      // Force refresh to update navbar
+      window.location.reload();
+  
+      // Redirect to dashboard
+      window.location.href = "/dashboard";
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }
   };
+  
 
   return (
     <div className="auth-container">

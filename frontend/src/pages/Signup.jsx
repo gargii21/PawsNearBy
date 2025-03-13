@@ -1,29 +1,90 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; 
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+ 
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const handleSignUp = (e) => {
+    e.preventDefault();
+  
+    if (!name || !username || !email || !password || !confirmPassword) {
+      setError("All fields are required!");
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+  
+    console.log({ name, username, email });
+  
+    // Store login state in localStorage
+    localStorage.setItem("userLoggedIn", "true");
+  
+    // Force refresh to update navbar
+    window.location.reload();
+  
+    // Redirect to dashboard
+    window.location.href = "/dashboard";
+  };
+  
+  
+
   return (
     <div className="auth-container">
-      {/* Left side with heading */}
       <div className="auth-left">
         <h1>Join PawsNearby! <br /> Create an account to connect with pet caregivers.</h1>
       </div>
 
-      {/* Right side with signup form */}
       <div className="auth-right">
         <div className="auth-box">
           <h2>Sign Up</h2>
-          <form>
+          <form onSubmit={handleSignUp}>
             <div className="input-group">
-              <input type="email" placeholder="Enter your email" required />
+              <input 
+                type="text" 
+                placeholder="Full Name" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)} 
+                required 
+              />
+            </div>
+            <div className="input-group">
+              <input 
+                type="text" 
+                placeholder="Username" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                required 
+              />
+            </div>
+            <div className="input-group">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                required 
+              />
             </div>
             <div className="input-group password-field">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Create password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <span onClick={() => setShowPassword(!showPassword)}>
@@ -34,12 +95,17 @@ const Signup = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               <span onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
+
+            {error && <p className="error">{error}</p>}
+
             <button type="submit" className="auth-button">Sign Up Now</button>
           </form>
           <p className="toggle-text">
@@ -52,3 +118,4 @@ const Signup = () => {
 };
 
 export default Signup;
+
