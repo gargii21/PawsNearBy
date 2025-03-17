@@ -36,7 +36,7 @@ const SearchResults = () => {
         //console.log("res chya nantar");
         let list;
         list=[]
-        for(let i=0; i<4; i++){
+        for(let i=0; i<5; i++){
           if(temp[i]==undefined){
             console.log(i)
             console.log("zaal work")
@@ -52,6 +52,7 @@ const SearchResults = () => {
           setProfileTest(list)
 
         }
+        console.log(temp)
         
         
         //setProfileTest([{prId:pr, daycare_name:name, service:serv, lat:temp.prLatitude, lng:temp.prLongitude}])

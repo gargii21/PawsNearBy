@@ -32,7 +32,12 @@ const Login = () => {
       // Redirect to dashboard
       window.location.href = "/dashboard";
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      console.error("Signup Error:", error);
+        if (error.response) {
+            setError(error.response.data.message); // Show backend error message
+        } else {
+            setError("Signup failed. Please try again.");
+        }
     }
   };
   

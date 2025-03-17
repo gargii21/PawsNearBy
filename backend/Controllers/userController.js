@@ -78,6 +78,45 @@ const regUser = async(req , res)=>{
     }
 }
 
+const basic_signup = async(req,res)=>{
+    try{
+        const {name, username, email, password, confirmpassword}=req.body
+
+        if(!name || !username || !email || !password || !confirmpassword){
+            return res.status(400).json({message:"All fields are required!"})
+        }
+
+        if(password!==confirmpassword){
+            return res.status(404).json({message:"passoword doesnt match!"})
+        }
+
+        const alreadyUser = await userModel.findOne(
+            {
+                where: {email}
+            }
+        )
+        if(alreadyUser){
+            return res.status(400).json({message:"email already exist try logging in"})
+        }
+
+        const hpass = await bcrypt.hash(password,10)
+
+        const newbUser = await userModel.create({
+            name,
+            username,
+            email,
+            password:hpass
+        });
+
+        return res.status(200).json({message:"Signed up Successfully", user: newbUser})
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({message:"erroorrooror"})
+    }
+   
+
+}
+
 const updateUser = async(req, res)=>{
     
     try{
@@ -136,4 +175,4 @@ const deleteUser = async(req,res)=>{
 
 
 
-export {regUser, updateUser, deleteUser};
+export {regUser, updateUser, deleteUser, basic_signup};

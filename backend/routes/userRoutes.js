@@ -1,13 +1,13 @@
 import {Router} from 'express';
 import login from  '../Controllers/loginController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
-import {deleteUser, regUser, updateUser} from '../Controllers/userController.js';
+import {basic_signup, deleteUser, regUser, updateUser} from '../Controllers/userController.js';
 import search from '../Controllers/searchController.js';
 const router = Router();
 
 router.post("/login",authMiddleware,login);
 router.post("/search",authMiddleware,search);
-
+router.post("/basic_signup",authMiddleware,basic_signup);
 router.post("/signup",authMiddleware,regUser);
 
 router.post("/updateInfo",authMiddleware,updateUser);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; 
+import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -15,31 +16,47 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-  
-    if (!name || !username || !email || !password || !confirmPassword) {
-      setError("All fields are required!");
-      return;
-    }
-  
-    if (password !== confirmPassword) {
-      setError("Passwords do not match!");
-      return;
-    }
   
     console.log({ name, username, email });
   
-    // Store login state in localStorage
-    localStorage.setItem("userLoggedIn", "true");
+    try {
+      const response = await fetch("http://localhost:5000/basic_signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          username,
+          email,
+          password,
+          confirmpassword: confirmPassword,
+        }),
+      });
   
-    // Force refresh to update navbar
-    window.location.reload();
+      const data = await response.json(); // Parse JSON response
   
-    // Redirect to dashboard
-    window.location.href = "/dashboard";
+      if (!response.ok) {
+        throw new Error(data.message || "Signup failed. Please try again.");
+      }
+  
+      console.log("Signup successful:", data);
+  
+      // Store login state
+      localStorage.setItem("userLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify(data.user));
+  
+      alert(data.message || "Signup successful!");
+      
+      navigate("/dashboard");
+  
+    } catch (error) {
+      setError(error.message);
+      console.error("Signup Error:", error);
+    }
   };
-  
   
 
   return (
