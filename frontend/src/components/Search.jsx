@@ -49,7 +49,7 @@ const Search = () => {
 
     // Redirect to the search results page with lat/lon params
     navigate(
-      `/search-results?location=${location}&lat=${latitude}&lon=${longitude}&service=${service}`
+      `/search?lat=${latitude}&lon=${longitude}&service=${service}`
     );
   };
 
