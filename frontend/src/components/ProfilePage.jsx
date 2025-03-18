@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import RequestFormModal from "./RequestFormModal";
 import "../styles/profilePage.css";
@@ -33,7 +33,13 @@ const ProfilePage = () => {
 
       <button onClick={() => setShowForm(true)}>Request</button>
 
-      {showForm && <RequestFormModal onClose={() => setShowForm(false)} />}
+      {showForm && (
+        <RequestFormModal
+          isOpen={showForm}
+          onClose={() => setShowForm(false)}
+          caregiverName={profile.daycare_name}
+        />
+      )}
     </div>
   );
 };

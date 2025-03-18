@@ -1,35 +1,33 @@
-import React, { useState } from "react";
-import ProfileModal from "./ProfileModal";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/profileCards.css";
 
 const ProfileCards = ({ profiles }) => {
-  const [selectedProfile, setSelectedProfile] = useState(null);
+  const navigate = useNavigate();
+
+  const handleViewProfile = (profile) => {
+    navigate(`/profile/${profile.prId}`);
+  };
+
+  const handleRequestClick = (profile) => {
+    navigate(`/profile/${profile.prId}?request=true`);
+  };
 
   return (
-    <section className="profile-cards">
+    <div className="profile-cards">
       {profiles.map((profile) => (
         <div key={profile.prId} className="profile-card">
           <h3>{profile.daycare_name}</h3>
           <p><strong>Service:</strong> {profile.service}</p>
-          <p><strong>Location:</strong> {profile.city || "Unknown City"}</p>
-          <p><strong>Fees:</strong> ₹{profile.fees || 500}/hr</p>
-          <p><strong>Rating:</strong> ⭐ {profile.rating || 4.5}</p>
+          <p><strong>Location:</strong> {profile.city}</p>
+          <p><strong>Fees:</strong> ₹{profile.fees}</p>
+          <p><strong>Rating:</strong> {profile.rating}⭐</p>
 
-          <div className="profile-buttons">
-            <button onClick={() => setSelectedProfile(profile)}>View Profile</button>
-            <button onClick={() => window.location.href = `/profile/${profile.prId}?request=true`}>Request</button>
-          </div>
+          <button onClick={() => handleRequestClick(profile)}>Request</button>
+          <button onClick={() => handleViewProfile(profile)}>View Profile</button>
         </div>
       ))}
-
-      {/* Modal */}
-      {selectedProfile && (
-        <ProfileModal 
-          profile={selectedProfile} 
-          onClose={() => setSelectedProfile(null)} 
-        />
-      )}
-    </section>
+    </div>
   );
 };
 

@@ -1,20 +1,28 @@
-import React from "react";
-import "../styles/modal.css";
+import React, { useState } from "react";
+import RequestFormModal from "./RequestFormModal";
 
 const ProfileModal = ({ profile, onClose }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <span className="close-button" onClick={onClose}>&times;</span>
-
         <h2>{profile.daycare_name}</h2>
         <p><strong>Service:</strong> {profile.service}</p>
-        <p><strong>Location:</strong> {profile.city || "Unknown City"}</p>
-        <p><strong>Fees:</strong> ₹{profile.fees || 500}/hr</p>
-        <p><strong>Rating:</strong> ⭐ {profile.rating || 4.5}</p>
-        <p><strong>About:</strong> Experienced, loving caregiver available for pet sitting and walking.</p>
+        <p><strong>Location:</strong> {profile.city}</p>
+        <p><strong>Fees:</strong> ₹{profile.fees}</p>
+        <p><strong>Rating:</strong> {profile.rating}⭐</p>
 
-        <button onClick={() => window.location.href = `/profile/${profile.prId}?request=false`}>Request</button>
+        <button onClick={() => setOpenModal(true)}>Request</button>
+        <button onClick={onClose}>Close</button>
+
+        {openModal && (
+          <RequestFormModal
+            isOpen={openModal}
+            onClose={() => setOpenModal(false)}
+            caregiverName={profile.daycare_name}
+          />
+        )}
       </div>
     </div>
   );

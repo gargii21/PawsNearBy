@@ -541,55 +541,18 @@ footer {
     margin-right: 5px;
 }
 
+ 
 .search-results-container {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr; /* Adjust layout */
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
     padding: 20px;
     height: 100vh;
   }
   
-  /* FILTERS */
-  .filters {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  /* PROFILE CARDS */
-  .profile-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .profile-card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .profile-card h3 {
-    margin: 0;
-  }
-  
-  .profile-card button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background: rgb(235, 187, 115);
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .profile-card button:hover {
-    background: rgb(235, 187, 115);
-  }
   
   /* MAP */
-  .map-container {
+  .map-section .map-container {
     height: 100%;
   }
   
@@ -597,6 +560,7 @@ footer {
     height: 100%;
     border-radius: 10px;
   }
+  
 
 
  /* Full-screen container */
