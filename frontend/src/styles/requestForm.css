@@ -1,0 +1,32 @@
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .modal-content input,
+  .modal-content select,
+  .modal-content textarea {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .modal-content textarea {
+    resize: vertical;
+  }
+  
+  .modal-content form button {
+    margin-top: 10px;
+    background: rgb(235, 187, 115);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .modal-content form button:hover {
+    background: rgb(220, 160, 90);
+  }
+  
