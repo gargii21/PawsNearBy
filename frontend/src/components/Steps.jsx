@@ -1,19 +1,22 @@
 import React from "react";
 
 function Steps() {
+  const steps = [
+    { title: "Step 1. Search", text: "Find the best pet sitters near you..", img: "/images/search.png" },
+    { title: "Step 2. Choose Caregiver", text: "Choose based on vibe & reviews.", img: "/images/choose.png" },
+    { title: "Step 3. Set the Date", text: "Schedule pet care in just a few clicks.", img: "/images/book.png" },
+    { title: "Step 4. Relax", text: "Your pet is in loving hands!", img: "/images/relax.png" },
+  ];
+
   return (
     <section className="steps">
-      <h3>How it works</h3>
-      <div className="step-cards">
-        {[
-          { step: "1. Search", text: "Enter your location & explore verified pet sitters in your area." },
-          { step: "2. Choose the perfect match", text: "Browse profiles, read reviews, and find a caregiver your pet will adore." },
-          { step: "3. Book within a few clicks", text: "Select your dates, confirm the details, and secure your pet’s care instantly." },
-          { step: "4. Relax and Enjoy peace of mind", text: "Know that your pet is in loving hands while you work, travel, or take a break." }
-        ].map(({ step, text }, index) => (
-          <div className="step" key={index}>
-            <h3>{step}</h3>
-            <p>{text}</p>
+      <h2>No Stress, Just Pets</h2>
+      <div className="steps-container">
+        {steps.map((step, index) => (
+          <div className="step-card" key={index}>
+            <img src={step.img} alt={step.title} className="step-image" />
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
           </div>
         ))}
       </div>
@@ -22,3 +25,4 @@ function Steps() {
 }
 
 export default Steps;
+
