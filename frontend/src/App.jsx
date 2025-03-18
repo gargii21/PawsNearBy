@@ -5,10 +5,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import SearchResults from "./pages/SearchResults";
-import Login from "./pages/Login";  // Import Login Page
-import Signup from "./pages/Signup"; // Import Signup Page
-import Dashboard from "./pages/Dashboard"; 
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
+import ProfilePage from "./components/ProfilePage"; // Import the full profile page
 
 function App() {
   return (
@@ -18,10 +19,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchResults />} />
-          <Route path="/login" element={<Login />} />  {/* Added Login Route */}
-          <Route path="/signup" element={<Signup />} /> {/* Added Signup Route */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/profile/:id" element={<ProfilePage />} /> {/* Full Profile Page */}
         </Routes>
       </div>
       <Footer />
@@ -30,4 +32,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,77 +1,58 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Use navigate for smooth redirection
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // React Router navigation
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-  
     try {
       const response = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
-  
-      console.log("Login successful:", response.data);
-  
-      // Store login state in localStorage
+
+      // Store login state
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userLoggedIn", "true");
-  
-      // Force refresh to update navbar
-      window.location.reload();
-  
-      // Redirect to dashboard
+
+      // Force refresh
       window.location.href = "/dashboard";
+      window.location.reload();
+
     } catch (err) {
-      console.error("Signup Error:", error);
-        if (error.response) {
-            setError(error.response.data.message); // Show backend error message
-        } else {
-            setError("Signup failed. Please try again.");
-        }
+      console.error("Login Error:", err);
+      if (err.response) {
+        setError(err.response.data.message);
+      } else {
+        setError("Login failed. Please try again.");
+      }
     }
   };
-  
 
   return (
     <div className="auth-container">
-      {/* Left side with heading */}
       <div className="auth-left">
         <h1>Welcome Back! <br /> Log in to find the best pet care services.</h1>
       </div>
 
-      {/* Right side with login form */}
       <div className="auth-right">
         <div className="auth-box">
           <h2>Login</h2>
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleLogin}>
             <div className="input-group">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required 
-              />
+              <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
             <div className="input-group password-field">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <input type={showPassword ? "text" : "password"} placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               <span onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? <FaEye /> : <FaEyeSlash />}
               </span>

@@ -1,0 +1,31 @@
+.profile-page {
+    padding: 20px;
+    background: #fff;
+    max-width: 700px;
+    margin: 30px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .profile-page h2 {
+    margin-top: 0;
+  }
+  
+  .profile-page p {
+    margin: 10px 0;
+  }
+  
+  .profile-page button {
+    margin-top: 20px;
+    background: rgb(235, 187, 115);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .profile-page button:hover {
+    background: rgb(220, 160, 90);
+  }
+  
