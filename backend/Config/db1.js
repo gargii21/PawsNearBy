@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import User from '../models/User.js';
 import Pet from '../models/Pet.js';
 import provider from '../models/provider.js';
+import Request from '../models/request.js';
 dotenv.config();
 
 const{DB_HOST,DB_USER,DB_DB, DB_PASS } = process.env;
@@ -23,6 +24,7 @@ const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
 const userModel = User(sequelize);
 const petModel = Pet(sequelize);
 const providerModel = provider(sequelize);
+const requestModel = Request(sequelize);
     
 async function syncdb(){
   try{
@@ -36,4 +38,4 @@ async function syncdb(){
     }
 };   
 
-export {sequelize, userModel, petModel, providerModel, syncdb}
+export {sequelize, userModel, petModel, providerModel, requestModel, syncdb}
