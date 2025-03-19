@@ -175,4 +175,4 @@ const deleteUser = async(req,res)=>{
 
 
 
-export {regUser, updateUser, deleteUser, basic_signup};
+export {regUser, updateUser, deleteUser, basic_signup, getCoordinates};

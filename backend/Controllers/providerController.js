@@ -1,11 +1,14 @@
 import { providerModel } from '../Config/db1.js';
-import Provider from '../models/provider.js';
+import { getCoordinates } from './userController.js';
 
 export const addProvider = async (req, res) => {
-    console.log("🔹 Route Hit: Data Received =>", req.body);  // Debugging log
+    //console.log("🔹 Route Hit: Data Received =>", req.body);  // Debugging log
     
-    const { daycare_name, owner_name, phone, address, email, password, service, prLatitude, prLongitude, review, fees } = req.body;
+    const { daycare_name, owner_name, phone, address, email, password, service, review, fees } = req.body;
 
+    const cordinates= await getCoordinates(address);
+    //console.log(cordinates.latitude);
+    //console.log(cordinates.longitude);
     try {
         const result = await providerModel.create({
             daycare_name,
@@ -15,8 +18,8 @@ export const addProvider = async (req, res) => {
             email,
             password,
             service,
-            prLatitude,
-            prLongitude,
+            prLatitude:cordinates.latitude,
+            prLongitude:cordinates.longitude,
             review,
             fees
         });
