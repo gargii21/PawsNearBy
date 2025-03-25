@@ -21,10 +21,11 @@ const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
 });
 
 //Models
+//import { sequelize } from "../Config/db1.js";
 const userModel = User(sequelize);
-const petModel = Pet(sequelize);
 const providerModel = provider(sequelize);
 const requestModel = Request(sequelize);
+const petModel = Pet(sequelize);
     
 async function syncdb(){
   try{
@@ -38,4 +39,4 @@ async function syncdb(){
     }
 };   
 
-export {sequelize, userModel, petModel, providerModel, requestModel, syncdb}
+export {sequelize, userModel, providerModel, requestModel, petModel, syncdb}

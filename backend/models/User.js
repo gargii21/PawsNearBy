@@ -50,7 +50,7 @@ import { DataTypes} from "sequelize";
             type: DataTypes.DECIMAL(9,6),
         }
     },
-    {timestamps: false}
+    { tableName: "User1", timestamps: false }
 )
 
 };

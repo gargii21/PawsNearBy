@@ -4,7 +4,8 @@ import authMiddleware from '../middleware/authMiddleware.js';
 import {basic_signup, deleteUser, regUser, updateUser} from '../Controllers/userController.js';
 import search from '../Controllers/searchController.js';
 import { addProvider } from '../Controllers/providerController.js';
-import { sendRequest, acceptRequest, rejectRequest } from '../Controllers/requestController.js';
+import { sendRequest, acceptRequest, rejectRequest, getRequestStatus } from '../Controllers/requestController.js';
+import  addPet  from '../Controllers/petController.js';
 const router = Router();
 
 router.post("/login",authMiddleware,login);
@@ -18,7 +19,9 @@ router.post("/regProvider",authMiddleware,addProvider);
 router.post("/sendRequest",authMiddleware,sendRequest);
 router.post("/acceptRequest",authMiddleware,acceptRequest);
 router.post("/rejectRequest",authMiddleware,rejectRequest);
+router.get("/getRequestStatus",authMiddleware,getRequestStatus);
 router.delete("/delete",authMiddleware,deleteUser);
+router.post("/addPet",authMiddleware,addPet);
 
 
 
