@@ -15,7 +15,7 @@ export const sendRequest = async (req, res) => {
 
 // Accept Request
 export const acceptRequest = async (req, res) => {
-    const { reqId } = req.params;
+    const { reqId } = req.body;
 
     try {
         const request = await requestModel.findByPk(reqId);
@@ -33,7 +33,7 @@ export const acceptRequest = async (req, res) => {
 
 //  Reject Request
 export const rejectRequest = async (req, res) => {
-    const { reqId } = req.params;
+    const { reqId } = req.body;
 
     try {
         const request = await requestModel.findByPk(reqId);
@@ -46,5 +46,19 @@ export const rejectRequest = async (req, res) => {
     } catch (error) {
         console.error(" Error rejecting request:", error);
         res.status(500).json({ error: "Failed to reject request" });
+    }
+};
+
+export const getRequestStatus = async (req, res) => {
+    const { reqId } = req.body;
+
+    try {
+        const request = await requestModel.findByPk(reqId);
+        if (!request) return res.status(404).json({ error: "Request not found" });
+
+        res.json({ status: request.status });
+    } catch (error) {
+        console.error(" Error getting request status:", error);
+        res.status(500).json({ error: "Failed to request status" });
     }
 };
