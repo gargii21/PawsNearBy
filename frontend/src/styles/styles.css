@@ -567,7 +567,7 @@ footer {
 .auth-container {
     display: flex;
     height: 100vh;
-    background: url('/images/auth.png') no-repeat left center/cover;
+    background: url('https://images.unsplash.com/photo-1625794084867-8ddd239946b1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHBldHxlbnwwfHwwfHx8MA%3D%3D') no-repeat left center/cover;
     background-size: 80%;
     font-family: 'Gamja Flower';
   }
