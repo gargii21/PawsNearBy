@@ -25,7 +25,7 @@ const Login = () => {
 
       // Force refresh
       window.location.href = "/dashboard";
-      window.location.reload();
+      //window.location.reload();
 
     } catch (err) {
       console.error("Login Error:", err);

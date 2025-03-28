@@ -43,7 +43,7 @@ const Signup = () => {
 
       // Force refresh
       window.location.href = "/dashboard";
-      window.location.reload();
+      //window.location.reload();
 
     } catch (error) {
       setError(error.message);
