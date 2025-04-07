@@ -12,6 +12,7 @@ import Community from "./pages/Community";
 import ProfilePage from "./components/ProfilePage"; // Import the full profile page
 import BecomeCaregiver from "./pages/BecomeCaregiver";
 
+
 function App() {
   return (
     <Router>

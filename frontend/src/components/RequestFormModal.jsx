@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import "../styles/requestForm.css"; // Link to CSS
+import "../styles/requestForm.css"; // Your CSS file
 
-const RequestFormModal = ({ isOpen, onClose, caregiverName }) => {
+const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
   const today = new Date().toISOString().split("T")[0];
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    pets: [
-      { name: "", type: "", age: "", size: "", notes: "" }
-    ],
+    pets: [{ name: "", type: "", age: "", size: "", notes: "" }],
     serviceType: "",
     fromDate: "",
     toDate: "",
     startTime: "",
     endTime: "",
+    location: "",
     message: "",
   });
 
@@ -29,7 +28,7 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName }) => {
   const addPet = () => {
     setFormData({
       ...formData,
-      pets: [...formData.pets, { name: "", type: "", age: "", size: "", notes: "" }]
+      pets: [...formData.pets, { name: "", type: "", age: "", size: "", notes: "" }],
     });
   };
 
@@ -56,10 +55,46 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
-    onClose();
+
+    const requestPayload = {
+      caregiverId,
+      pets: formData.pets.map((pet) => ({
+        petName: pet.name,
+        petType: pet.type,
+        petAge: pet.age,
+        petSize: pet.size,
+        notes: pet.notes,
+      })),
+      service: formData.serviceType,
+      fromDate: formData.fromDate,
+      toDate: formData.toDate,
+      startTime: formData.startTime,
+      endTime: formData.endTime,
+      location: formData.location,
+      message: formData.message,
+    };
+
+    try {
+      const response = await fetch("/api/requests/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Include auth token if needed here
+        },
+        body: JSON.stringify(requestPayload),
+      });
+
+      if (response.ok) {
+        console.log("Request submitted successfully");
+        onClose();
+      } else {
+        console.error("Failed to submit request");
+      }
+    } catch (error) {
+      console.error("Error submitting request:", error);
+    }
   };
 
   if (!isOpen) return null;
@@ -139,6 +174,10 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName }) => {
                 <input type="time" name="startTime" value={formData.startTime} onChange={handleChange} required />
                 <label>End Time:</label>
                 <input type="time" name="endTime" value={formData.endTime} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Location:</label>
+                <input type="text" name="location" value={formData.location} onChange={handleChange} required />
               </div>
             </>
           )}

@@ -4,11 +4,16 @@ import "../styles/caregiver.css";
 const BecomeCaregiver = () => {
   const [formData, setFormData] = useState({
     name: "",
+    daycareName: "",
     email: "",
     phone: "",
-    location: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
     services: [],
     experience: "",
+    fees: "",
     about: "",
   });
 
@@ -34,14 +39,13 @@ const BecomeCaregiver = () => {
 
   return (
     <div className="caregiver-page">
-      
       {/* Hero Section */}
       <header className="caregiver-header">
         <div>
           <h1>Become a Caregiver</h1>
           <p>Join our trusted network and provide loving care to pets near you!</p>
         </div>
-        <a href="#caregiver-form" className="btn">Get Started</a>
+        <a href="#caregiver-form" className="caregiver-btn">Get Started</a>
       </header>
 
       {/* Why Join Us Cards */}
@@ -69,40 +73,97 @@ const BecomeCaregiver = () => {
       {/* Caregiver Form */}
       <section className="caregiver-form-section" id="caregiver-form">
         <form className="caregiver-form" onSubmit={handleSubmit}>
-          <h3>Sign Up as a Caregiver</h3>
+          <h2>Sign Up as a Caregiver</h2>
 
+          <p className="notice">
+            <strong>Note:</strong> Please <a href="/login">sign in</a> or <a href="/signup">sign up</a> first if you haven't already.
+          </p>
+
+          <label htmlFor="name">Full Name</label>
           <input
             type="text"
+            id="name"
             name="name"
-            placeholder="Full Name"
+            placeholder="Your full name"
             value={formData.name}
             onChange={handleChange}
             required
           />
 
+          <label htmlFor="daycareName">Daycare Name</label>
+          <input
+            type="text"
+            id="daycareName"
+            name="daycareName"
+            placeholder="Name of your daycare (if any)"
+            value={formData.daycareName}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             name="email"
-            placeholder="Email"
+            placeholder="you@example.com"
             value={formData.email}
             onChange={handleChange}
             required
           />
 
+          <label htmlFor="phone">Phone Number</label>
           <input
             type="tel"
+            id="phone"
             name="phone"
-            placeholder="Phone Number"
+            placeholder="Your phone number"
             value={formData.phone}
             onChange={handleChange}
             required
           />
 
+          <h4>Address Details</h4>
+
+          <label htmlFor="street">Street</label>
           <input
             type="text"
-            name="location"
-            placeholder="City/Location"
-            value={formData.location}
+            id="street"
+            name="street"
+            placeholder="House No., Street Name"
+            value={formData.street}
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="City"
+            value={formData.city}
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor="state">State</label>
+          <input
+            type="text"
+            id="state"
+            name="state"
+            placeholder="State"
+            value={formData.state}
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor="pincode">Pincode</label>
+          <input
+            type="text"
+            id="pincode"
+            name="pincode"
+            placeholder="Postal Code"
+            value={formData.pincode}
             onChange={handleChange}
             required
           />
@@ -126,24 +187,36 @@ const BecomeCaregiver = () => {
             </div>
           </div>
 
-          {/* Years of Experience */}
-          <div className="form-group">
-            <label>Years of Experience:</label>
-            <input
-              type="number"
-              name="experience"
-              placeholder="Enter number of years"
-              value={formData.experience}
-              onChange={handleChange}
-              min="0"
-              required
-            />
-          </div>
+          <label htmlFor="experience">Years of Experience</label>
+          <input
+            type="number"
+            id="experience"
+            name="experience"
+            placeholder="Enter number of years"
+            value={formData.experience}
+            onChange={handleChange}
+            min="0"
+            required
+          />
 
+          <label htmlFor="fees">Fees (per day/service)</label>
+          <input
+            type="number"
+            id="fees"
+            name="fees"
+            placeholder="Enter amount in INR"
+            value={formData.fees}
+            onChange={handleChange}
+            min="0"
+            required
+          />
+
+          <label htmlFor="about">About You</label>
           <textarea
+            id="about"
             name="about"
             rows="4"
-            placeholder="Tell us about yourself..."
+            placeholder="Tell us about yourself and your love for pets..."
             value={formData.about}
             onChange={handleChange}
           />

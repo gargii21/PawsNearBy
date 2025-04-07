@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import Steps from "../components/Steps";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
+import "../styles/home.css";
 
 function Home() {
   return (

@@ -124,325 +124,6 @@ nav div .nav-link:hover {
     cursor: pointer;
 }
 
-.hero {
-    background: url('/images/dogcat3.jpg') center/cover no-repeat;
-    background-position: 20% center;
-    background-size: cover;
-    height: 88vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    text-align: center;
-    position: relative; 
-}
-
-.hero div {
-    background-color: rgba(255, 255, 255, 0.275);
-    padding: 40px;
-    max-width: 500px;
-    border-radius: 35%;
-    width:30%;
-    animation: fadeIn 1s ease-in-out;    
-}
-
-.hero h2 {
-    font-size: 50px;
-    font-family: 'Cherry Bomb One','Barriecito', cursive;
-    font-weight: bold;
-    color: rgba(200, 105, 123, 0.723); 
-
-    margin-bottom: 10px;
-    text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
-               1px 1px #ffffff;   
-    animation: fadeIn 1.2s ease-in-out; 
-}
-
-.hero p {
-    font-size: 25px;
-    margin-bottom: 20px;
-    color:rgba(19, 19, 19, 0.789);
-    padding:5px;
-    font-family: "Gamja Flower"; 
-    font-weight: bold;
-    animation: fadeIn 1.4s ease-in-out;
-}
-
-.btn {
-    padding: 12px 20px;
-    background-color: rgba(217, 211, 223, 0);
-    border-radius: 5px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    border-style: dashed;
-    position: absolute;
-    bottom: 40px;
-    transition: all 0.3s ease-in-out;
-    
-}
-
-.btn:hover {
-    background-color: rgba(255, 255, 255, 0.536);
-    animation: bounce 0.5s ease-in-out;
-} 
-
-.search-box {
-    padding-bottom: 20px;
-    text-align: center;
-    padding: 50px;
-    background-color:rgba(178, 168, 137, 0.214);
-    height:300px;
-  }
- 
-  .search-input{
-    align-self: center;
-    justify-self: center;
-    margin-top:10px;
-    width:fit-content;
-    background-color: rgba(255, 255, 245, 0.144);
-    align-self: center;
-    margin-top:10px;
-    padding: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width:50vw;
-  }
-  
-  .suggestions {
-        list-style: none;
-        position: absolute;
-        top: 100%; /* Place dropdown just below input field */
-        left: 50%; /* Start from the center */
-        transform: translateX(-50%); /* Shift back by 50% of its own width */
-        width: 100%; /* Match input width */
-        max-width: 400px; /* Set a max width */
-        background: rgb(246, 246, 237);
-        border: 1px solid #ffffffa6;
-        border-radius: 5px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 1000; 
-  }
-  .loc-container{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-  }
-  
-  .suggestions li {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .suggestions li:hover {
-    background: #f2f2f2;
-  }
-  
-  .service-buttons button {
-    border-radius: 5px;
-    margin: 5px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    font-family: "Itim";
-    font-size: 15px;
-  }
-  
-  .service-buttons .selected {
-    background: rgba(234, 126, 146, 0.568);  
-    color: white;
-  }
- 
-input{
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
-    border: none;
-    width: 30vw;
-}
-.search-btn {
-    background-color: white;
-    color: rgb(0, 0, 0);  
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
-    padding:10px 20px;
-    border-radius: 5px;
-    border-color: rgb(0, 0, 0);  
-    border-style: solid;
-
-}
-
-.search-btn:hover {
-    background-color: rgba(232, 205, 117, 0.585);  
-}
-
-.steps {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: rgba(241, 166, 180, 0.568);
-}
-
-.steps-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.step-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-h2{
-    font-family: 'Rampart One';
-    margin-bottom: 15px;
-    font-size: 30px;
-    color:rgb(0, 0, 0)
-}
-
-.step-card {
-    background: rgb(232, 203, 160);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-}
-
-.step-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-.services {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: rgba(234, 126, 146, 0.568);
-}
-
-.services-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.service-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.service-card {
-    background: rgb(246, 239, 215);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.service-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.service-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .services-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-
-.testimonials {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: rgb(232, 203, 160);
-}
-
-.section-title {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #fdfdfd; /* Warm ochre color */
-}
-
-.testimonial-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-
-}
-
-.testimonial-card {
-    background: rgb(246, 239, 215);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 320px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-}
-
-.testimonial-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.testimonial-text {
-    font-size: 16px;
-    color: #444;
-    margin-bottom: 10px;
-    
-}
-
-.testimonial-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #d4527bdd;
-    font-style: italic;
-}
 
 
 footer {
@@ -450,6 +131,8 @@ footer {
     color: white;
     padding: 40px 20px;
     text-align: center;
+    position: relative;
+    margin-top: auto;
 }
 
 .footer-up {
@@ -522,6 +205,8 @@ footer {
     font-size: 14px;
 }
 
+  
+
 /* Responsive */
 @media (max-width: 768px) {
     .footer-up {
@@ -567,7 +252,7 @@ footer {
 .auth-container {
     display: flex;
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1625794084867-8ddd239946b1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHBldHxlbnwwfHwwfHx8MA%3D%3D') no-repeat left center/cover;
+    background: url('https://media.istockphoto.com/id/1145118489/photo/albai-dog-is-my-favourite.jpg?s=612x612&w=0&k=20&c=jx9Ot9OeqtS1xnH9P4aY_fH22v2xZe_LPthJRbyhYSw=') no-repeat left center/cover;
     background-size: 80%;
     font-family: 'Gamja Flower';
   }
@@ -580,8 +265,8 @@ footer {
     justify-content: center;
     text-align: center;
     padding: 40px;
-    color: white;
-    background: rgba(0, 0, 0, 0.068); /* Overlay effect */
+    color: ivory;
+    background: rgba(0, 0, 0, 0.444); /* Overlay effect */
   }
   
   .auth-left h1 {
@@ -598,7 +283,9 @@ footer {
     justify-content: center;
     background-color: rgb(235, 187, 115);
     box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.1);
-    
+  }
+  .auth-right h2{
+    color: rgb(233, 173, 82);
   }
   
   /* Form box */
