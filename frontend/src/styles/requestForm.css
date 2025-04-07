@@ -33,15 +33,18 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  text-align:center;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
+  width: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin: 0 auto;
+  display: block;
 }
 
 textarea {
@@ -76,6 +79,7 @@ textarea {
 .error {
   color: red;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .close-btn {

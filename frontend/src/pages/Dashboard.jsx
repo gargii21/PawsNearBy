@@ -1,50 +1,64 @@
 import React, { useState } from "react";
 import "../styles/dashboard.css";
+import ViewRequestForm from "../components/ViewRequestForm"; 
+
 
 const Dashboard = () => {
   const user = {
     name: "priyal",
-    role: "hybrid", // "owner" or "hybrid"
+    role: "hybrid",
   };
+  
 
   const [activePanel, setActivePanel] = useState("profile");
 
   const [sentRequests] = useState([
-    {
-      to: "Caregiver John",
-      pet: "Buddy",
-      service: "Boarding",
-      date: "2025-04-10 to 2025-04-12",
-      status: "Pending",
-      startTime: "10:00 AM",
-      endTime: "6:00 PM",
-      location: "Mumbai",
-      message: "Please take good care of Buddy!",
-    },
+
+      {
+        to: "Caregiver John",
+        pets: [
+          { petName: "Buddy", petType: "Dog", petAge: "2", petSize: "Medium", notes: "Friendly" },
+          { petName: "Luna", petType: "Cat", petAge: "1", petSize: "Small", notes: "Playful and cuddly" },
+        ],
+        service: "Boarding",
+        fromDate: "2025-04-10",
+        toDate: "2025-04-12",
+        startTime: "10:00 AM",
+        endTime: "6:00 PM",
+        location: "Mumbai",
+        message: "Please take good care of Buddy and Luna!",
+        status: "Pending",
+      }, 
   ]);
 
   const [receivedRequests, setReceivedRequests] = useState([
     {
       from: "Olivia",
-      pet: "Milo",
+      pets: [
+        { petName: "Milo", petType: "Cat", petAge: "3", petSize: "Small", notes: "Needs meds at 12pm" },
+      ],
       service: "Sitting",
-      date: "2025-04-14 to 2025-04-15",
-      status: "New",
+      fromDate: "2025-04-14",
+      toDate: "2025-04-15",
       startTime: "9:00 AM",
       endTime: "5:00 PM",
       location: "Delhi",
       message: "Milo needs meds at 12pm.",
+      status: "New",
     },
     {
       from: "Emma",
-      pet: "Charlie",
+      pets: [
+        { petName: "Charlie", petType: "Dog", petAge: "4", petSize: "Large", notes: "Shy and gentle" },
+      ],
       service: "Boarding",
-      date: "2025-04-20 to 2025-04-22",
-      status: "New",
+      fromDate: "2025-04-20",
+      toDate: "2025-04-22",
       startTime: "10:00 AM",
       endTime: "6:00 PM",
       location: "Pune",
       message: "Charlie is shy, please be gentle.",
+      status: "New",
     },
   ]);
 
@@ -54,11 +68,17 @@ const Dashboard = () => {
   ]);
 
   const [selectedRequest, setSelectedRequest] = useState(null);
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
 
   const handleRequestAction = (index, action) => {
     const updated = [...receivedRequests];
     updated[index].status = action === "accept" ? "Accepted" : "Declined";
     setReceivedRequests(updated);
+  };
+
+  const handleViewDetails = (req) => {
+    setSelectedRequest(req);
+    setDetailsModalOpen(true);
   };
 
   return (
@@ -73,32 +93,44 @@ const Dashboard = () => {
       </aside>
 
       <main className="panel-content">
-        {activePanel === "profile" && (
-          <div className="panel">
-            <h2>Your Profile</h2>
-            <p>Name: {user.name}</p>
-            <p>Role: {user.role === "hybrid" ? "Pet Owner + Caregiver" : "Pet Owner"}</p>
+      {activePanel === "profile" && (
+  <div className="panel profile-panel">
+    <h2>Your Profile</h2>
 
-            <div className="widgets-container">
-              <div className="widget-card">
-                <h3>Requests Sent</h3>
-                <p>{sentRequests.length}</p>
-              </div>
+    <div className="profile-header">
+      <img
+        src="/images/pfp.png" // Placeholder avatar
+        alt="User Avatar"
+        className="avatar"
+      />
+      <div className="user-info">
+        <h3>{user.name}</h3>
+        <span className={`role-badge ${user.role}`}>{user.role === "hybrid" ? "Pet Owner + Caregiver" : "Pet Owner"}</span>
+        <p className="bio">I love cats.</p>
+      </div>
+    </div>
 
-              {user.role === "hybrid" && (
-                <div className="widget-card">
-                  <h3>Requests Received</h3>
-                  <p>{receivedRequests.length}</p>
-                </div>
-              )}
+    <div className="widgets-container">
+      <div className="widget-card">
+        <h3>Requests Sent</h3>
+        <p>{sentRequests.length}</p>
+      </div>
 
-              <div className="widget-card">
-                <h3>Unread Notifications</h3>
-                <p>{notifications.length}</p>
-              </div>
-            </div>
-          </div>
-        )}
+      {user.role === "hybrid" && (
+        <div className="widget-card">
+          <h3>Requests Received</h3>
+          <p>{receivedRequests.length}</p>
+        </div>
+      )}
+
+      <div className="widget-card">
+        <h3>Unread Notifications</h3>
+        <p>{notifications.length}</p>
+      </div>
+    </div>
+  </div>
+)}
+
 
         {activePanel === "requests" && (
           <div className="panel">
@@ -109,11 +141,10 @@ const Dashboard = () => {
               {sentRequests.map((req, idx) => (
                 <div key={idx} className="request-card sent">
                   <strong>To:</strong> {req.to} <br />
-                  <strong>Pet:</strong> {req.pet} <br />
                   <strong>Service:</strong> {req.service} <br />
-                  <strong>Date:</strong> {req.date} <br />
+                  <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
                   <strong>Status:</strong> {req.status} <br />
-                  <button onClick={() => setSelectedRequest(req)}>View Details</button>
+                  <button onClick={() => handleViewDetails(req)}>View Details</button>
                 </div>
               ))}
             </div>
@@ -124,11 +155,10 @@ const Dashboard = () => {
                 {receivedRequests.map((req, idx) => (
                   <div key={idx} className="request-card received">
                     <strong>From:</strong> {req.from} <br />
-                    <strong>Pet:</strong> {req.pet} <br />
                     <strong>Service:</strong> {req.service} <br />
-                    <strong>Date:</strong> {req.date} <br />
+                    <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
                     <strong>Status:</strong> {req.status} <br />
-                    <button onClick={() => setSelectedRequest(req)}>View Details</button>
+                    <button onClick={() => handleViewDetails(req)}>View Details</button>
                     {req.status === "New" && (
                       <div className="request-actions">
                         <button onClick={() => handleRequestAction(idx, "accept")}>Accept</button>
@@ -154,62 +184,11 @@ const Dashboard = () => {
           </div>
         )}
       </main>
-
-      {selectedRequest && (
-  <div className="modal-overlay">
-    <div className="modal-content view-modal">
-      <h2>Request Details</h2>
-
-      {selectedRequest.from && <p><strong>From:</strong> {selectedRequest.from}</p>}
-      {selectedRequest.to && <p><strong>To:</strong> {selectedRequest.to}</p>}
-
-      {/* Handle new pet details if in object form */}
-      {typeof selectedRequest.pet === "object" ? (
-        <>
-          <p><strong>Pet Name:</strong> {selectedRequest.pet.name}</p>
-          <p><strong>Pet Type:</strong> {selectedRequest.pet.type}</p>
-          <p><strong>Pet Size:</strong> {selectedRequest.pet.size}</p>
-          <p><strong>Pet Age:</strong> {selectedRequest.pet.age}</p>
-        </>
-      ) : (
-        <p><strong>Pet:</strong> {selectedRequest.pet}</p>
-      )}
-
-      {/* Services */}
-      {selectedRequest.services && (
-        <p><strong>Services:</strong> {Array.isArray(selectedRequest.services)
-          ? selectedRequest.services.join(", ")
-          : selectedRequest.services}
-        </p>
-      )}
-
-      {/* Date */}
-      {selectedRequest.date && (
-        typeof selectedRequest.date === "object" ? (
-          <p><strong>Date:</strong> {selectedRequest.date.from} to {selectedRequest.date.to}</p>
-        ) : (
-          <p><strong>Date:</strong> {selectedRequest.date}</p>
-        )
-      )}
-
-      {/* Time */}
-      {selectedRequest.startTime && selectedRequest.endTime && (
-        <p><strong>Time:</strong> {selectedRequest.startTime} - {selectedRequest.endTime}</p>
-      )}
-      {selectedRequest.time && (
-        <p><strong>Time:</strong> {selectedRequest.time.start} - {selectedRequest.time.end}</p>
-      )}
-
-      {/* Location, Experience, Message */}
-      {selectedRequest.location && <p><strong>Location:</strong> {selectedRequest.location}</p>}
-      {selectedRequest.experience && <p><strong>Experience:</strong> {selectedRequest.experience} years</p>}
-      {selectedRequest.message && <p><strong>Message:</strong> {selectedRequest.message}</p>}
-      {selectedRequest.status && <p><strong>Status:</strong> {selectedRequest.status}</p>}
-
-      <button className="close-btn" onClick={() => setSelectedRequest(null)}>Close</button>
-    </div>
-  </div>
-)}
+      <ViewRequestForm
+  isOpen={!!selectedRequest}
+  onClose={() => setSelectedRequest(null)}
+  request={selectedRequest}
+/>
 
     </div>
   );
