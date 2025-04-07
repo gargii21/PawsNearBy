@@ -17,7 +17,9 @@ const Login = () => {
       const response = await axios.post("http://localhost:5000/login", {
         email,
         password,
-      });
+      },
+      { withCredentials: true }
+    );
 
       // Store login state
       localStorage.setItem("token", response.data.token);

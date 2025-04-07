@@ -31,11 +31,47 @@ const BecomeCaregiver = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Caregiver Info Submitted:", formData);
-    alert("Thank you for signing up as a caregiver!");
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // prevent page refresh
+  
+    try {
+      const token = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('token='))
+        ?.split('=')[1];
+      console.log(formData.services)
+      const response = await fetch("http://localhost:5000/regProvider", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          daycare_name: formData.name,
+          owner_name: formData.name,
+          phone: Number(formData.phone),
+          address: formData.location,
+          email: formData.email,
+          password: "securepassword123", // dummy password
+          service: formData.services,
+          description: formData.about,
+          experience: parseInt(formData.experience),
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert("Thank you for signing up as a caregiver!");
+      } else {
+        alert("Error: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error submitting caregiver info:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
+  
 
   return (
     <div className="caregiver-page">

@@ -1,64 +1,30 @@
-import { requestModel } from "../Config/db1.js";
+import { petModel, requestModel } from "../Config/db1.js";
+import jwt from "jsonwebtoken";
 
-// Send Request
-export const sendRequest = async (req, res) => {
-    const { prId, id } = req.body;
-
+const createRequest = async (req, res) => {
     try {
-        const newRequest = await requestModel.create({ prId, id });
-        res.status(201).json({ message: "Request sent successfully", data: newRequest });
+        const { providerId, petId } = req.body;  // Extract providerId and petId from the request body
+        const ownerId=req.user.userId;
+
+        // Check if the pet exists and belongs to the owner
+        // const pet = await petModel.findOne({ where: { Pet_id: petId, ownerId } });
+        // if (!pet) {
+        //     return res.status(404).json({ message: 'Pet not found or you do not own this pet' });
+        // }
+
+        // Create a new request record in the 'Request' table
+        const request = await requestModel.create({
+            prId: providerId, // caregiver/provider ID
+            id: ownerId, // pet owner ID
+            status: 'Pending' // initial status
+        });
+
+        // Send response back with the created request
+        res.status(201).json({ message: 'Request sent successfully', request });
     } catch (error) {
-        console.error(" Error sending request:", error);
-        res.status(500).json({ error: "Failed to send request" });
+        console.log(error);
+        res.status(500).json({ message: 'Failed to create request', error: error.message });
     }
 };
 
-// Accept Request
-export const acceptRequest = async (req, res) => {
-    const { reqId } = req.body;
-
-    try {
-        const request = await requestModel.findByPk(reqId);
-        if (!request) return res.status(404).json({ error: "Request not found" });
-
-        request.status = 'Accepted';
-        await request.save();
-
-        res.json({ message: "Request accepted successfully", data: request });
-    } catch (error) {
-        console.error(" Error accepting request:", error);
-        res.status(500).json({ error: "Failed to accept request" });
-    }
-};
-
-//  Reject Request
-export const rejectRequest = async (req, res) => {
-    const { reqId } = req.body;
-
-    try {
-        const request = await requestModel.findByPk(reqId);
-        if (!request) return res.status(404).json({ error: "Request not found" });
-
-        request.status = 'Rejected';
-        await request.save();
-
-        res.json({ message: "Request rejected successfully", data: request });
-    } catch (error) {
-        console.error(" Error rejecting request:", error);
-        res.status(500).json({ error: "Failed to reject request" });
-    }
-};
-
-export const getRequestStatus = async (req, res) => {
-    const { reqId } = req.body;
-
-    try {
-        const request = await requestModel.findByPk(reqId);
-        if (!request) return res.status(404).json({ error: "Request not found" });
-
-        res.json({ status: request.status });
-    } catch (error) {
-        console.error(" Error getting request status:", error);
-        res.status(500).json({ error: "Failed to request status" });
-    }
-};
+export default createRequest;

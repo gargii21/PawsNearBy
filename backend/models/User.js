@@ -48,7 +48,12 @@ import { DataTypes} from "sequelize";
         },
         longitude:{
             type: DataTypes.DECIMAL(9,6),
-        }
+        },
+        isProvider: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+          
     },
     { tableName: "User1", timestamps: false }
 )

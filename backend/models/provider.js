@@ -1,4 +1,5 @@
 import { DataTypes} from "sequelize";
+import { userModel } from "../Config/db1.js";
 
 
 
@@ -11,6 +12,13 @@ import { DataTypes} from "sequelize";
             primaryKey: true,
             autoIncrement: true,
 
+        },
+        id:{
+            type: DataTypes.INTEGER,
+            references:{
+                model: 'User1',
+                key:'id'
+            }
         },
         daycare_name:{
             type: DataTypes.STRING,
@@ -43,12 +51,8 @@ import { DataTypes} from "sequelize";
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false,   
         
-        },
-        service:{
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         prLatitude:{
             type: DataTypes.DECIMAL(9,6),
@@ -56,13 +60,22 @@ import { DataTypes} from "sequelize";
         prLongitude:{
             type: DataTypes.DECIMAL(9,6),
         },
-        review: {
+        description: {
             type: DataTypes.TEXT,
             allowNull: true  // Optional field for customer reviews
         },
         fees: {
             type: DataTypes.FLOAT,
             //allowNull: false // Required field for provider fees
+        },
+        experience:{
+            type: DataTypes.INTEGER,
+            
+        },
+        service:{
+            type:DataTypes.ARRAY(DataTypes.STRING),
+            //allowNull:false,
+    
         }
 
     },

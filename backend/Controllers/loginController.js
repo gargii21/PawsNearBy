@@ -39,8 +39,11 @@ const login = async(req,res)=> {
 
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 3600000, // 1 hour
-        });
+            sameSite: 'Lax',      // allows cross-origin cookies (adjust if needed)
+            secure: false,        // must be false for localhost (true only on HTTPS)
+            maxAge: 3600000,
+          });
+          
 
         res.status(200).json({message:'login successful'})
     
