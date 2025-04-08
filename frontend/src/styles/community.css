@@ -1,0 +1,84 @@
+
+.community {
+    padding: 3rem 2rem;
+    font-family: 'Itim';
+    min-height: 100vh;
+    color: #4a4a4a;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .community-content {
+    max-width: 700px;
+    width: 100%;
+    background: #ffefbe;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(255, 234, 185, 0.3);
+  }
+  
+  .community-content h1 {
+    font-size: 2rem;
+    color: #ff868cbc;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .community-content p {
+    font-size: 1.1rem;
+    text-align: center;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+  
+  .add-post-btn {
+    display: block;
+    margin: 0 auto 2rem;
+    background-color: #fff3e2;
+    color: #f7b24b;
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .add-post-btn:hover {
+    background-color: #ffe5c0b2;
+  }
+  
+  .community-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Post Card Styles */
+  .post-card {
+    background-color: #fff8da;
+    border-left: 5px solid #ff929b;
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  .post-card:hover {
+    transform: scale(1.01);
+  }
+  
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #f57e90;
+  }
+  
+  .timestamp {
+    color: #aaa;
+    font-size: 0.85rem;
+  }
+  
