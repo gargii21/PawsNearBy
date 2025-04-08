@@ -23,12 +23,12 @@ export const Pet = (sequelize) => {
     },
     providerId:{
         type:DataTypes.INTEGER,
-        references: {
-            model: providerModel,
-            key: "prId",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        // references: {
+        //     model: providerModel,
+        //     key: "prId",
+        // },
+        // onUpdate: "CASCADE",
+        // onDelete: "CASCADE",
     },
     name:{
         type: DataTypes.STRING,

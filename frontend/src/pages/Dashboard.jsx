@@ -6,7 +6,7 @@ import ViewRequestForm from "../components/ViewRequestForm";
 const Dashboard = () => {
   const user = {
     name: "priyal",
-    role: "hybrid",
+    role: "owner",
   };
   
 

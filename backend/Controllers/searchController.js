@@ -7,14 +7,15 @@ import { Sequelize } from 'sequelize';
 const search = async(req,res)=> {
     try{
     const {lat,lon,service}=req.body
-
+        console.log(service)
     if(!lat || !lon || !service){
         return res.status(400).json({error:"missing info"})
     }
     
     const latitude = parseFloat(lat);
     const longitude = parseFloat(lon);
-
+    console.log(latitude);
+    console.log(longitude);
 
     const query = `
   SELECT *, 

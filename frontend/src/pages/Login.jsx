@@ -23,11 +23,18 @@ const Login = () => {
 
       // Store login state
       localStorage.setItem("token", response.data.token);
+      //localStorage.setItem("isProvider", res.data.isProvider);
       localStorage.setItem("userLoggedIn", "true");
 
       // Force refresh
       window.location.href = "/dashboard";
       //window.location.reload();
+
+      // if (res.data.isProvider) {
+      //   navigate("/provider-dashboard");
+      // } else {
+      //   navigate("/user-dashboard");
+      // }
 
     } catch (err) {
       console.error("Login Error:", err);

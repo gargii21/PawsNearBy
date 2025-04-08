@@ -73,13 +73,13 @@ import { userModel } from "../Config/db1.js";
             
         },
         service:{
-            type:DataTypes.ARRAY(DataTypes.STRING),
+            type:DataTypes.STRING,
             //allowNull:false,
     
         }
 
     },
-    {timestamps: false}
+    {tableName: "providerv2",timestamps: false}
 )
 
 };

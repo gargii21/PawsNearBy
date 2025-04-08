@@ -9,8 +9,9 @@ const login = async(req,res)=> {
 
     
     try{
+        
         const data=await userModel.findOne({
-            attributes: ['email','password','id'],
+            attributes: ['email','password','id','isProvider'],
             where: {email:email}
         })
         if (!data){
@@ -20,18 +21,22 @@ const login = async(req,res)=> {
         // console.log("User found:", data);
         // console.log(data.password)
         // console.log(password)
+        //console.log(data.isProvider);
         const isPasswordValid = await bcrypt.compare(password, data.password)
         
         if(!isPasswordValid){
             return res.status(404).json({message: 'invalid password'})
         }
+
+        const user = data.toJSON();
+
         let token
         try{
          token = jwt.sign(
-            {userId:data.id, email:data.email, role:data.role},
+            {userId:user.id, email:user.email, role:user.role, isProvider:user.isProvider},
         process.env.JWT_SECRET,
         {expiresIn: '1d'})
-
+        //console.log(token);
         }catch(error){
             console.log("error generating token")
             return res.status(500).json({message:'serverr error'})
@@ -49,6 +54,7 @@ const login = async(req,res)=> {
     
 
     }catch(error){
+        console.log(error);
         return res.status(400).json({message:'error in login', error:error.message})
 
     }
