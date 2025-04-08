@@ -51,7 +51,7 @@
   overflow-y: auto;
 }
 .panel button{
-  background-color: #f8dc89;
+  background-color: rgb(252, 231, 179);
   color:#303030;
   padding: 5px;
   border-radius: 5px;
@@ -289,3 +289,115 @@
   margin-top: 5px;
 }
 
+.pets-section {
+  margin-top: 2rem;
+  background-color: rgb(250, 185, 197); 
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(255, 192, 203, 0.2);
+  color:#333333
+}
+
+.pets-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: ivory;
+}
+
+.pet-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard .pet-card{
+  background-color: #fff5a095;
+  border: 2px dashed #31313195;
+  padding: 15px;
+  border-radius: 10px;
+  width: 220px;
+  transition: transform 0.2s ease;
+}
+
+.dashboard .pet-card:hover {
+  transform: scale(1.03);
+}
+
+.dashboard .pet-card h4 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.add-pet-btn {
+  margin-top: 1rem;
+  padding: 20px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.add-pet-btn:hover {
+  background-color: #f4efc8;
+}
+.add-pet-form-container {
+  background-color: rgba(255, 255, 255, 0.442); 
+  border: 2px dashed rgb(250, 185, 197); 
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.2);
+  max-width: 480px;
+  width: 100%;
+}
+
+.add-pet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.add-pet-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.add-pet-form input,
+.add-pet-form select,
+.add-pet-form textarea {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid #ffc0cb;
+  border-radius: 6px;
+  width: 80%;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: #fff;
+}
+
+.add-pet-form textarea {
+  resize: vertical;
+}
+
+.add-pet-form button {
+  background-color: rgb(250, 185, 197); 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.add-pet-form button:hover {
+  background-color: #fcd29e;
+}
