@@ -5,9 +5,24 @@ import ViewRequestForm from "../components/ViewRequestForm";
 const Dashboard = () => {
   const [user, setUser] = useState({
     name: "priyal",
-    role: "owner",
-  };
-  
+    role: "hybrid",
+    pets: [
+      {
+        name: "Mochi",
+        type: "Cat",
+        age: 2,
+        size: "Small",
+        notes: "Loves climbing and hiding in bags.",
+      },
+      {
+        name: "Rocky",
+        type: "Dog",
+        age: 4,
+        size: "Large",
+        notes: "Needs walks twice a day.",
+      },
+    ],
+  });
 
   const [activePanel, setActivePanel] = useState("profile");
   const [showAddPetForm, setShowAddPetForm] = useState(false);
