@@ -56,7 +56,7 @@ const Login = () => {
             <div className="input-group password-field">
               <input type={showPassword ? "text" : "password"} placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               <span onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <FaEye /> : <FaEyeSlash />}
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
             <button type="submit" className="auth-button">Login Now</button>

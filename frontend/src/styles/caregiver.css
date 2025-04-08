@@ -71,7 +71,7 @@
 
 .why-join h2 {
   font-size: 36px;
-  color: rgba(234, 126, 146, 0.568);
+  color: rgb(255, 183, 121);
   margin-bottom: 40px;
 }
 
@@ -85,9 +85,10 @@
 
 /* Each individual benefit card */
 .benefit-card {
-  background:rgba(255, 237, 179, 0.411);
+  background:rgb(255, 252, 200);
   border-radius: 25px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  border-style: dashed;
+  border-color:rgb(255, 217, 160);
   width: 300px;
   padding: 20px;
   transition: transform 0.3s ease;
@@ -114,8 +115,9 @@
 /* Heading under the image */
 .benefit-card h3 {
   font-size: 22px;
-  color: rgba(234, 126, 146, 0.727);
+  color: rgb(255, 203, 124);
   margin: 10px 0 8px;
+  font-family: 'Itim';
 }
 
 /* Description text */
@@ -138,7 +140,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: rgba(255, 237, 179, 0.411);
+  background: rgb(255, 252, 200);
   padding: 30px;
   border-radius: 20px;
   max-width: 600px;
@@ -147,12 +149,51 @@
 }
 
 .caregiver-form input,
-.caregiver-form select,
 .caregiver-form textarea {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
   font-family: 'Itim', sans-serif;
+}.radio-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #ffd09e;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff1b2;
+  color: #333;
+  user-select: none;
+  position: relative;
+}
+
+/* Hide the actual radio button */
+.radio-label input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Style when selected */
+.radio-label.selected {
+  border-color: #fdb2bc;
+  background-color: #fdb2bc;
+  color: rgb(73, 73, 73);
+  box-shadow: 0 0 0 3px rgba(252, 173, 174, 0.2);
+}
+
+.radio-label:hover {
+  border-color: #ff9898;
 }
 
 .caregiver-form label {
@@ -162,10 +203,8 @@
   font-family: 'Itim', sans-serif;
 }
 
-
-
 .caregiver-form button {
-  background:rgba(234, 126, 146, 0.568);
+  background:rgb(244, 185, 117);
   color: white;
   width:100px;
   align-self: center;
@@ -177,12 +216,12 @@
 }
 
 .caregiver-form button:hover {
-  background: rgb(244, 185, 117);
+  background: rgb(239, 188, 131);
 }
 
 .caregiver-form h2 {
   margin-bottom: 10px;
-  color: rgba(234, 126, 146, 0.568);
+  color: rgb(255, 183, 121);
   text-align: center;
 }
 

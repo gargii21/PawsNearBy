@@ -22,7 +22,6 @@ const ProfileCards = ({ profiles }) => {
           <p><strong>Location:</strong> {profile.city}</p>
           <p><strong>Fees:</strong> ₹{profile.fees}</p>
           <p><strong>Rating:</strong> {profile.rating}⭐</p>
-
           <button onClick={() => handleRequestClick(profile)}>Request</button>
           <button onClick={() => handleViewProfile(profile)}>View Profile</button>
         </div>

@@ -5,11 +5,12 @@
 }
 
 .profile-card {
-  background: white;
+  background: rgba(254, 249, 201, 0.705);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
+  border-style:dashed;
+  border-color:rgb(247, 211, 143);
 }
 
 .profile-card:hover {
@@ -30,15 +31,15 @@
   margin-top: 10px;
   margin-right: 10px;
   padding: 8px 12px;
-  background: rgb(235, 160, 90);
-  color: white;
+  background: rgb(243, 167, 181);  
+  color: rgb(255, 255, 255);
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  transition: background 0.3s ease;
+  font-family: 'Itim';
 
 }
 
 .profile-card button:hover {
-  background: rgb(235, 130, 60);
+  background: rgb(255, 154, 167);
 }
