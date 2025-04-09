@@ -1,46 +1,35 @@
 import React, { useState } from "react";
-import "../styles/requestForm.css"; // Your CSS file
+import "../styles/requestForm.css";
 
 const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
   const today = new Date().toISOString().split("T")[0];
 
+  const userPets = [
+    { id: 1, name: "Bella" },
+    { id: 2, name: "Max" },
+    { id: 3, name: "Luna" },
+  ];
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    pets: [{ name: "", type: "", age: "", size: "", notes: "" }],
+    selectedPetId: "",
     serviceType: "",
     fromDate: "",
     toDate: "",
     startTime: "",
     endTime: "",
-    location: "",
     message: "",
+    agreeTerms: false,
   });
 
   const [errors, setErrors] = useState({});
 
-  const handlePetChange = (index, e) => {
-    const { name, value } = e.target;
-    const pets = [...formData.pets];
-    pets[index][name] = value;
-    setFormData({ ...formData, pets });
-  };
-
-  const addPet = () => {
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      pets: [...formData.pets, { name: "", type: "", age: "", size: "", notes: "" }],
+      [name]: type === "checkbox" ? checked : value,
     });
-  };
-
-  const removePet = (index) => {
-    const pets = [...formData.pets];
-    pets.splice(index, 1);
-    setFormData({ ...formData, pets });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   const validateStep2 = () => {
@@ -60,19 +49,12 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
 
     const requestPayload = {
       caregiverId,
-      pets: formData.pets.map((pet) => ({
-        petName: pet.name,
-        petType: pet.type,
-        petAge: pet.age,
-        petSize: pet.size,
-        notes: pet.notes,
-      })),
+      petId: formData.selectedPetId,
       service: formData.serviceType,
       fromDate: formData.fromDate,
       toDate: formData.toDate,
       startTime: formData.startTime,
       endTime: formData.endTime,
-      location: formData.location,
       message: formData.message,
     };
 
@@ -81,7 +63,6 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Include auth token if needed here
         },
         body: JSON.stringify(requestPayload),
       });
@@ -100,109 +81,166 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
   if (!isOpen) return null;
 
   return (
+    <div className="profile-request-form">
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Send Request {caregiverName && `to ${caregiverName}`}</h2>
 
         <form onSubmit={handleSubmit}>
-          {step === 1 && (
-            <>
-              <h3>Pet Details</h3>
-              {formData.pets.map((pet, index) => (
-                <div key={index} className="pet-card">
-                  <h4>Pet {index + 1}</h4>
-                  <div className="form-group">
-                    <label>Pet Name:</label>
-                    <input type="text" name="name" value={pet.name} onChange={(e) => handlePetChange(index, e)} required />
-                  </div>
-                  <div className="form-group">
-                    <label>Type:</label>
-                    <select name="type" value={pet.type} onChange={(e) => handlePetChange(index, e)} required>
-                      <option value="">Select</option>
-                      <option value="Dog">Dog</option>
-                      <option value="Cat">Cat</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Age:</label>
-                    <input type="text" name="age" value={pet.age} onChange={(e) => handlePetChange(index, e)} required />
-                  </div>
-                  <div className="form-group">
-                    <label>Size:</label>
-                    <select name="size" value={pet.size} onChange={(e) => handlePetChange(index, e)} required>
-                      <option value="">Select</option>
-                      <option value="Small">Small</option>
-                      <option value="Medium">Medium</option>
-                      <option value="Large">Large</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Notes (optional):</label>
-                    <textarea name="notes" rows="2" value={pet.notes} onChange={(e) => handlePetChange(index, e)} />
-                  </div>
-                  {formData.pets.length > 1 && (
-                    <button type="button" className="remove-btn" onClick={() => removePet(index)}>Remove</button>
-                  )}
-                  <hr />
-                </div>
-              ))}
-              <button type="button" className="add-btn" onClick={addPet}>Add Another Pet</button>
-            </>
-          )}
+        {step === 1 && (
+  <>
+    <h3>Select Your Pet</h3>
+    <div className="form-group">
+      <label>Select Pet:</label>
+      <select
+        name="selectedPetId"
+        value={formData.selectedPetId}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select a pet</option>
+        {userPets.map((pet) => (
+          <option key={pet.id} value={pet.id}>
+            {pet.name}
+          </option>
+        ))}
+      </select>
+    </div>
+    <p className="info-note">
+      Don’t see your pet here?{" "}
+      <button
+        type="button"
+        className="dashboard-link-btn"
+        onClick={() => {
+          onClose();
+          window.location.href = "/dashboard"; // Update path if needed
+        }}
+      >
+        Add one from your dashboard
+      </button>
+    </p>
+  </>
+)}
+
 
           {step === 2 && (
             <>
               <h3>Service & Schedule</h3>
               <div className="form-group">
                 <label>Service Type:</label>
-                <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
-                  <option value="">Select</option>
-                  <option value="Boarding">Boarding</option>
+                <select
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select a service</option>
                   <option value="Sitting">Sitting</option>
+                  <option value="Dog Walking">Dog Walking</option>
+                  <option value="Boarding">Pet Boarding</option>
                 </select>
               </div>
               <div className="form-group">
                 <label>From Date:</label>
-                <input type="date" name="fromDate" value={formData.fromDate} min={today} onChange={handleChange} required />
+                <input
+                  type="date"
+                  name="fromDate"
+                  value={formData.fromDate}
+                  min={today}
+                  onChange={handleChange}
+                  required
+                />
                 {errors.fromDate && <p className="error">{errors.fromDate}</p>}
+
                 <label>To Date:</label>
-                <input type="date" name="toDate" value={formData.toDate} min={today} onChange={handleChange} required />
+                <input
+                  type="date"
+                  name="toDate"
+                  value={formData.toDate}
+                  min={today}
+                  onChange={handleChange}
+                  required
+                />
                 {errors.toDate && <p className="error">{errors.toDate}</p>}
               </div>
               <div className="form-group">
                 <label>Start Time:</label>
-                <input type="time" name="startTime" value={formData.startTime} onChange={handleChange} required />
+                <input
+                  type="time"
+                  name="startTime"
+                  value={formData.startTime}
+                  onChange={handleChange}
+                  required
+                />
+
                 <label>End Time:</label>
-                <input type="time" name="endTime" value={formData.endTime} onChange={handleChange} required />
-              </div>
-              <div className="form-group">
-                <label>Location:</label>
-                <input type="text" name="location" value={formData.location} onChange={handleChange} required />
+                <input
+                  type="time"
+                  name="endTime"
+                  value={formData.endTime}
+                  onChange={handleChange}
+                  required
+                />
               </div>
             </>
           )}
 
           {step === 3 && (
             <>
-              <h3>Additional Message</h3>
+              <h3>Additional Message & Terms</h3>
               <div className="form-group">
-                <textarea name="message" rows="4" placeholder="Add any specific requirements..." value={formData.message} onChange={handleChange} />
+                <textarea
+                  name="message"
+                  rows="4"
+                  placeholder="Add any specific requirements..."
+                  value={formData.message}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group checkbox-group">
+                <input
+                  type="checkbox"
+                  name="agreeTerms"
+                  checked={formData.agreeTerms}
+                  onChange={handleChange}
+                  required
+                />
+                <label>
+                  I agree to the <a href="/terms">Terms & Conditions</a>
+                </label>
               </div>
             </>
           )}
 
           <div className="form-navigation">
-            {step > 1 && <button type="button" onClick={() => setStep(step - 1)}>Previous</button>}
-            {step < 3 && <button type="button" onClick={() => {
-              if (step === 2 && !validateStep2()) return;
-              setStep(step + 1);
-            }}>Next</button>}
-            {step === 3 && <button type="submit">Submit</button>}
+            {step > 1 && (
+              <button type="button" onClick={() => setStep(step - 1)}>
+                Previous
+              </button>
+            )}
+            {step < 3 && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (step === 2 && !validateStep2()) return;
+                  setStep(step + 1);
+                }}
+              >
+                Next
+              </button>
+            )}
+            {step === 3 && (
+              <button type="submit" disabled={!formData.agreeTerms}>
+                Submit
+              </button>
+            )}
           </div>
         </form>
-
-        <button className="close-btn" onClick={onClose}>X</button>
+        <button className="close-btn" onClick={onClose}>
+          X
+        </button>
       </div>
+    </div>
     </div>
   );
 };

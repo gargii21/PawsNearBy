@@ -1,38 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import "../styles/community.css"; // Make sure the path is correct
 
+const dummyPosts = [
+  {
+    id: 1,
+    user: "LunaTheDogMom",
+    content: "Just found the cutest daycare near me thanks to PawsNearby",
+    timestamp: "2 hours ago",
+  },
+  {
+    id: 2,
+    user: "CatDad23",
+    content: "Any tips on introducing a kitten to a senior dog?",
+    timestamp: "5 hours ago",
+  },
+  {
+    id: 3,
+    user: "PetWalker101",
+    content: "Offering weekend walks in the downtown area!",
+    timestamp: "1 day ago",
+  },
+];
 
 const Community = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const user = localStorage.getItem("userLoggedIn");
-    setIsLoggedIn(!!user);
-  }, []);
+  const [posts, setPosts] = useState(dummyPosts);
 
   return (
     <div className="community">
-      {isLoggedIn ? (
-        <div className="community-content">
-          <h1>Welcome to the Community! 🎉</h1>
-          <p>Connect with other pet lovers, share experiences, and find pet care tips!</p>
+      <div className="community-content">
+        <h1>PawsNearby Community</h1>
+        <p>Hang out, share stories, and spread the pet love!</p>
 
-          {/* Placeholder for posts */}
-          <div className="community-posts">
-            <h2>Recent Posts 🐾</h2>
-            <p>(Posts and discussions will be displayed here.)</p>
-          </div>
+        <button className="add-post-btn">+ Add a Post</button>
 
-          {/* Add Post Button */}
-          <button className="add-post-btn">+ Add a Post</button>
+        <div className="community-posts">
+          {posts.map((post) => (
+            <div key={post.id} className="post-card">
+              <div className="post-header">
+                <strong>@{post.user}</strong>
+                <span className="timestamp">{post.timestamp}</span>
+              </div>
+              <p>{post.content}</p>
+            </div>
+          ))}
         </div>
-      ) : (
-        <div className="community-about">
-          <h1>Join the PawsNearby Community! 🐶🐱</h1>
-          <p>Connect with pet lovers, share stories, and get advice on pet care.</p>
-          <Link to="/signup" className="join-btn">Sign Up to Join</Link>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

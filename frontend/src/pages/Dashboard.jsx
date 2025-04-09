@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import "../styles/dashboard.css";
@@ -77,19 +78,13 @@ const Dashboard = () => {
   const [selectedRequest, setSelectedRequest] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
       try {
-        const res = await fetch("http://localhost:5000/me", {
-          method: "GET",
-          credentials: "include", // 🧠 VERY IMPORTANT to send cookies
-        });
-  
-        if (!res.ok) throw new Error("Unauthorized");
-        console.log(user.name);
-        const data = await res.json();
-        const isProvider = data.user?.isProvider;
-        const name = data.user?.name || "User"; // Replace with actual name field if you have it
-  
+        const decoded = jwtDecode(token);
+        const isProvider = decoded?.isProvider;
+        const name = decoded?.name || "User";
+
         setUser((prev) => ({
           ...prev,
           name,
@@ -109,16 +104,13 @@ const Dashboard = () => {
               size: "Large",
               notes: "Needs walks twice a day.",
             },
-          ], // Replace this array with actual pet data from backend if available
+          ],
         }));
       } catch (err) {
-        console.error("Failed to fetch user:", err);
+        console.error("Invalid token", err);
       }
-    };
-  
-    fetchUser();
+    }
   }, []);
-  
 
   const handleRequestAction = (index, action) => {
     const updated = [...receivedRequests];
@@ -142,134 +134,136 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <aside className="sidebar">
-        <h2>Hello, {user.name}</h2>
-        <div className="sidebar-buttons">
-          <button onClick={() => setActivePanel("profile")}>Profile</button>
-          <button onClick={() => setActivePanel("requests")}>Requests</button>
-          <button onClick={() => setActivePanel("notifications")}>Notifications</button>
-        </div>
-      </aside>
+    <div className="dashboard-wrapper">
+      <div className="dashboard">
+        <aside className="sidebar">
+          <h2>Hello, {user.name}</h2>
+          <div className="sidebar-buttons">
+            <button onClick={() => setActivePanel("profile")}>Profile</button>
+            <button onClick={() => setActivePanel("requests")}>Requests</button>
+            <button onClick={() => setActivePanel("notifications")}>Notifications</button>
+          </div>
+        </aside>
 
-      <main className="panel-content">
-        {activePanel === "profile" && (
-          <div className="panel profile-panel">
-            <h2>Your Profile</h2>
-            <div className="profile-header">
-              <img src="/images/pfp.png" alt="User Avatar" className="avatar" />
-              <div className="user-info">
-                <h3>{user.name}</h3>
-                <span className={`role-badge ${user.role}`}>
-                  {user.role === "hybrid" ? "Pet Owner + Caregiver" : "Pet Owner"}
-                </span>
-                <p className="bio">I love cats.</p>
+        <main className="panel-content">
+          {activePanel === "profile" && (
+            <div className="panel profile-panel">
+              <h2>Your Profile</h2>
+              <div className="profile-header">
+                <img src="/images/pfp.png" alt="User Avatar" className="avatar" />
+                <div className="user-info">
+                  <h3>{user.name}</h3>
+                  <span className={`role-badge ${user.role}`}>
+                    {user.role === "hybrid" ? "Pet Owner + Caregiver" : "Pet Owner"}
+                  </span>
+                  <p className="bio">I love cats.</p>
+                </div>
+              </div>
+
+              <div className="widgets-container">
+                <div className="widget-card"><h3>Requests Sent</h3><p>{sentRequests.length}</p></div>
+                {user.role === "hybrid" && (
+                  <div className="widget-card"><h3>Requests Received</h3><p>{receivedRequests.length}</p></div>
+                )}
+                <div className="widget-card"><h3>Unread Notifications</h3><p>{notifications.length}</p></div>
+              </div>
+
+              <div className="pets-section">
+                <h3>Your Pets</h3>
+                {user.pets.length ? (
+                  <div className="pet-cards">
+                    {user.pets.map((pet, i) => (
+                      <div key={i} className="pet-card">
+                        <h4>{pet.name}</h4>
+                        <p><strong>Type:</strong> {pet.type}</p>
+                        <p><strong>Age:</strong> {pet.age}</p>
+                        <p><strong>Size:</strong> {pet.size}</p>
+                        <p><strong>Notes:</strong> {pet.notes}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : <p>No pets added.</p>}
+
+                <button className="add-pet-btn" onClick={() => setShowAddPetForm(!showAddPetForm)}>
+                  {showAddPetForm ? "Cancel" : "Add Pet"}
+                </button>
+
+                {showAddPetForm && (
+                  <div className="add-pet-form-container">
+                    <form className="add-pet-form" onSubmit={handleAddPet}>
+                      <label>Pet Name:<input type="text" value={newPet.name} onChange={(e) => setNewPet({ ...newPet, name: e.target.value })} /></label>
+                      <label>Type:
+                        <select value={newPet.type} onChange={(e) => setNewPet({ ...newPet, type: e.target.value })}>
+                          <option value="">Select Type</option><option value="Dog">Dog</option><option value="Cat">Cat</option>
+                        </select>
+                      </label>
+                      <label>Age:<input type="number" value={newPet.age} onChange={(e) => setNewPet({ ...newPet, age: e.target.value })} /></label>
+                      <label>Size:
+                        <select value={newPet.size} onChange={(e) => setNewPet({ ...newPet, size: e.target.value })}>
+                          <option value="">Select Size</option><option value="Small">Small</option><option value="Medium">Medium</option><option value="Large">Large</option>
+                        </select>
+                      </label>
+                      <label>Notes:<textarea value={newPet.notes} onChange={(e) => setNewPet({ ...newPet, notes: e.target.value })} rows="3" /></label>
+                      <button type="submit">Save Pet</button>
+                    </form>
+                  </div>
+                )}
               </div>
             </div>
+          )}
 
-            <div className="widgets-container">
-              <div className="widget-card"><h3>Requests Sent</h3><p>{sentRequests.length}</p></div>
-              {user.role === "hybrid" && (
-                <div className="widget-card"><h3>Requests Received</h3><p>{receivedRequests.length}</p></div>
-              )}
-              <div className="widget-card"><h3>Unread Notifications</h3><p>{notifications.length}</p></div>
-            </div>
-
-            <div className="pets-section">
-              <h3>Your Pets</h3>
-              {user.pets.length ? (
-                <div className="pet-cards">
-                  {user.pets.map((pet, i) => (
-                    <div key={i} className="pet-card">
-                      <h4>{pet.name}</h4>
-                      <p><strong>Type:</strong> {pet.type}</p>
-                      <p><strong>Age:</strong> {pet.age}</p>
-                      <p><strong>Size:</strong> {pet.size}</p>
-                      <p><strong>Notes:</strong> {pet.notes}</p>
-                    </div>
-                  ))}
-                </div>
-              ) : <p>No pets added.</p>}
-
-              <button className="add-pet-btn" onClick={() => setShowAddPetForm(!showAddPetForm)}>
-                {showAddPetForm ? "Cancel" : "Add Pet"}
-              </button>
-
-              {showAddPetForm && (
-                <div className="add-pet-form-container">
-                  <form className="add-pet-form" onSubmit={handleAddPet}>
-                    <label>Pet Name:<input type="text" value={newPet.name} onChange={(e) => setNewPet({ ...newPet, name: e.target.value })} /></label>
-                    <label>Type:
-                      <select value={newPet.type} onChange={(e) => setNewPet({ ...newPet, type: e.target.value })}>
-                        <option value="">Select Type</option><option value="Dog">Dog</option><option value="Cat">Cat</option>
-                      </select>
-                    </label>
-                    <label>Age:<input type="number" value={newPet.age} onChange={(e) => setNewPet({ ...newPet, age: e.target.value })} /></label>
-                    <label>Size:
-                      <select value={newPet.size} onChange={(e) => setNewPet({ ...newPet, size: e.target.value })}>
-                        <option value="">Select Size</option><option value="Small">Small</option><option value="Medium">Medium</option><option value="Large">Large</option>
-                      </select>
-                    </label>
-                    <label>Notes:<textarea value={newPet.notes} onChange={(e) => setNewPet({ ...newPet, notes: e.target.value })} rows="3" /></label>
-                    <button type="submit">Save Pet</button>
-                  </form>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {activePanel === "requests" && (
-          <div className="panel">
-            <h2>Requests</h2>
-            <div className="request-section">
-              <h3>Sent Requests</h3>
-              {sentRequests.map((req, i) => (
-                <div key={i} className="request-card sent">
-                  <strong>To:</strong> {req.to} <br />
-                  <strong>Service:</strong> {req.service} <br />
-                  <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
-                  <strong>Status:</strong> {req.status} <br />
-                  <button onClick={() => handleViewDetails(req)}>View Details</button>
-                </div>
-              ))}
-            </div>
-
-            {user.role === "hybrid" && (
+          {activePanel === "requests" && (
+            <div className="panel">
+              <h2>Requests</h2>
               <div className="request-section">
-                <h3>Received Requests</h3>
-                {receivedRequests.map((req, i) => (
-                  <div key={i} className="request-card received">
-                    <strong>From:</strong> {req.from} <br />
+                <h3>Sent Requests</h3>
+                {sentRequests.map((req, i) => (
+                  <div key={i} className="request-card sent">
+                    <strong>To:</strong> {req.to} <br />
                     <strong>Service:</strong> {req.service} <br />
                     <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
                     <strong>Status:</strong> {req.status} <br />
                     <button onClick={() => handleViewDetails(req)}>View Details</button>
-                    {req.status === "New" && (
-                      <div className="request-actions">
-                        <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
-                        <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-        )}
 
-        {activePanel === "notifications" && (
-          <div className="panel">
-            <h2>Notifications</h2>
-            {notifications.map((n, i) => (
-              <div key={i} className="notification-card">
-                <p>{n.text}</p>
-                <small>{n.time}</small>
-              </div>
-            ))}
-          </div>
-        )}
-      </main>
+              {user.role === "hybrid" && (
+                <div className="request-section">
+                  <h3>Received Requests</h3>
+                  {receivedRequests.map((req, i) => (
+                    <div key={i} className="request-card received">
+                      <strong>From:</strong> {req.from} <br />
+                      <strong>Service:</strong> {req.service} <br />
+                      <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
+                      <strong>Status:</strong> {req.status} <br />
+                      <button onClick={() => handleViewDetails(req)}>View Details</button>
+                      {req.status === "New" && (
+                        <div className="request-actions">
+                          <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
+                          <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {activePanel === "notifications" && (
+            <div className="panel">
+              <h2>Notifications</h2>
+              {notifications.map((n, i) => (
+                <div key={i} className="notification-card">
+                  <p>{n.text}</p>
+                  <small>{n.time}</small>
+                </div>
+              ))}
+            </div>
+          )}
+        </main>
+      </div>
 
       <ViewRequestForm
         isOpen={!!selectedRequest}
@@ -281,3 +275,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

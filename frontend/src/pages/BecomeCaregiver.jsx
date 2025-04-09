@@ -7,11 +7,8 @@ const BecomeCaregiver = () => {
     daycareName: "",
     email: "",
     phone: "",
-    street: "",
-    city: "",
-    state: "",
-    pincode: "",
-    services: [],
+    location: "",
+    service: "",
     experience: "",
     fees: "",
     about: "",
@@ -21,25 +18,19 @@ const BecomeCaregiver = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      services: checked
-        ? [...prevData.services, value]
-        : prevData.services.filter((s) => s !== value),
-    }));
+  const handleRadioChange = (e) => {
+    setFormData({ ...formData, service: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // prevent page refresh
-  
+    e.preventDefault();
+
     try {
       const token = document.cookie
         .split('; ')
         .find(row => row.startsWith('token='))
         ?.split('=')[1];
-      console.log(formData.services)
+
       const response = await fetch("http://localhost:5000/regProvider", {
         method: "POST",
         headers: {
@@ -47,20 +38,21 @@ const BecomeCaregiver = () => {
         },
         credentials: "include",
         body: JSON.stringify({
-          daycare_name: formData.name,
+          daycare_name: formData.daycareName,
           owner_name: formData.name,
           phone: Number(formData.phone),
           address: formData.location,
           email: formData.email,
-          password: "securepassword123", // dummy password
-          service: formData.services,
+          password: "securepassword123",
+          service: [formData.service],
           description: formData.about,
           experience: parseInt(formData.experience),
+          fees: parseInt(formData.fees),
         }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         alert("Thank you for signing up as a caregiver!");
       } else {
@@ -71,11 +63,9 @@ const BecomeCaregiver = () => {
       alert("An error occurred. Please try again.");
     }
   };
-  
 
   return (
     <div className="caregiver-page">
-      {/* Hero Section */}
       <header className="caregiver-header">
         <div>
           <h1>Become a Caregiver</h1>
@@ -84,7 +74,6 @@ const BecomeCaregiver = () => {
         <a href="#caregiver-form" className="caregiver-btn">Get Started</a>
       </header>
 
-      {/* Why Join Us Cards */}
       <section className="why-join">
         <h2>Why Join PawsNearby?</h2>
         <div className="benefits-container">
@@ -106,7 +95,6 @@ const BecomeCaregiver = () => {
         </div>
       </section>
 
-      {/* Caregiver Form */}
       <section className="caregiver-form-section" id="caregiver-form">
         <form className="caregiver-form" onSubmit={handleSubmit}>
           <h2>Sign Up as a Caregiver</h2>
@@ -158,69 +146,34 @@ const BecomeCaregiver = () => {
             required
           />
 
-          <h4>Address Details</h4>
-
-          <label htmlFor="street">Street</label>
+          <label htmlFor="location">Address</label>
           <input
             type="text"
-            id="street"
-            name="street"
-            placeholder="House No., Street Name"
-            value={formData.street}
+            id="location"
+            name="location"
+            placeholder="Full address (Street, City, State, Pincode)"
+            value={formData.location}
             onChange={handleChange}
             required
           />
 
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            placeholder="City"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="state">State</label>
-          <input
-            type="text"
-            id="state"
-            name="state"
-            placeholder="State"
-            value={formData.state}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="pincode">Pincode</label>
-          <input
-            type="text"
-            id="pincode"
-            name="pincode"
-            placeholder="Postal Code"
-            value={formData.pincode}
-            onChange={handleChange}
-            required
-          />
-
-          {/* Services as Checkboxes */}
           <div className="form-group">
-            <label>Services Offered:</label>
-            <div className="checkbox-group">
-              {["Boarding", "Sitting", "Walking", "Daycare"].map((service) => (
-                <label key={service} className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="services"
-                    value={service}
-                    checked={formData.services.includes(service)}
-                    onChange={handleCheckboxChange}
-                  />
-                  {service}
-                </label>
-              ))}
-            </div>
+            <label>Service Offered:</label>
+            <div className="radio-group">
+  {["Boarding", "Sitting", "Walking"].map((service) => (
+    <label key={service} className={`radio-label ${formData.service === service ? "selected" : ""}`}>
+      <input
+        type="radio"
+        name="service"
+        value={service}
+        checked={formData.service === service}
+        onChange={handleRadioChange}
+      />
+      {service}
+    </label>
+  ))}
+</div>
+
           </div>
 
           <label htmlFor="experience">Years of Experience</label>

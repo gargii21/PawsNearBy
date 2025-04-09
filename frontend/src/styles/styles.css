@@ -230,10 +230,11 @@ footer {
  
 .search-results-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
     gap: 20px;
     padding: 20px;
-    height: 100vh;
+    height:100vh;
+    min-height: max-content;
   }
   
   
@@ -282,11 +283,11 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(235, 187, 115);
+    background:linear-gradient(160deg,rgb(253, 240, 173),rgb(233, 116, 137));
     box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.1);
   }
   .auth-right h2{
-    color: rgb(233, 173, 82);
+    color: rgba(234, 126, 146, 0.737);
   }
   
   /* Form box */
@@ -352,7 +353,7 @@ footer {
   .auth-button {
     width: 80%;
     padding: 12px;
-    background: rgb(234, 163, 69); 
+    background: rgba(234, 126, 146, 0.737);
     color: white;
     border: none;
     border-radius: 10px;
@@ -370,82 +371,3 @@ footer {
 }
 
 
-
-/* 🔵 Community Page */
-.community {
-    text-align: center;
-    padding: 50px;
-}
-
-/* 🟢 About Section (Logged-Out Users) */
-.community-about {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.community-about h1 {
-    font-size: 26px;
-    margin-bottom: 10px;
-}
-
-.community-about p {
-    font-size: 16px;
-    color: #555;
-}
-
-.join-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 15px;
-    background: #ff6b81;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.join-btn:hover {
-    background: #ff4757;
-}
-
-/* 🟢 Community Page (Logged-In Users) */
-.community-content {
-    max-width: 800px;
-    margin: auto;
-    text-align: left;
-}
-
-.community-content h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.community-posts {
-    margin-top: 20px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.add-post-btn {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 15px;
-    background: #ff6b81;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.add-post-btn:hover {
-    background: #ff4757;
-}
