@@ -33,43 +33,17 @@ const Dashboard = () => {
     },
   ]);
 
-  const [receivedRequests, setReceivedRequests] = useState([
-    {
-      from: "Olivia",
-      pets: [
-        { petName: "Milo", petType: "Cat", petAge: "3", petSize: "Small", notes: "Needs meds at 12pm" },
-      ],
-      service: "Sitting",
-      fromDate: "2025-04-14",
-      toDate: "2025-04-15",
-      startTime: "9:00 AM",
-      endTime: "5:00 PM",
-      location: "Delhi",
-      message: "Milo needs meds at 12pm.",
-      status: "New",
-    },
-    {
-      from: "Emma",
-      pets: [
-        { petName: "Charlie", petType: "Dog", petAge: "4", petSize: "Large", notes: "Shy and gentle" },
-      ],
-      service: "Boarding",
-      fromDate: "2025-04-20",
-      toDate: "2025-04-22",
-      startTime: "10:00 AM",
-      endTime: "6:00 PM",
-      location: "Pune",
-      message: "Charlie is shy, please be gentle.",
-      status: "New",
-    },
-  ]);
+  const [receivedRequests, setReceivedRequests] = useState([]);
 
   const [notifications] = useState([
     { text: "You have a new request from Olivia", time: "2h ago" },
     { text: "Your request to John was accepted!", time: "1d ago" },
   ]);
 
+  const [selectedRequestId, setSelectedRequestId] = useState(null);
   const [selectedRequest, setSelectedRequest] = useState(null);
+
+
 
   useEffect(() => {
     const fetchUserAndPets = async () => {
@@ -96,6 +70,21 @@ const Dashboard = () => {
           role: isProvider ? "hybrid" : "owner",
           pets: petData.pets || [],
         });
+
+        if (isProvider) {
+          const reqRes = await fetch("http://localhost:5000/getRequestsForProvider", {
+            method: "POST",
+            credentials: "include",
+          });
+        
+          if (reqRes.ok) {
+            const reqData = await reqRes.json();
+            setReceivedRequests(reqData.requests || []);
+          } else {
+            console.error("Failed to fetch provider requests");
+          }
+        }
+        
       } catch (err) {
         console.error("Failed to fetch user or pets:", err);
       }
@@ -111,9 +100,10 @@ const Dashboard = () => {
     setReceivedRequests(updated);
   };
 
-  const handleViewDetails = (req) => {
-    setSelectedRequest(req);
+  const handleViewDetails = (reqId) => {
+    setSelectedRequestId((prevId) => (prevId === reqId ? null : reqId));
   };
+  
 
   const handleAddPet = async (e) => {
     e.preventDefault();
@@ -254,20 +244,38 @@ const Dashboard = () => {
               <div className="request-section">
                 <h3>Received Requests</h3>
                 {receivedRequests.map((req, i) => (
-                  <div key={i} className="request-card received">
-                    <strong>From:</strong> {req.from} <br />
-                    <strong>Service:</strong> {req.service} <br />
-                    <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
-                    <strong>Status:</strong> {req.status} <br />
-                    <button onClick={() => handleViewDetails(req)}>View Details</button>
-                    {req.status === "New" && (
-                      <div className="request-actions">
-                        <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
-                        <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
-                      </div>
-                    )}
-                  </div>
-                ))}
+  <div key={i} className="request-card received">
+    <strong>Service:</strong> {req.service} <br />
+    <strong>Start Date:</strong> {new Date(req.startDate).toLocaleDateString()} <br />
+    <strong>End Date:</strong> {new Date(req.endDate).toLocaleDateString()} <br />
+    <strong>Start Time:</strong> {req.startTime} <br />
+    <strong>End Time:</strong> {req.endTime} <br />
+    <strong>Status:</strong> {req.status} <br />
+
+    <button onClick={() => handleViewDetails(req.reqId)}>
+      {selectedRequestId === req.reqId ? "Hide Details" : "View Details"}
+    </button>
+
+    {selectedRequestId === req.reqId && req.Pet && (
+      <div className="pet-details-box">
+        <h4>Pet Details</h4>
+        <p><strong>Name:</strong> {req.Pet.name}</p>
+        <p><strong>Type:</strong> {req.Pet.type}</p>
+        <p><strong>Age:</strong> {req.Pet.age}</p>
+        <p><strong>Size:</strong> {req.Pet.size}</p>
+        <p><strong>Notes:</strong> {req.Pet.notes}</p>
+      </div>
+    )}
+
+    {req.status === "New" && (
+      <div className="request-actions">
+        <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
+        <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
+      </div>
+    )}
+  </div>
+))}
+
               </div>
             )}
           </div>
