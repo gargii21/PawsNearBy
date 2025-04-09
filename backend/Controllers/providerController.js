@@ -8,9 +8,16 @@ export const addProvider = async (req, res) => {
         console.log(req.user)
         return res.status(401).json({ message: 'Unauthorized. Please log in or sign up first.' });
     }
+
+    const userId= req.user.userId
+
+    const existingProvider = await providerModel.findOne({ where: { id: userId } });
+    if (existingProvider) {
+        return res.status(400).json({ message: 'You already have a daycare. You cannot register another one.' });
+    }
     
     const { daycare_name, owner_name, phone, address, email, password, service, description, fees, experience } = req.body;
-    const userId= req.user.userId
+    
     const cordinates= await getCoordinates(address);
     console.log(cordinates.latitude);
     console.log(cordinates.longitude);

@@ -26,6 +26,10 @@ const userModel = User(sequelize);
 const providerModel = provider(sequelize);
 const requestModel = Request(sequelize);
 const petModel = Pet(sequelize);
+
+requestModel.belongsTo(petModel, { foreignKey: 'pet_id' });
+petModel.hasMany(requestModel, { foreignKey: 'pet_id' });
+
     
 async function syncdb(){
   try{

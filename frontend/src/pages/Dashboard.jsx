@@ -1,27 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 import "../styles/dashboard.css";
 import ViewRequestForm from "../components/ViewRequestForm";
 
 const Dashboard = () => {
   const [user, setUser] = useState({
-    name: "priyal",
-    role: "hybrid",
-    pets: [
-      {
-        name: "Mochi",
-        type: "Cat",
-        age: 2,
-        size: "Small",
-        notes: "Loves climbing and hiding in bags.",
-      },
-      {
-        name: "Rocky",
-        type: "Dog",
-        age: 4,
-        size: "Large",
-        notes: "Needs walks twice a day.",
-      },
-    ],
+    name: "",
+    role: "owner", // default
+    pets: [],
   });
 
   const [activePanel, setActivePanel] = useState("profile");
@@ -35,7 +21,6 @@ const Dashboard = () => {
   });
 
   const [sentRequests] = useState([
-
     {
       to: "Caregiver John",
       pets: [
@@ -51,8 +36,9 @@ const Dashboard = () => {
       message: "Please take good care of Buddy and Luna!",
       status: "Pending",
     }, 
-]);
-  const [receivedRequests, setReceivedRequests] =useState([
+  ]);
+
+  const [receivedRequests, setReceivedRequests] = useState([
     {
       from: "Olivia",
       pets: [
@@ -87,10 +73,52 @@ const Dashboard = () => {
     { text: "You have a new request from Olivia", time: "2h ago" },
     { text: "Your request to John was accepted!", time: "1d ago" },
   ]);
- 
 
   const [selectedRequest, setSelectedRequest] = useState(null);
-  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/me", {
+          method: "GET",
+          credentials: "include", // 🧠 VERY IMPORTANT to send cookies
+        });
+  
+        if (!res.ok) throw new Error("Unauthorized");
+        console.log(user.name);
+        const data = await res.json();
+        const isProvider = data.user?.isProvider;
+        const name = data.user?.name || "User"; // Replace with actual name field if you have it
+  
+        setUser((prev) => ({
+          ...prev,
+          name,
+          role: isProvider ? "hybrid" : "owner",
+          pets: [
+            {
+              name: "Mochi",
+              type: "Cat",
+              age: 2,
+              size: "Small",
+              notes: "Loves climbing and hiding in bags.",
+            },
+            {
+              name: "Rocky",
+              type: "Dog",
+              age: 4,
+              size: "Large",
+              notes: "Needs walks twice a day.",
+            },
+          ], // Replace this array with actual pet data from backend if available
+        }));
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      }
+    };
+  
+    fetchUser();
+  }, []);
+  
 
   const handleRequestAction = (index, action) => {
     const updated = [...receivedRequests];
@@ -100,10 +128,10 @@ const Dashboard = () => {
 
   const handleViewDetails = (req) => {
     setSelectedRequest(req);
-    setDetailsModalOpen(true);
   };
 
-  const handleAddPet = () => {
+  const handleAddPet = (e) => {
+    e.preventDefault();
     if (!newPet.name || !newPet.type) return;
     setUser((prev) => ({
       ...prev,
@@ -140,28 +168,19 @@ const Dashboard = () => {
             </div>
 
             <div className="widgets-container">
-              <div className="widget-card">
-                <h3>Requests Sent</h3>
-                <p>{sentRequests.length}</p>
-              </div>
+              <div className="widget-card"><h3>Requests Sent</h3><p>{sentRequests.length}</p></div>
               {user.role === "hybrid" && (
-                <div className="widget-card">
-                  <h3>Requests Received</h3>
-                  <p>{receivedRequests.length}</p>
-                </div>
+                <div className="widget-card"><h3>Requests Received</h3><p>{receivedRequests.length}</p></div>
               )}
-              <div className="widget-card">
-                <h3>Unread Notifications</h3>
-                <p>{notifications.length}</p>
-              </div>
+              <div className="widget-card"><h3>Unread Notifications</h3><p>{notifications.length}</p></div>
             </div>
 
             <div className="pets-section">
               <h3>Your Pets</h3>
-              {user.pets?.length > 0 ? (
+              {user.pets.length ? (
                 <div className="pet-cards">
-                  {user.pets.map((pet, index) => (
-                    <div className="pet-card" key={index}>
+                  {user.pets.map((pet, i) => (
+                    <div key={i} className="pet-card">
                       <h4>{pet.name}</h4>
                       <p><strong>Type:</strong> {pet.type}</p>
                       <p><strong>Age:</strong> {pet.age}</p>
@@ -170,90 +189,43 @@ const Dashboard = () => {
                     </div>
                   ))}
                 </div>
-              ) : (
-                <p>No pets added.</p>
-              )}
+              ) : <p>No pets added.</p>}
 
               <button className="add-pet-btn" onClick={() => setShowAddPetForm(!showAddPetForm)}>
                 {showAddPetForm ? "Cancel" : "Add Pet"}
               </button>
 
               {showAddPetForm && (
-  <div className="add-pet-form-container">
-    <form className="add-pet-form" onSubmit={handleAddPet}>
-      <label>
-        Pet Name:
-        <input
-          type="text"
-          placeholder="e.g. Mochi"
-          value={newPet.name}
-          onChange={(e) => setNewPet({ ...newPet, name: e.target.value })}
-        />
-      </label>
-
-      <label>
-        Type:
-        <select
-          value={newPet.type}
-          onChange={(e) => setNewPet({ ...newPet, type: e.target.value })}
-        >
-          <option value="">Select Type</option>
-          <option value="Dog">Dog</option>
-          <option value="Cat">Cat</option>
-        </select>
-      </label>
-
-      <label>
-        Age:
-        <input
-          type="number"
-          placeholder="e.g. 3"
-          value={newPet.age}
-          onChange={(e) => setNewPet({ ...newPet, age: e.target.value })}
-        />
-      </label>
-
-      <label>
-        Size:
-        <select
-          value={newPet.size}
-          onChange={(e) => setNewPet({ ...newPet, size: e.target.value })}
-        >
-          <option value="">Select Size</option>
-          <option value="Small">Small</option>
-          <option value="Medium">Medium</option>
-          <option value="Large">Large</option>
-        </select>
-      </label>
-
-      <label>
-        Notes:
-        <textarea
-          placeholder="Loves squeaky toys, scared of thunder..."
-          value={newPet.notes}
-          onChange={(e) => setNewPet({ ...newPet, notes: e.target.value })}
-          rows="3"
-        />
-      </label>
-
-      <button type="submit">Save Pet</button>
-    </form>
-  </div>
-)}
-
-
+                <div className="add-pet-form-container">
+                  <form className="add-pet-form" onSubmit={handleAddPet}>
+                    <label>Pet Name:<input type="text" value={newPet.name} onChange={(e) => setNewPet({ ...newPet, name: e.target.value })} /></label>
+                    <label>Type:
+                      <select value={newPet.type} onChange={(e) => setNewPet({ ...newPet, type: e.target.value })}>
+                        <option value="">Select Type</option><option value="Dog">Dog</option><option value="Cat">Cat</option>
+                      </select>
+                    </label>
+                    <label>Age:<input type="number" value={newPet.age} onChange={(e) => setNewPet({ ...newPet, age: e.target.value })} /></label>
+                    <label>Size:
+                      <select value={newPet.size} onChange={(e) => setNewPet({ ...newPet, size: e.target.value })}>
+                        <option value="">Select Size</option><option value="Small">Small</option><option value="Medium">Medium</option><option value="Large">Large</option>
+                      </select>
+                    </label>
+                    <label>Notes:<textarea value={newPet.notes} onChange={(e) => setNewPet({ ...newPet, notes: e.target.value })} rows="3" /></label>
+                    <button type="submit">Save Pet</button>
+                  </form>
+                </div>
+              )}
             </div>
           </div>
         )}
-        
+
         {activePanel === "requests" && (
           <div className="panel">
             <h2>Requests</h2>
-
             <div className="request-section">
               <h3>Sent Requests</h3>
-              {sentRequests.map((req, idx) => (
-                <div key={idx} className="request-card sent">
+              {sentRequests.map((req, i) => (
+                <div key={i} className="request-card sent">
                   <strong>To:</strong> {req.to} <br />
                   <strong>Service:</strong> {req.service} <br />
                   <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
@@ -266,8 +238,8 @@ const Dashboard = () => {
             {user.role === "hybrid" && (
               <div className="request-section">
                 <h3>Received Requests</h3>
-                {receivedRequests.map((req, idx) => (
-                  <div key={idx} className="request-card received">
+                {receivedRequests.map((req, i) => (
+                  <div key={i} className="request-card received">
                     <strong>From:</strong> {req.from} <br />
                     <strong>Service:</strong> {req.service} <br />
                     <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
@@ -275,8 +247,8 @@ const Dashboard = () => {
                     <button onClick={() => handleViewDetails(req)}>View Details</button>
                     {req.status === "New" && (
                       <div className="request-actions">
-                        <button onClick={() => handleRequestAction(idx, "accept")}>Accept</button>
-                        <button onClick={() => handleRequestAction(idx, "decline")}>Decline</button>
+                        <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
+                        <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
                       </div>
                     )}
                   </div>
@@ -289,15 +261,14 @@ const Dashboard = () => {
         {activePanel === "notifications" && (
           <div className="panel">
             <h2>Notifications</h2>
-            {notifications.map((note, idx) => (
-              <div key={idx} className="notification-card">
-                <p>{note.text}</p>
-                <small>{note.time}</small>
+            {notifications.map((n, i) => (
+              <div key={i} className="notification-card">
+                <p>{n.text}</p>
+                <small>{n.time}</small>
               </div>
             ))}
           </div>
         )}
-
       </main>
 
       <ViewRequestForm

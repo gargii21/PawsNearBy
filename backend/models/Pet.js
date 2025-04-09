@@ -21,54 +21,25 @@ export const Pet = (sequelize) => {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
     },
-    providerId:{
-        type:DataTypes.INTEGER,
-        // references: {
-        //     model: providerModel,
-        //     key: "prId",
-        // },
-        // onUpdate: "CASCADE",
-        // onDelete: "CASCADE",
-    },
     name:{
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    size:{
+        type: DataTypes.STRING,
+        //allowNull: false,
     },
     type:{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    breed:{
-        type:  DataTypes.STRING,
-        allowNull: false,  
-    },
     age:{
         type:  DataTypes.INTEGER,
         allowNull: false,  
     },
-    weight:{
-        type:  DataTypes.FLOAT,
-        allowNull: false,  
-    },
-    service:{
-        type:DataTypes.STRING,
-        allowNull:false
-
-    },
     notes:{
         type: DataTypes.TEXT,
     },
-    startDate:{
-        type:DataTypes.DATE
-    },
-    endDate:{
-        type:DataTypes.DATE
-    },
-    additionalMessage:{
-        type: DataTypes.TEXT,
-    }
-
-
     },{timestamps: false})
    
    

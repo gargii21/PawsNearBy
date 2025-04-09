@@ -15,11 +15,11 @@ const addPet = async (req, res) => {
     const ownerId = decoded.userId;  // Ensure `userId` is stored in JWT during login
 
     // ✅ Extract providerId and pet details from request body
-    const { providerId, name, type, breed, weight, service, age, startDate, endDate, notes, additionalMessage } = req.body;
+    const {  name, type, age, size, notes} = req.body;
 
-    if (!providerId) {
-      return res.status(400).json({ error: "Provider ID is required" });
-    }
+    // if (!providerId) {
+    //   return res.status(400).json({ error: "Provider ID is required" });
+    // }
 
     const existingPet = await petModel.findOne({ where: { ownerId, name } });
 
@@ -30,17 +30,11 @@ const addPet = async (req, res) => {
     // ✅ Insert pet details into database
     const newPet = await petModel.create({
       ownerId,
-      providerId,
       name,
       type,
-      breed,
-      weight,
-      service,
+      size,
       age,
-      startDate,
-      endDate,
       notes,
-      additionalMessage,
     });
 
     res.status(201).json({ message: "Pet added successfully!", data: newPet });

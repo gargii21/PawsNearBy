@@ -6,7 +6,7 @@ import search from '../Controllers/searchController.js';
 import { addProvider } from '../Controllers/providerController.js';
 //import { sendRequest, acceptRequest, rejectRequest, getRequestStatus } from '../Controllers/requestController.js';
 import  addPet  from '../Controllers/petController.js';
-import createRequest from '../Controllers/requestController.js';
+import {createRequest, getRequestsForProvider} from '../Controllers/requestController.js';
 const router = Router();
 
 router.post("/login",authMiddleware,login);
@@ -22,9 +22,16 @@ router.post("/regProvider",authMiddleware,addProvider);
 // router.post("/rejectRequest",authMiddleware,rejectRequest);
 // router.get("/getRequestStatus",authMiddleware,getRequestStatus);
 router.post("/createRequest",authMiddleware,createRequest);
+router.post("/getRequestsForProvider",authMiddleware,getRequestsForProvider);
 router.delete("/delete",authMiddleware,deleteUser);
 router.post("/addPet",authMiddleware,addPet);
-
-
+//console.log(req.user)
+router.get('/me', authMiddleware, (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+  
+    res.json({ user: req.user }); // will include isProvider, userId, email, etc.
+  });
 
 export default router;

@@ -11,7 +11,7 @@ const login = async(req,res)=> {
     try{
         
         const data=await userModel.findOne({
-            attributes: ['email','password','id','isProvider'],
+            attributes: ['email','password','id','isProvider','name'],
             where: {email:email}
         })
         if (!data){
@@ -33,7 +33,7 @@ const login = async(req,res)=> {
         let token
         try{
          token = jwt.sign(
-            {userId:user.id, email:user.email, role:user.role, isProvider:user.isProvider},
+            {userId:user.id, email:user.email, role:user.role, isProvider:user.isProvider, name:user.name},
         process.env.JWT_SECRET,
         {expiresIn: '1d'})
         //console.log(token);
