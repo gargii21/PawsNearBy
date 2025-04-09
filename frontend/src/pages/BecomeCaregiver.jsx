@@ -44,7 +44,7 @@ const BecomeCaregiver = () => {
           address: formData.location,
           email: formData.email,
           password: "securepassword123",
-          service: [formData.service],
+          service: formData.service,
           description: formData.about,
           experience: parseInt(formData.experience),
           fees: parseInt(formData.fees),

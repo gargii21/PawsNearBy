@@ -44,4 +44,19 @@ const addPet = async (req, res) => {
   }
 };
 
-export default addPet;
+const getPets = async(req,res) =>{
+  try{
+  const ownerId = req.user.userId
+
+  const pets = await petModel.findAll({
+    where: {ownerId}
+  });
+
+  res.json({pets})
+}catch(error){
+  console.log(error);
+  res.status(500).json({error:"internal server error"})
+}
+}
+
+export { addPet, getPets};
