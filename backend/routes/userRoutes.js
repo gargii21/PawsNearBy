@@ -7,6 +7,7 @@ import { addProvider } from '../Controllers/providerController.js';
 //import { sendRequest, acceptRequest, rejectRequest, getRequestStatus } from '../Controllers/requestController.js';
 import { addPet, getPets } from '../Controllers/petController.js';
 import {createRequest, getRequestsForProvider} from '../Controllers/requestController.js';
+import prProfile from '../Controllers/prProfile.js';
 const router = Router();
 
 router.post("/login",authMiddleware,login);
@@ -26,6 +27,7 @@ router.post("/getRequestsForProvider",authMiddleware,getRequestsForProvider);
 router.delete("/delete",authMiddleware,deleteUser);
 router.post("/addPet",authMiddleware,addPet);
 router.get("/getPet",authMiddleware,getPets);
+router.post("/getPrInfo",authMiddleware,prProfile);
 //console.log(req.user)
 router.get('/me', authMiddleware, (req, res) => {
   try{

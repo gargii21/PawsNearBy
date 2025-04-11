@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 import "../styles/requestForm.css";
+import axios from "axios";
+import { useEffect } from "react";
 
-const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
+const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, providerId}) => {
   const today = new Date().toISOString().split("T")[0];
-
+  const [pets,setPets]=useState([])
+  
   const userPets = [
     { id: 1, name: "Bella" },
     { id: 2, name: "Max" },
     { id: 3, name: "Luna" },
   ];
-
+  useEffect (()=>{
+    const fetchdata= async()=>{
+      const res = await axios.get("http://localhost:5000/getPet",{
+        withCredentials: true
+      }
+    )
+      console.log(res.data.pets)
+      setPets(res.data.pets)
+    }
+    fetchdata()
+  },[])
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     selectedPetId: "",
@@ -84,7 +97,7 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
     <div className="profile-request-form">
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Send Request {caregiverName && `to ${caregiverName}`}</h2>
+        <h2>Send Request {providerId && `to ${providerId}`}</h2>
 
         <form onSubmit={handleSubmit}>
         {step === 1 && (
@@ -99,8 +112,8 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId }) => {
         required
       >
         <option value="">Select a pet</option>
-        {userPets.map((pet) => (
-          <option key={pet.id} value={pet.id}>
+        {pets.map((pet) => (
+          <option key={pet.Pet_id} value={pet.name}>
             {pet.name}
           </option>
         ))}

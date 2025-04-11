@@ -15,6 +15,7 @@ const SearchResults = () => {
   const lon = queryParams.get("lon");
   const service = queryParams.get("service");
 
+
   useEffect(() => {
     const fetchdata = async () => {
       try {
@@ -22,7 +23,12 @@ const SearchResults = () => {
           lat: lat,
           lon: lon,
           service: service
-        });
+          
+        },
+        {
+          withCredentials: true
+        }
+      );
         const temp = response.data.data;
         let list = [];
 

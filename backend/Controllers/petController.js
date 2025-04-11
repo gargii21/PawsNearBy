@@ -47,6 +47,8 @@ const addPet = async (req, res) => {
 const getPets = async(req,res) =>{
   try{
   const ownerId = req.user.userId
+  console.log("hi getting my pets")
+  console.log(req.user)
 
   const pets = await petModel.findAll({
     where: {ownerId}
