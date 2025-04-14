@@ -3,6 +3,7 @@ import "../styles/requestForm.css";
 import axios from "axios";
 import { useEffect } from "react";
 
+
 const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, providerId}) => {
   const today = new Date().toISOString().split("T")[0];
   const [pets,setPets]=useState([])
@@ -38,9 +39,11 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
 
         if (response.status === 201) {
           console.log("Request submitted successfully");
+          alert("Request submitted successfully");
           onClose();
         } else {
           console.error("Failed to submit request");
+          alert("Failed to submit request");
         }
       } catch (error) {
         console.error("Error submitting request:", error);
