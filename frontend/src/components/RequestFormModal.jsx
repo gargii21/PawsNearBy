@@ -112,7 +112,7 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
     <div className="profile-request-form">
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Send Request {providerId && `to ${providerId}`}</h2>
+        <h2>Send Request {caregiverName && `to ${caregiverName}`}</h2>
 
         <form onSubmit={handleSubmit}>
         {step === 1 && (
