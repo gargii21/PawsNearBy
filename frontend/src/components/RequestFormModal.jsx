@@ -6,12 +6,13 @@ import { useEffect } from "react";
 const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, providerId}) => {
   const today = new Date().toISOString().split("T")[0];
   const [pets,setPets]=useState([])
+  const [requestData, setRequestData] = useState(null);
   
-  const userPets = [
-    { id: 1, name: "Bella" },
-    { id: 2, name: "Max" },
-    { id: 3, name: "Luna" },
-  ];
+  // const userPets = [
+  //   { id: 1, name: "Bella" },
+  //   { id: 2, name: "Max" },
+  //   { id: 3, name: "Luna" },
+  // ];
   useEffect (()=>{
     const fetchdata= async()=>{
       const res = await axios.get("http://localhost:5000/getPet",{
@@ -23,6 +24,33 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
     }
     fetchdata()
   },[])
+
+  useEffect(() => {
+    const sendRequest = async () => {
+      if (!requestData) return;
+
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/createRequest",
+          requestData,
+          { withCredentials: true }
+        );
+
+        if (response.status === 201) {
+          console.log("Request submitted successfully");
+          onClose();
+        } else {
+          console.error("Failed to submit request");
+        }
+      } catch (error) {
+        console.error("Error submitting request:", error);
+      }
+    };
+
+    sendRequest();
+  }, [requestData]);
+
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     selectedPetId: "",
@@ -61,34 +89,18 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
     e.preventDefault();
 
     const requestPayload = {
-      caregiverId,
+      providerId, 
       petId: formData.selectedPetId,
       service: formData.serviceType,
-      fromDate: formData.fromDate,
-      toDate: formData.toDate,
+      startDate: formData.fromDate,
+      endDate: formData.toDate,
       startTime: formData.startTime,
       endTime: formData.endTime,
-      message: formData.message,
+
+      
     };
 
-    try {
-      const response = await fetch("/api/requests/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestPayload),
-      });
-
-      if (response.ok) {
-        console.log("Request submitted successfully");
-        onClose();
-      } else {
-        console.error("Failed to submit request");
-      }
-    } catch (error) {
-      console.error("Error submitting request:", error);
-    }
+    setRequestData(requestPayload);
   };
 
   if (!isOpen) return null;
@@ -113,7 +125,7 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
       >
         <option value="">Select a pet</option>
         {pets.map((pet) => (
-          <option key={pet.Pet_id} value={pet.name}>
+          <option key={pet.Pet_id} value={pet.Pet_id}>
             {pet.name}
           </option>
         ))}
