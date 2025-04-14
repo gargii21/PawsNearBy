@@ -1,0 +1,63 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+.terms-container {
+  background: rgba(255, 241, 192, 0.27);
+  padding: 40px;
+  max-width: 750px;
+  margin: 40px auto;
+  border-radius: 20px;
+  font-family: 'Itim', cursive;
+  box-shadow: 0 10px 30px rgba(255, 200, 200, 0.2);
+  color: #444;
+}
+
+.terms-container h2 {
+  font-size: 2rem;
+  color: rgba(234, 163, 69, 0.74); 
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: 'Itim';
+}
+
+.terms-section p {
+  background: #ffffffb7;
+  border-left: 6px solid rgba(234, 163, 69, 0.74); 
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 182, 193, 0.1);
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 20px 0;
+}
+
+.terms-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff910079;
+  cursor: pointer;
+}
+
+.submit-btn {
+  display: block;
+  background: linear-gradient(to right, #ffe194, #fcd5ce);
+  border: none;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-family: 'Itim', cursive;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(to right, #fda4af, #f9dcc4);
+}

@@ -234,7 +234,7 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
                   required
                 />
                 <label>
-                  I agree to the <a href="/terms">Terms & Conditions</a>
+                  I agree to the <a href="/termsandconditions" target="_blank">Terms & Conditions</a>
                 </label>
               </div>
             </>

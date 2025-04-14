@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
 import ProfilePage from "./components/ProfilePage"; // Import the full profile page
 import BecomeCaregiver from "./pages/BecomeCaregiver";
+import TermsConditions from "./pages/TermsConditions";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/profile/:id" element={<ProfilePage />} /> {/* Full Profile Page */}
           <Route path="/become-caregiver" element={<BecomeCaregiver />} />
+          <Route path="/termsandconditions" element={<TermsConditions />} />
         </Routes>
       </div>
       <Footer />
