@@ -5,19 +5,19 @@ import React from "react";
 const testimonials = [
   {
     id: 1,
-    name: "Emily Johnson",
+    name: "Kiara Sethi",
     statement: "PawsNearby made finding a pet sitter effortless. My dog loved his stay!",
     image: "/images/testimonial1.jpg", 
   },
   {
     id: 2,
-    name: "Michael Brown",
+    name: "Krish Kapoor",
     statement: "Great experience! The caregiver was super friendly and professional.",
     image: "/images/testimonial2.jpg",
   },
   {
     id: 3,
-    name: "Sophia Davis",
+    name: "Trisha Malhotra",
     statement: "Highly recommended! I felt completely at ease leaving my cat in their care.",
     image: "/images/testimonial3.jpg",
   },

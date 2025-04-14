@@ -223,64 +223,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-{/*
-        {activePanel === "requests" && (
-          <div className="panel">
-            <h2>Requests</h2>
-            <div className="request-section">
-              <h3>Sent Requests</h3>
-              {sentRequests.map((req, i) => (
-                <div key={i} className="request-card sent">
-                  <strong>To:</strong> {req.to} <br />
-                  <strong>Service:</strong> {req.service} <br />
-                  <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
-                  <strong>Status:</strong> {req.status} <br />
-                  <button onClick={() => handleViewDetails(req)}>View Details</button>
-                </div>
-              ))}
-            </div>
 
-           {user.role === "hybrid" && (
-              <div className="request-section">
-                <h3>Received Requests</h3>
-                {receivedRequests.map((req, i) => (
-  <div key={i} className="request-card received">
-    <strong>Service:</strong> {req.service} <br />
-    <strong>Start Date:</strong> {new Date(req.startDate).toLocaleDateString()} <br />
-    <strong>End Date:</strong> {new Date(req.endDate).toLocaleDateString()} <br />
-    <strong>Start Time:</strong> {req.startTime} <br />
-    <strong>End Time:</strong> {req.endTime} <br />
-    <strong>Status:</strong> {req.status} <br />
-
-    <button onClick={() => handleViewDetails(req.reqId)}>
-      {selectedRequestId === req.reqId ? "Hide Details" : "View Details"}
-    </button>
-
-    {selectedRequestId === req.reqId && req.Pet && (
-      <div className="pet-details-box">
-        <h4>Pet Details</h4>
-        <p><strong>Name:</strong> {req.Pet.name}</p>
-        <p><strong>Type:</strong> {req.Pet.type}</p>
-        <p><strong>Age:</strong> {req.Pet.age}</p>
-        <p><strong>Size:</strong> {req.Pet.size}</p>
-        <p><strong>Notes:</strong> {req.Pet.notes}</p>
-      </div>
-    )}
-
-    {req.status === "New" && (
-      <div className="request-actions">
-        <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
-        <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
-      </div>
-    )}
-  </div>
-))}
-
-              </div>
-            )}
-          </div>
-        )}
-*/}
 {activePanel === "requests" && (
   <div className="panel">
     <h2>Requests</h2>

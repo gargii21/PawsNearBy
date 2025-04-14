@@ -7,7 +7,7 @@ import axios from "axios";
 //vfsdgtr
 
 const ProfilePage = () => {
-  const [dname,setDname]=useState({daycare_name:"lalala",address:"dadada",email:"eee",phone:"pp",service:"sss",fees:"ff",experience:"exx",description:"ddd"})
+  const [dname,setDname]=useState({daycare_name:"Paws and Claws",address:"Pune, India",email:"daycare@email.com",phone:"9876543210",service:"Pet Sitting",fees:"500",experience:"2 years",description:"Passionate about animal care and ensuring pets feel at home."})
   const prId = useParams();
   console.log(prId);
   const location = useLocation();
