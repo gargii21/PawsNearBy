@@ -223,7 +223,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-
+{/*
         {activePanel === "requests" && (
           <div className="panel">
             <h2>Requests</h2>
@@ -240,7 +240,7 @@ const Dashboard = () => {
               ))}
             </div>
 
-            {user.role === "hybrid" && (
+           {user.role === "hybrid" && (
               <div className="request-section">
                 <h3>Received Requests</h3>
                 {receivedRequests.map((req, i) => (
@@ -280,6 +280,60 @@ const Dashboard = () => {
             )}
           </div>
         )}
+*/}
+{activePanel === "requests" && (
+  <div className="panel">
+    <h2>Requests</h2>
+
+    {/* Sent Requests */}
+    <div className="request-section">
+      <h3>Sent Requests</h3>
+      {sentRequests.map((req, i) => (
+        <div key={i} className="request-card sent">
+          <strong>To:</strong> {req.to} <br />
+          <strong>Service:</strong> {req.service} <br />
+          <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
+          <strong>Status:</strong> {req.status} <br />
+          <button onClick={() => {
+            setSelectedRequest(req);
+            setSelectedRequestId(req.reqId);
+          }}>
+            View Details
+          </button>
+        </div>
+      ))}
+    </div>
+
+    {/* Received Requests */}
+    {user.role === "hybrid" && (
+      <div className="request-section">
+        <h3>Received Requests</h3>
+        {receivedRequests.map((req, i) => (
+          <div key={i} className="request-card received">
+            <strong>Service:</strong> {req.service} <br />
+            <strong>Start Date:</strong> {new Date(req.startDate).toLocaleDateString()} <br />
+            <strong>End Date:</strong> {new Date(req.endDate).toLocaleDateString()} <br />
+            <strong>Start Time:</strong> {req.startTime} <br />
+            <strong>End Time:</strong> {req.endTime} <br />
+            <strong>Status:</strong> {req.status} <br />
+            <button onClick={() => {
+              setSelectedRequest(req);
+              setSelectedRequestId(req.reqId);
+            }}>
+              View Details
+            </button>
+            {req.status === "Pending" && (
+              <div className="request-actions">
+                <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
+                <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)}
 
         {activePanel === "notifications" && (
           <div className="panel">
@@ -295,12 +349,16 @@ const Dashboard = () => {
       </main>
 
       <ViewRequestForm
-        isOpen={!!selectedRequest}
-        onClose={() => setSelectedRequest(null)}
-        request={selectedRequest}
-      />
+  isOpen={!!selectedRequest}
+  onClose={() => {
+    setSelectedRequest(null);
+    setSelectedRequestId(null);
+  }}
+  request={selectedRequest}
+/>
     </div>
   );
 };
 
 export default Dashboard;
+
