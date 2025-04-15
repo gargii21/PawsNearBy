@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import "../styles/dashboard.css";
 import ViewRequestForm from "../components/ViewRequestForm";
+import axios from "axios";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -14,24 +15,26 @@ const Dashboard = () => {
     size: "",
     notes: "",
   });
+  const [sentRequests, setSentRequests] = useState([]);
 
-  const [sentRequests] = useState([
-    {
-      to: "Caregiver John",
-      pets: [
-        { petName: "Buddy", petType: "Dog", petAge: "2", petSize: "Medium", notes: "Friendly" },
-        { petName: "Luna", petType: "Cat", petAge: "1", petSize: "Small", notes: "Playful and cuddly" },
-      ],
-      service: "Boarding",
-      fromDate: "2025-04-10",
-      toDate: "2025-04-12",
-      startTime: "10:00 AM",
-      endTime: "6:00 PM",
-      location: "Mumbai",
-      message: "Please take good care of Buddy and Luna!",
-      status: "Pending",
-    },
-  ]);
+
+  // const [sentRequests] = useState([
+  //   {
+  //     to: "Caregiver John",
+  //     pets: [
+  //       { petName: "Buddy", petType: "Dog", petAge: "2", petSize: "Medium", notes: "Friendly" },
+  //       { petName: "Luna", petType: "Cat", petAge: "1", petSize: "Small", notes: "Playful and cuddly" },
+  //     ],
+  //     service: "Boarding",
+  //     fromDate: "2025-04-10",
+  //     toDate: "2025-04-12",
+  //     startTime: "10:00 AM",
+  //     endTime: "6:00 PM",
+  //     location: "Mumbai",
+  //     message: "Please take good care of Buddy and Luna!",
+  //     status: "Pending",
+  //   },
+  // ]);
 
   const [receivedRequests, setReceivedRequests] = useState([]);
 
@@ -92,12 +95,57 @@ const Dashboard = () => {
   
     fetchUserAndPets();
   }, []);
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/getRequestsByOwner',
+          {}, // no body
+          { withCredentials: true }
+        );
+        
+        setSentRequests(response.data.data || []);
+        //setLoading(false);
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+        //setLoading(false);
+      }
+    };
+
+    fetchRequests();
+  }, []);
   
 
-  const handleRequestAction = (index, action) => {
-    const updated = [...receivedRequests];
-    updated[index].status = action === "accept" ? "Accepted" : "Declined";
-    setReceivedRequests(updated);
+  const handleRequestAction = async (index, action, reqId) => {
+    const newStatus = action === "accept" ? "Accepted" : "Rejected"; // Decline becomes Rejected
+
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/updateRequestStatus',
+        { reqId, status: newStatus },
+        { withCredentials: true }
+      );
+
+      if (response.status === 200) {
+        // Update local UI after successful response
+        const updated = [...receivedRequests];
+        updated[index].status = newStatus; // Update status in the UI
+        setReceivedRequests(updated);
+
+        // Update status in sentRequests as well (if needed)
+        const updatedSent = sentRequests.map(req => {
+          if (req.reqId === reqId) {
+            return { ...req, status: newStatus };
+          }
+          return req;
+        });
+        setSentRequests(updatedSent);
+      }
+    } catch (err) {
+      console.error("Failed to update request status:", err);
+      alert("Failed to update status. Please try again.");
+    }
   };
 
   const handleViewDetails = (reqId) => {
@@ -145,6 +193,10 @@ const Dashboard = () => {
   
 
   if (!user) return <div className="dashboard"><p>Loading dashboard...</p></div>;
+
+
+  //console.log("Request object:", req);
+  //console.log("Request ID:", req.reqId);
 
   return (
     <div className="dashboard">
@@ -231,20 +283,27 @@ const Dashboard = () => {
     {/* Sent Requests */}
     <div className="request-section">
       <h3>Sent Requests</h3>
-      {sentRequests.map((req, i) => (
-        <div key={i} className="request-card sent">
-          <strong>To:</strong> {req.to} <br />
-          <strong>Service:</strong> {req.service} <br />
-          <strong>Date:</strong> {req.fromDate} to {req.toDate} <br />
-          <strong>Status:</strong> {req.status} <br />
-          <button onClick={() => {
-            setSelectedRequest(req);
-            setSelectedRequestId(req.reqId);
-          }}>
-            View Details
-          </button>
-        </div>
-      ))}
+      {sentRequests && sentRequests.length > 0 ? (
+  sentRequests.map((req, i) => (
+    <div key={i} className="request-card sent">
+      <strong>Pet:</strong> {req.pet?.name || 'N/A'} ({req.pet?.type || 'Unknown'}, Age {req.pet?.age || 'N/A'}, Size {req.pet?.size || 'N/A'}) <br />
+      <strong>Service:</strong> {req.service || 'N/A'} <br />
+      <strong>Date:</strong> {req.startDate ? new Date(req.startDate).toLocaleDateString() : 'N/A'} to {req.endDate ? new Date(req.endDate).toLocaleDateString() : 'N/A'} <br />
+      <strong>Time:</strong> {req.startTime || 'N/A'} to {req.endTime || 'N/A'} <br />
+      <strong>Status:</strong> {req.status || 'N/A'} <br />
+      <button onClick={() => {
+        setSelectedRequest(req);
+        setSelectedRequestId(req.reqId);
+      }}>
+        View Details
+      </button>
+    </div>
+  ))
+) : (
+  <p>No requests available.</p> // or any placeholder message when there are no requests
+)}
+
+
     </div>
 
     {/* Received Requests */}
@@ -265,12 +324,13 @@ const Dashboard = () => {
             }}>
               View Details
             </button>
-            {req.status === "Pending" && (
-              <div className="request-actions">
-                <button onClick={() => handleRequestAction(i, "accept")}>Accept</button>
-                <button onClick={() => handleRequestAction(i, "decline")}>Decline</button>
-              </div>
-            )}
+            {req?.status === "Pending" && req?.reqId && (
+  <div className="request-actions">
+    <button onClick={() => handleRequestAction(i, "accept", req.reqId)}>Accept</button>
+    <button onClick={() => handleRequestAction(i, "decline", req.reqId)}>Decline</button>
+  </div>
+)}
+
           </div>
         ))}
       </div>

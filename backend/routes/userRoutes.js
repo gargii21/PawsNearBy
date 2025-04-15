@@ -6,7 +6,7 @@ import search from '../Controllers/searchController.js';
 import { addProvider } from '../Controllers/providerController.js';
 //import { sendRequest, acceptRequest, rejectRequest, getRequestStatus } from '../Controllers/requestController.js';
 import { addPet, getPets } from '../Controllers/petController.js';
-import {createRequest, getRequestsForProvider} from '../Controllers/requestController.js';
+import {createRequest, getRequestsByOwner, getRequestsForProvider, updateRequestStatus} from '../Controllers/requestController.js';
 import prProfile from '../Controllers/prProfile.js';
 const router = Router();
 
@@ -24,6 +24,8 @@ router.post("/regProvider",authMiddleware,addProvider);
 // router.get("/getRequestStatus",authMiddleware,getRequestStatus);
 router.post("/createRequest",authMiddleware,createRequest);
 router.post("/getRequestsForProvider",authMiddleware,getRequestsForProvider);
+router.post("/getRequestsByOwner",authMiddleware,getRequestsByOwner);
+router.post("/updateRequestStatus",authMiddleware,updateRequestStatus);
 router.delete("/delete",authMiddleware,deleteUser);
 router.post("/addPet",authMiddleware,addPet);
 router.get("/getPet",authMiddleware,getPets);
