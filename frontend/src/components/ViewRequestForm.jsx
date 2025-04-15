@@ -14,7 +14,7 @@ const ViewRequestForm = ({ isOpen, onClose, request }) => {
           {request.from && <p><strong>From:</strong> {request.from}</p>}
           {request.to && <p><strong>To:</strong> {request.to}</p>}
           <p><strong>Service:</strong> {request.service}</p>
-          <p><strong>Date:</strong> {new Date(req.startDate).toLocaleDateString()} to {new Date(req.endDate).toLocaleDateString()}</p>
+          <p><strong>Date:</strong> {new Date(request.startDate).toLocaleDateString()} to {new Date(request.endDate).toLocaleDateString()}</p>
           <p><strong>Time:</strong> {request.startTime} - {request.endTime}</p>
           <p><strong>Message:</strong> {request.description}</p>
         </div>
