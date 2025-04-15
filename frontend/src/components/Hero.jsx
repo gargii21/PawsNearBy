@@ -5,7 +5,7 @@ function Hero() {
     <section className="hero">
       <div>
         <h2>Welcome to<br/> PawsNearby</h2>
-        <p>Swipe Right on the<br/> Best Pet-Sitters Near You!</p>
+        <p>For pets that slay,<br/> even when you're away</p>
       </div>
       
       <a href="#search-box" className="btn">Get Started</a>

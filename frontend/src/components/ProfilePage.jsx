@@ -128,7 +128,7 @@ const ProfilePage = () => {
           providerId={prId.id}
           isOpen={showForm}
           onClose={() => setShowForm(false)}
-          caregiverName={profile.daycare_name}
+          caregiverName={dname.daycare_name}
         />
       )}
     </div>
