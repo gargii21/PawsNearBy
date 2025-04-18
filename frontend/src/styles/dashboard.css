@@ -11,8 +11,8 @@
 
 .sidebar {
   width: 240px;
-  background: #fff4d4;
-  border-right: 1px solid #ffdb9c;
+  background: #fff9c7;
+  border-right: 1px solid #f4e7ce;
   padding: 30px 20px;
 }
 
@@ -30,7 +30,7 @@
 
 .sidebar button {
   padding: 12px;
-  background:rgb(250, 185, 197); 
+  background:#f7a4a4c9;
   border: none;
   border-radius: 8px;
   font-weight: bold;
@@ -41,7 +41,7 @@
 }
 
 .sidebar button:hover {
-  background: #ffd6d6;
+  background: #f7a4a4;
 }
 
 /* Main Panel */
@@ -49,6 +49,7 @@
   flex: 1;
   padding: 40px;
   overflow-y: auto;
+  background-color: #f4e0b934;
 }
 .panel button{
   background-color: rgb(252, 231, 179);
@@ -72,7 +73,7 @@
 /* Cards */
 .request-card,
 .notification-card {
-  background: #fff8dc;
+  background: #fff9c7;
   padding: 15px 20px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -143,7 +144,7 @@
 .widget-card p {
   font-size: 22px;
   font-weight: bold;
-  color: #f3658b;
+  color: #f7a4a4;
 }
 
 .widget-card:hover {
@@ -196,7 +197,7 @@
   position: absolute;
   top: 12px;
   right: 16px;
-  background: #ffaec9;
+  background: #f8cbc6;
   color: white;
   font-size: 1.2rem;
   border: none;
@@ -274,13 +275,13 @@
   padding: 4px 10px;
   font-size: 0.85rem;
   border-radius: 12px;
-  background-color: #eab676;
+  background-color: #f4e0b9;
   color: white;
   margin-top: 4px;
 }
 
 .role-badge.hybrid {
-  background-color: #eabdf5;
+  background-color: #f7a4a4;
 }
 
 .bio {
@@ -291,7 +292,7 @@
 
 .pets-section {
   margin-top: 2rem;
-  background-color: rgb(250, 185, 197); 
+  background-color: #f7a4a4c9;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(255, 192, 203, 0.2);
@@ -311,8 +312,8 @@
 }
 
 .dashboard .pet-card{
-  background-color: #fff5a095;
-  border: 2px dashed #31313195;
+  background-color: #faeccf;
+  border: 2px dashed #e2ba8a;
   padding: 15px;
   border-radius: 10px;
   width: 220px;
@@ -344,7 +345,7 @@
 }
 .add-pet-form-container {
   background-color: rgba(255, 255, 255, 0.442); 
-  border: 2px dashed rgb(250, 185, 197); 
+  border: 2px dashed ivory; 
   border-radius: 14px;
   padding: 24px;
   margin-top: 1rem;
@@ -374,7 +375,7 @@
 .add-pet-form textarea {
   margin-top: 6px;
   padding: 8px 10px;
-  border: 1px solid #ffc0cb;
+  border: 1px solid ivory;
   border-radius: 6px;
   width: 80%;
   font-size: 0.95rem;
@@ -387,7 +388,7 @@
 }
 
 .add-pet-form button {
-  background-color: rgb(250, 185, 197); 
+  background-color: #fcd29e;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -399,5 +400,5 @@
 }
 
 .add-pet-form button:hover {
-  background-color: #fcd29e;
+  background-color: #f8d8b0;
 }

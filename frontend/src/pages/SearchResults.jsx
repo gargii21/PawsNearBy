@@ -46,8 +46,8 @@ const SearchResults = () => {
         // TEMPORARY DUMMY DATA FOR STYLING (Remove later!)
         if (list.length === 0) {
           list = [
-            { prId: 1, daycare_name: "Dummy Caregiver 1", service: "Pet Sitting", lat: 28.61, lng: 77.20, city: "Delhi", fees: 500, rating: 4.5 },
-            { prId: 2, daycare_name: "Dummy Caregiver 2", service: "Dog Walking", lat: 19.07, lng: 72.87, city: "Mumbai", fees: 400, rating: 4.2 },
+            { prId: 1, daycare_name: "Caregiver 1", service: "Pet Sitting", lat: 28.61, lng: 77.20, city: "Delhi", fees: 500, rating: 4.5 },
+            { prId: 2, daycare_name: "Caregiver 2", service: "Dog Walking", lat: 19.07, lng: 72.87, city: "Mumbai", fees: 400, rating: 4.2 },
           ];
         }
 
@@ -57,8 +57,8 @@ const SearchResults = () => {
         console.log("Error fetching profiles. Backend might be down.");
         // TEMPORARY DUMMY DATA FOR STYLING (Remove later!)
         setProfileTest([
-          { prId: 1, daycare_name: "Dummy Caregiver 1", service: "Pet Sitting", lat: 28.61, lng: 77.20, city: "Delhi", fees: 500, rating: 4.5 },
-          { prId: 2, daycare_name: "Dummy Caregiver 2", service: "Dog Walking", lat: 19.07, lng: 72.87, city: "Mumbai", fees: 400, rating: 4.2 },
+          { prId: 1, daycare_name: "Caregiver 1", service: "Pet Sitting", lat: 28.61, lng: 77.20, city: "Delhi", fees: 500, rating: 4.5 },
+          { prId: 2, daycare_name: "Caregiver 2", service: "Dog Walking", lat: 19.07, lng: 72.87, city: "Mumbai", fees: 400, rating: 4.2 },
         ]);
       } finally {
         setLoading(false);

@@ -1,4 +1,9 @@
 
+h2{
+    font-family: 'Rampart One';
+    margin-bottom: 15px;
+    font-size: 30px;
+}
 .hero {
     background: url('/images/canvapbl.png') center/cover no-repeat;
     background-position: 20% center;
@@ -93,7 +98,7 @@
         transform: translateX(-50%); /* Shift back by 50% of its own width */
         width: 100%; /* Match input width */
         max-width: 400px; /* Set a max width */
-        background: rgb(246, 246, 237);
+        background: ivory;
         border: 1px solid #ffffffa6;
         border-radius: 5px;
         box-shadow: 0px 4px 6px rgba(255, 250, 174, 0.596);
@@ -124,7 +129,7 @@
     cursor: pointer;
     font-family: "Itim";
     font-size: 15px;
-    background-color: rgba(254, 186, 197, 0.267);
+    background-color: #fceccd8d
   }
   
   .service-buttons .selected {
@@ -155,38 +160,67 @@ input{
 .search-btn:hover {
     background: rgba(255, 253, 211, 0.937);  
 }
-
+  
+  .steps-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  
+  
+  
+  .step-number {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    background: rgb(244, 143, 162);  
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 10px 14px;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  .step-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.07);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    background-color: #fff0f5;
+  }
+  
+  .step-card h3 {
+    font-size: 1.3rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .step-card p {
+    font-family: 'Gamja Flower', cursive;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+  
 .steps {
-    color:rgba(254, 127, 157, 0.919);
+    color:ivory;
     text-align: center;
     padding: 50px 20px;
-    background-color: rgba(241, 166, 180, 0.568);
-    background:linear-gradient(to bottom,rgba(245, 184, 195, 0.568),rgba(241, 166, 180, 0.568),rgba(234, 126, 146, 0.568));
-}
-
-.steps-container {
-    color:black;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.step-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-h2{
-    font-family: 'Rampart One';
-    margin-bottom: 15px;
-    font-size: 30px;
+    background:linear-gradient(to bottom,rgba(245, 184, 195, 0.568),#f8cbc6,rgba(234, 126, 146, 0.568));
 }
 
 .step-card {
-    background: rgba(255, 172, 191, 0.59);
+    background:rgba(247, 241, 185, 0.536);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(255, 250, 174, 0.445);
+    box-shadow: 0px 4px 10px rgba(255, 253, 218, 0.445);
     width: 280px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
@@ -196,7 +230,7 @@ h2{
 
 .step-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0px 6px 15px rgba(255, 250, 174, 0.788);
+    box-shadow: 0px 6px 15px #fff1d6;
 }
 
 @keyframes fadeInUp {
@@ -209,7 +243,6 @@ h2{
         transform: translateY(0);
     }
 }
-
 
 .services {
     text-align: center;
@@ -226,27 +259,29 @@ h2{
     
 }
 
+.services h3 {
+    font-size: 1.3rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .services p {
+    font-family: 'Gamja Flower', cursive;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+
 .service-image {
     width: 100%;
     height: auto;
     border-radius: 10px;
-}
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    background-color: #fff0f5;
+  }
 
-.service-card {
-    background: rgba(255, 249, 218, 0.474);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(255, 174, 202, 0.593);
-    width: 280px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    color:black;
-}
-
-.service-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 6px 15px rgba(255, 174, 202, 0.679);
-}
 
 .service-icon {
     font-size: 40px;
@@ -266,13 +301,68 @@ h2{
         align-items: center;
     }
 }
+  /* Service Card */
+.service-card {
+    background: #fffdf9;
+    padding: 25px 20px;
+    border-radius: 20px;
+    width: 270px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .service-card::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 120px;
+    height: 120px;
+    background:  #faebcd;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .service-card::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 100px;
+    height: 100px;
+    background:  #f6e0b6;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(255, 182, 193, 0.3);
+  }
+  .service-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #ffb6c1;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-family: 'Itim', cursive;
+  }
+  
 
 
 .testimonials {
     text-align: center;
     padding: 50px 20px;
-    background: linear-gradient(to bottom,rgba(255, 246, 219, 0.742),rgb(232, 203, 160));
-    color:rgba(234, 126, 146, 0.904)
+    background: linear-gradient(to bottom,rgba(255, 246, 219, 0.742),#f4e0b9);
+    color:#e2ba8a;
 }
 
 .section-title {
@@ -291,10 +381,10 @@ h2{
 }
 
 .testimonial-card {
-    background: rgba(255, 254, 250, 0.323);
+    background: #f4e0b9;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(255, 250, 174, 0.596);
+    box-shadow: 0px 4px 10px rgba(255, 253, 225, 0.596);
     width: 320px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
@@ -315,14 +405,17 @@ h2{
 
 .testimonial-text {
     font-size: 16px;
-    color: #444;
+    color: #ad8b73;
     margin-bottom: 10px;
+    font-family: 'Gamja Flower';
+    font-size: 20px;
+    font-weight: bold;
     
 }
 
 .testimonial-name {
     font-size: 18px;
     font-weight: bold;
-    color: #d4527bdd;
+    color: rgba(234, 126, 146, 0.653);  
     font-style: italic;
 }

@@ -2,24 +2,28 @@ import React from "react";
 
 function Steps() {
   const steps = [
-    { title: "Step 1. Search", text: "Find the best pet sitters near you..", img: "/images/search.png" },
-    { title: "Step 2. Choose Caregiver", text: "Choose based on vibe & reviews.", img: "/images/choose.png" },
-    { title: "Step 3. Set the Date", text: "Schedule pet care in just a few clicks.", img: "/images/book.png" },
-    { title: "Step 4. Relax", text: "Your pet is in loving hands!", img: "/images/relax.png" },
+    { title: "Search", text: "Find the best pet sitters near you..", img: "/images/search.jpg" },
+    { title: "Choose a Caregiver", text: "Choose based on vibe & reviews.", img: "/images/choose.png" },
+    { title: "Set the Date", text: "Send a detailed request based on your pet’s needs.", img: "/images/book.png" },
+    { title: "Relax", text: "Your pet is in loving hands!", img: "/images/relax.jpg" },
   ];
 
   return (
     <section className="steps">
-      <h2>No Stress, Just Pets</h2>
+      <h2>Your Pet's Perfect Day, Simplified</h2>
+      <br/>
+
       <div className="steps-container">
-        {steps.map((step, index) => (
-          <div className="step-card" key={index}>
-            <img src={step.img} alt={step.title} className="step-image" />
-            <h3>{step.title}</h3>
-            <p>{step.text}</p>
-          </div>
-        ))}
-      </div>
+  {steps.map((step, index) => (
+    <div className="step-card" key={index}>
+      <div className="step-number">Step {index + 1}</div>
+      <img src={step.img} alt={step.title} className="step-image" />
+      <h3>{step.title}</h3>
+      <p>{step.text}</p>
+    </div>
+  ))}
+</div>
+
     </section>
   );
 }

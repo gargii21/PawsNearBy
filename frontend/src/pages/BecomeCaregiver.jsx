@@ -67,10 +67,6 @@ const BecomeCaregiver = () => {
   return (
     <div className="caregiver-page">
       <header className="caregiver-header">
-        <div>
-          <h1>Become a Caregiver</h1>
-          <p>Join our trusted network and provide loving care to pets near you!</p>
-        </div>
         <a href="#caregiver-form" className="caregiver-btn">Get Started</a>
       </header>
 

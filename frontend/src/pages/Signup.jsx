@@ -54,7 +54,7 @@ const Signup = () => {
   return (
     <div className="auth-container">
       <div className="auth-left">
-        <h1>Join PawsNearby! <br /> Create an account to connect with pet caregivers.</h1>
+        
       </div>
 
       <div className="auth-right">

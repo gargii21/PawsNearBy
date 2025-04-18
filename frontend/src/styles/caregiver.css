@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
 
-/* Hero Section */
+
 .caregiver-header {
-  background: url('https://plus.unsplash.com/premium_photo-1667727016885-d657d08f8efd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBldCUyMG93bmVyfGVufDB8fDB8fHww') center/cover no-repeat;
+  background: url('/images/care.png') center/cover no-repeat;
   background-position: center;
   background-size: cover;
   height: 88vh;
@@ -46,9 +46,9 @@
 
 .caregiver-btn {
   padding: 12px 20px;
-  background-color: rgba(255, 249, 214, 0.73);
+  background-color: #faebcd;
   border-radius: 5px;
-  color: black;
+  color: ivory;
   text-decoration: none;
   font-weight: bold;
   border-style: dashed;
@@ -57,11 +57,11 @@
   transition: all 0.3s ease-in-out;
 }
 
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.536);
+.caregiver-btn:hover {
+  background-color: #fadea8;
   animation: bounce 0.5s ease-in-out;
 }
-/* Why Join Cards Section */
+
 .why-join {
   padding: 60px 20px;
 
@@ -71,76 +71,22 @@
 
 .why-join h2 {
   font-size: 36px;
-  color: rgb(255, 183, 121);
+  color: #f8cbc6;
   margin-bottom: 40px;
 }
 
-/* Container for all benefit cards */
-.benefits-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
 
-/* Each individual benefit card */
-.benefit-card {
-  background:rgb(255, 252, 200);
-  border-radius: 25px;
-  border-style: dashed;
-  border-color:rgb(255, 217, 160);
-  width: 300px;
-  padding: 20px;
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Hover effect */
-.benefit-card:hover {
-  transform: translateY(-10px);
-}
-
-/* Image styling: big and friendly */
-.benefit-card img {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  object-fit: cover;
-}
-
-/* Heading under the image */
-.benefit-card h3 {
-  font-size: 22px;
-  color: rgb(255, 203, 124);
-  margin: 10px 0 8px;
-  font-family: 'Itim';
-}
-
-/* Description text */
-.benefit-card p {
-  font-family: "Gamja Flower";
-  font-size: 18px;
-  color: #333;
-  line-height: 1.5;
-}
-
-
-/* Form Section */
 .caregiver-form-section {
   padding: 60px 20px;
   background-color: ivory;
 }
 
-/* Form Styles */
+
 .caregiver-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: rgb(255, 252, 200);
+  background: #fdedcc;
   padding: 30px;
   border-radius: 20px;
   max-width: 600px;
@@ -177,14 +123,13 @@
   position: relative;
 }
 
-/* Hide the actual radio button */
+
 .radio-label input[type="radio"] {
   opacity: 0;
   position: absolute;
   pointer-events: none;
 }
 
-/* Style when selected */
 .radio-label.selected {
   border-color: #fdb2bc;
   background-color: #fdb2bc;
@@ -204,8 +149,9 @@
 }
 
 .caregiver-form button {
-  background:rgb(244, 185, 117);
-  color: white;
+  background:rgba(255, 254, 242, 0.542);
+  color: rgb(47, 46, 46);
+  font-weight: bold;
   width:100px;
   align-self: center;
   padding: 12px;
@@ -216,16 +162,15 @@
 }
 
 .caregiver-form button:hover {
-  background: rgb(239, 188, 131);
+  background: rgb(246, 201, 150);
 }
 
 .caregiver-form h2 {
   margin-bottom: 10px;
-  color: rgb(255, 183, 121);
+  color: #e2ba8a;
   text-align: center;
 }
 
-/* Checkbox Group */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
@@ -242,11 +187,70 @@
   border: 1px solid #ccc;
 }
 
-/* Alert Note */
 .notice {
-  background-color: #fff6e6;
-  border-left: 5px solid rgb(251, 177, 39);
+  background-color: #ffffff83;
+  border-left: 5px solid rgb(255, 225, 171);
   padding: 10px;
   font-size: 14px;
   border-radius: 8px;
+} 
+.benefits-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.benefit-card {
+  background:#f8cbc6;
+  padding: 25px;
+  border-radius: 22px;
+  width: 280px;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.522);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: dashed white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.benefit-card::before {
+  content: "✨";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 1.5rem;
+  opacity: 0.4;
+}
+
+.benefit-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(255, 183, 221, 0.4);
+}
+
+.benefit-card img {
+  width: 100%;
+  max-width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(255, 223, 223, 0.4);
+}
+
+.benefit-card h3 {
+  font-size: 1.4rem;
+  color: ivory;
+  font-family: 'Itim', cursive;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card p {
+  font-family: "Gamja Flower", cursive;
+  font-size: 1.2rem;
+  color: #444;
+  text-align: center;
+  line-height: 1.6;
 }

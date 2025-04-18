@@ -282,7 +282,7 @@ const Dashboard = () => {
 
     {/* Sent Requests */}
     <div className="request-section">
-      <h3>Sent Requests</h3>
+      <h3>Sent Requests</h3><br />
       {sentRequests && sentRequests.length > 0 ? (
   sentRequests.map((req, i) => (
     <div key={i} className="request-card sent">
@@ -309,7 +309,8 @@ const Dashboard = () => {
     {/* Received Requests */}
     {user.role === "hybrid" && (
       <div className="request-section">
-        <h3>Received Requests</h3>
+        <h3>Received Requests</h3><br />
+
         {receivedRequests.map((req, i) => (
           <div key={i} className="request-card received">
             <strong>Service:</strong> {req.service} <br />
@@ -364,4 +365,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

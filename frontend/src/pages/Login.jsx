@@ -49,7 +49,6 @@ const Login = () => {
   return (
     <div className="auth-container">
       <div className="auth-left">
-        <h1>Welcome Back! <br /> Log in to find the best pet care services.</h1>
       </div>
 
       <div className="auth-right">
