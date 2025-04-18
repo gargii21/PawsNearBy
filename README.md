@@ -31,7 +31,6 @@ PawsNearby aims to simplify the process of finding reliable pet care by offering
   - Pet profile management (add/edit pets)
 - **Community Page**:
   - Users can view and create posts (image and text)
-  - Feed of static and user-submitted updates
 
 ---
 
@@ -59,7 +58,6 @@ PawsNearby aims to simplify the process of finding reliable pet care by offering
 - Real-time chat between users
 - Payment gateway integration
 - Request calendar view
-- Booking confirmation and status updates
 
 ---
 
