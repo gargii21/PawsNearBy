@@ -40,6 +40,7 @@ function Navbar() {
         )}
       </nav>
     </header>
+    
   );
 }
 

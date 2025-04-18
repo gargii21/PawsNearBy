@@ -28,15 +28,15 @@ const SearchMap = ({ profiles, setSelectedProfile }) => {
     <Popup>
   <div style={{
     textAlign: "center",
-    backgroundColor: "#fff4e6",
-    padding: "10px",
-    borderRadius: "8px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+    backgroundColor: "rgba(255, 228, 148, 0.34)",
+    borderRadius:"8px",
+    padding: "5px",
+    boxShadow: "0 2px 8px rgba(243, 173, 173, 0.2)",
     width: "150px"
   }}>
-    <h4 style={{ margin: "5px 0", color: "#d2691e" }}>{profile.daycare_name}</h4>
-    <p style={{ margin: "4px 0", fontSize: "14px", color: "#555" }}>{profile.service}</p>
-    <p style={{ margin: "4px 0", fontWeight: "bold", color: "#e6b800" }}>⭐ {profile.rating}</p>
+    <h4 style={{ margin: "5px 0", color: "rgb(255, 130, 155)" }}>{profile.daycare_name}</h4>
+    <p style={{ margin: "4px 0", fontSize: "14px", color: "rgb(255, 130, 155)" }}>{profile.service}</p>
+    <p style={{ margin: "4px 0", fontWeight: "bold", color: "rgb(255, 145, 145)" }}>⭐ {profile.rating}</p>
   </div>
 </Popup>
 

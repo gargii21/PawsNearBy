@@ -65,6 +65,7 @@ header{
     top:0px;
     height:12vh;   
 }
+
 header .nav-link {
     text-decoration: none;  
 }
@@ -72,7 +73,7 @@ header h1 .nav-logo {
     margin-left: 20px;
     font-family:'Cherry Bomb One';
     font-weight: lighter;
-    color:rgba(234, 163, 69, 0.74); 
+    color:rgb(233, 180, 127);
     text-decoration: none;
     transition: color 0.3s ease-in-out;
 }
@@ -95,7 +96,7 @@ nav div .nav-link {
     text-align: center;
     font-size: 25px;
     background-color: rgba(250, 230, 170, 0.158);
-    color:rgb(235, 187, 115);
+    color:rgb(233, 180, 127);
     transition: all 0.3s ease-in-out;
 }
 nav div .nav-link:hover {

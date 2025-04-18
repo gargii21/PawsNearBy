@@ -1,6 +1,6 @@
 
 .hero {
-    background: url('/images/dogcat3.jpg') center/cover no-repeat;
+    background: url('/images/canvapbl.png') center/cover no-repeat;
     background-position: 20% center;
     background-size: cover;
     height: 88vh;
@@ -13,8 +13,8 @@
 }
 
 .hero div {
-    background-color: rgba(255, 255, 255, 0.275);
-    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.141);
+    padding: 20px;
     max-width: 500px;
     border-radius: 35%;
     width:30%;
@@ -23,20 +23,20 @@
 
 .hero h2 {
     font-size: 50px;
-    font-family: 'Cherry Bomb One','Barriecito', cursive;
+    font-family: 'Rampart One','Cherry Bomb One','Barriecito', cursive;
     font-weight: bold;
-    color: rgba(200, 105, 123, 0.723); 
+    color: /*rgba(200, 105, 123, 0.723); */#fffff0;
 
     margin-bottom: 10px;
-    text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
-               1px 1px #ffffff;   
+    /*text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
+               1px 1px #ffffff;  */ 
     animation: fadeIn 1.2s ease-in-out; 
 }
 
 .hero p {
     font-size: 25px;
     margin-bottom: 20px;
-    color:rgba(19, 19, 19, 0.789);
+    color:rgba(255, 255, 255, 0.789);
     padding:5px;
     font-family: "Gamja Flower"; 
     font-weight: bold;
@@ -45,9 +45,9 @@
 
 .btn {
     padding: 12px 20px;
-    background-color: rgba(217, 211, 223, 0);
+    background-color: rgba(244, 143, 162, 0.568);  
     border-radius: 5px;
-    color: black;
+    color: rgb(254, 250, 223);
     text-decoration: none;
     font-weight: bold;
     border-style: dashed;
@@ -58,7 +58,7 @@
 }
 
 .btn:hover {
-    background-color: rgba(255, 255, 255, 0.536);
+    color:rgb(244, 224, 185);
     animation: bounce 0.5s ease-in-out;
 } 
 
@@ -66,7 +66,7 @@
     padding-bottom: 20px;
     text-align: center;
     padding: 50px;
-    background: linear-gradient(to bottom,rgba(178, 168, 137, 0.214),rgba(178, 168, 137, 0.214),rgba(245, 184, 195, 0.568));
+    background: linear-gradient(to bottom,ivory,rgb(253, 253, 230),rgba(245, 184, 195, 0.568));
     height:300px;
   }
  
@@ -124,6 +124,7 @@
     cursor: pointer;
     font-family: "Itim";
     font-size: 15px;
+    background-color: rgba(254, 186, 197, 0.267);
   }
   
   .service-buttons .selected {
@@ -139,24 +140,24 @@ input{
     width: 30vw;
 }
 .search-btn {
-    background-color: white;
+    background:rgba(255, 255, 223, 0.514);
     color: rgb(0, 0, 0);  
     font-weight: bold;
     cursor: pointer;
     font-size: 15px;
     padding:10px 20px;
     border-radius: 5px;
-    border-color: rgb(0, 0, 0);  
-    border-style: solid;
+    border-color: rgba(255, 255, 213, 0.805);  
+    border-style:solid;
 
 }
 
 .search-btn:hover {
-    background-color: rgba(232, 205, 117, 0.585);  
+    background: rgba(255, 253, 211, 0.937);  
 }
 
 .steps {
-    color:rgb(255, 143, 169);
+    color:rgba(254, 127, 157, 0.919);
     text-align: center;
     padding: 50px 20px;
     background-color: rgba(241, 166, 180, 0.568);
@@ -182,7 +183,7 @@ h2{
 }
 
 .step-card {
-    background: rgba(255, 143, 169, 0.415);
+    background: rgba(255, 172, 191, 0.59);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(255, 250, 174, 0.445);
@@ -232,7 +233,7 @@ h2{
 }
 
 .service-card {
-    background: rgba(255, 243, 176, 0.49);
+    background: rgba(255, 249, 218, 0.474);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(255, 174, 202, 0.593);
@@ -290,7 +291,7 @@ h2{
 }
 
 .testimonial-card {
-    background: rgb(246, 236, 203);
+    background: rgba(255, 254, 250, 0.323);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(255, 250, 174, 0.596);
