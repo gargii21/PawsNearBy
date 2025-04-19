@@ -188,13 +188,13 @@ const ProfilePage = () => {
   return (
     <div className="profile-fullscreen">
       <div className="profile-banner">
-        <img src='/images/default-banner.png' alt="Banner" />
+        <img src='/images/banner3.png' alt="Banner" />
       </div>
 
       <div className="profile-page-container">
         <div className="profile-header">
           <div className="profile-avatar">
-            <img src='/images/default-avatar.png' alt={dname.daycare_name} />
+            <img src='/images/pfp2.png' alt={dname.daycare_name} />
           </div>
           <div className="profile-info">
             <h2>{dname.daycare_name}</h2>
