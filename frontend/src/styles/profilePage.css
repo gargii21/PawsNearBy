@@ -81,7 +81,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
-  width: fit-content;
+  max-width: fit-content;
   font-family: 'Itim';
 }
 
@@ -167,5 +167,85 @@
   .profile-page-container .profile-stats {
     flex-direction: column;
     font-family: 'Itim';
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-banner img {
+    height: 180px;
+  }
+
+  .profile-page-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .profile-page-container .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .profile-page-container .profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+  .profile-page-container .profile-info {
+    align-items: center;
+  }
+
+  .profile-page-container .profile-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-page-container .profile-info p {
+    font-size: 1rem;
+  }
+
+  .profile-page-container .profile-info button {
+    width: 100%;
+  }
+
+  .profile-page-container .profile-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-page-container .stat-box {
+    width: 80%;
+    max-height: fit-content;
+  }
+
+  .profile-page-container .bio,
+  .profile-page-container .reviews-section {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page-container .profile-header {
+    margin-top: -60px;
+  }
+
+  .profile-page-container .profile-avatar img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-page-container .profile-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .profile-page-container .bio p,
+  .profile-page-container .profile-info p,
+  .profile-page-container .stat-box p {
+    font-size: 0.95rem;
+  }
+
+  .profile-page-container .bio,
+  .profile-page-container .reviews-section {
+    padding: 0.8rem;
   }
 }
