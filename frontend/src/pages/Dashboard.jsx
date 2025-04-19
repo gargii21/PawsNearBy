@@ -16,8 +16,6 @@ const Dashboard = () => {
     notes: "",
   });
   const [sentRequests, setSentRequests] = useState([]);
-
-
   // const [sentRequests] = useState([
   //   {
   //     to: "Caregiver John",
@@ -45,6 +43,7 @@ const Dashboard = () => {
 
   const [selectedRequestId, setSelectedRequestId] = useState(null);
   const [selectedRequest, setSelectedRequest] = useState(null);
+const [isSidebarOpen, setIsSidebarOpen] = useState(true); // add this
 
 
 
@@ -200,7 +199,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <aside className="sidebar">
+      <aside className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
         <h2>Hello, {user.name}</h2>
         <div className="sidebar-buttons">
           <button onClick={() => setActivePanel("profile")}>Profile</button>
@@ -208,7 +207,9 @@ const Dashboard = () => {
           <button onClick={() => setActivePanel("notifications")}>Notifications</button>
         </div>
       </aside>
-
+<button className="toggle-sidebar" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+☰
+</button>
       <main className="panel-content">
         {activePanel === "profile" && (
           <div className="panel profile-panel">

@@ -12,6 +12,7 @@ import Community from "./pages/Community";
 import ProfilePage from "./components/ProfilePage"; // Import the full profile page
 import BecomeCaregiver from "./pages/BecomeCaregiver";
 import TermsConditions from "./pages/TermsConditions";
+import "./styles/styles.css";
 
 
 function App() {

@@ -43,3 +43,16 @@
 .profile-card button:hover {
   background: rgb(255, 154, 167);
 }
+@media (max-width: 768px) {
+  .profile-cards {
+    gap: 10px;
+  }
+
+  .profile-card {
+    padding: 12px;
+    font-size: 14px;
+    width:80vw;
+    align-self: center;
+  }
+
+}

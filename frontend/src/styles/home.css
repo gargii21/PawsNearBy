@@ -4,48 +4,45 @@ h2{
     margin-bottom: 15px;
     font-size: 30px;
 }
+
 .hero {
-    background: url('/images/canvapbl.png') center/cover no-repeat;
-    background-position: 20% center;
-    background-size: cover;
-    height: 88vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    text-align: center;
-    position: relative; 
+  background: url('/images/canvapbl.png') center/cover no-repeat;
+  background-position: 20% center;
+  background-size: cover;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  position: relative; 
 }
 
-.hero div {
-    background-color: rgba(255, 255, 255, 0.141);
-    padding: 20px;
-    max-width: 500px;
-    border-radius: 35%;
-    width:30%;
-    animation: fadeIn 1s ease-in-out;    
+/* For smaller screens like phones */
+@media (max-width: 768px) {
+.hero {
+    background-position: top center;  /* Aligns the image to the top */
+    background-size: contain;  /* Ensures the image fits inside the container */
+   
+}
 }
 
-.hero h2 {
-    font-size: 50px;
-    font-family: 'Rampart One','Cherry Bomb One','Barriecito', cursive;
-    font-weight: bold;
-    color: /*rgba(200, 105, 123, 0.723); */#fffff0;
-
-    margin-bottom: 10px;
-    /*text-shadow: 2px 0 #ffffff, -2px 0 #ffffff, 0 2px #ffffff, 0 -2px #ffffff,
-               1px 1px #ffffff;  */ 
-    animation: fadeIn 1.2s ease-in-out; 
+/* For larger phones/small tablets (more than 480px width but less than 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+.hero {
+    background-size: contain; /* Keeps the entire image visible */
+    background-position: top center; /* Aligns the image to the top */
+   
+}
 }
 
-.hero p {
-    font-size: 25px;
-    margin-bottom: 20px;
-    color:rgba(255, 255, 255, 0.789);
-    padding:5px;
-    font-family: "Gamja Flower"; 
-    font-weight: bold;
-    animation: fadeIn 1.4s ease-in-out;
+/* For very small screens (up to 480px width) */
+@media (max-width: 480px) {
+.hero {
+    background-size: contain; /* Keep the image contained */
+    background-position: top center; /* Aligns the image to the top */
+    height: 100vh; /* Ensure the hero section takes full height */
+}
 }
 
 .btn {
@@ -65,7 +62,7 @@ h2{
 .btn:hover {
     color:rgb(244, 224, 185);
     animation: bounce 0.5s ease-in-out;
-} 
+}  
 
 .search-box {
     padding-bottom: 20px;
@@ -73,7 +70,9 @@ h2{
     padding: 50px;
     background: linear-gradient(to bottom,ivory,rgb(253, 253, 230),rgba(245, 184, 195, 0.568));
     height:300px;
-  }
+    min-height: fit-content;
+
+  } 
  
   .search-input{
     align-self: center;
@@ -88,7 +87,7 @@ h2{
     display: inline-block;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.067);
     width:50vw;
-  }
+  } 
   
   .suggestions {
         list-style: none;
@@ -161,15 +160,13 @@ input{
     background: rgba(255, 253, 211, 0.937);  
 }
   
-  .steps-container {
+   .steps-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
   }
-  
-  
-  
+   
   
   .step-number {
     position: absolute;

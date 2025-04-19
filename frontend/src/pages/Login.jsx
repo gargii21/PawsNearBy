@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import "../styles/auth.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,0 +1,144 @@
+body {
+    background-color: ivory;
+    font-family: 'Itim';
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: ivory;
+    top: 0;
+    height: 12vh; /* Same height across all screens */
+    animation: slideIn 0.8s ease-in-out;
+  }
+  
+  header .nav-link {
+    text-decoration: none;
+  }
+  
+  header h1 .nav-logo {
+    margin-left: 20px;
+    font-family: 'Cherry Bomb One';
+    font-weight: lighter;
+    color: rgb(233, 180, 127);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  header h1 .nav-logo:hover {
+    color: rgba(200, 105, 123, 0.723);
+  }
+  
+  nav {
+    display: flex;
+    gap: 15px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  nav div {
+    margin: 10px;
+    font-family: 'Gamja Flower';
+    font-weight: 600;
+  }
+  
+  nav div .nav-link {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 25px;
+    background-color: rgba(250, 230, 170, 0.158);
+    color: rgb(233, 180, 127);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+
+  }
+  
+  nav div .nav-link:hover {
+    background-color: rgba(234, 126, 146, 0.568);
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .signup-btn,
+  .logout-btn {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 25px;
+    background-color: rgba(234, 126, 146, 0.568);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+  }
+  
+  .signup-btn:hover,
+  .logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.656);
+    color: rgba(234, 126, 146, 0.737);
+    transform: scale(1.05);
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    margin-right: 20px;
+    color: rgb(233, 180, 127);
+  }
+  
+  /* Slide-in animation for popup */
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Mobile & Tablet */
+  @media screen and (max-width: 1024px) {
+    nav {
+      display: none;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  
+    .popup-menu {
+      position: absolute;
+      top: 12vh;
+      right: 0;
+      width: 80%;
+      background-color: ivory;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 20px 0;
+      z-index: 1000;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      animation: slideInRight 0.3s ease-in-out;
+    }
+  
+    .popup-menu .nav-link,
+    .popup-menu .logout-btn {
+      font-size: 20px;
+      padding: 10px 15px;
+      width: 90%;
+      text-align: center;
+      color: rgb(233, 180, 127);
+    }
+    .popup-menu .signup-btn{
+      font-size: 20px;
+      padding: 10px 15px;
+      width: 90%;
+      text-align: center;
+      color: ivory;
+
+    }
+  }
+  
