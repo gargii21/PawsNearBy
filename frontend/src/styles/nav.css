@@ -9,7 +9,7 @@ body {
     align-items: center;
     background-color: ivory;
     top: 0;
-    height: 12vh; /* Same height across all screens */
+    height: 12vh; 
     animation: slideIn 0.8s ease-in-out;
   }
   
@@ -86,7 +86,7 @@ body {
     color: rgb(233, 180, 127);
   }
   
-  /* Slide-in animation for popup */
+ 
   @keyframes slideInRight {
     from {
       opacity: 0;
@@ -98,7 +98,7 @@ body {
     }
   }
   
-  /* Mobile & Tablet */
+ 
   @media screen and (max-width: 1024px) {
     nav {
       display: none;

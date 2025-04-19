@@ -183,9 +183,6 @@ footer {
     font-family: "Gamja Flower", cursive;
   }
   
-  
-
-/* Responsive */
 @media (max-width: 768px) {
     .footer-up {
         flex-direction: column;
@@ -215,7 +212,7 @@ footer {
   }
   
   
-  /* MAP */
+
   .map-section .map-container {
     height: 100%;
   }
@@ -234,7 +231,7 @@ footer {
     }
   
     .map-section {
-      order: -1; /* Move map to the top */
+      order: -1; 
       height: 25vh;
       margin-bottom: 15px;
     }

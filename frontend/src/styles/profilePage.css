@@ -11,7 +11,7 @@
   height: 250px;
   object-fit: cover;
   border-bottom: 4px solid rgb(246, 246, 219);
-  margin-bottom: 5rem; /* Added gap below banner */
+  margin-bottom: 5rem; 
 }
 
 .profile-page-container {
@@ -31,17 +31,17 @@
   background: rgb(255, 255, 247);
   border-radius: 20px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  border: 2px solid rgb(253, 253, 217); /* Soft pink border for cuteness */
+  border: 2px solid rgb(253, 253, 217); 
   font-family: 'Itim';
 }
 
 .profile-page-container .profile-avatar img {
   width: 160px;
   height: 160px;
-  border-radius: 30% 30% 50% 50%; /* Playful round style */
+  border-radius: 30% 30% 50% 50%;
   object-fit: cover;
   border: 5px solid #fff;
-  box-shadow: 0 8px 16px rgba(255, 182, 193, 0.4); /* Softer glow */
+  box-shadow: 0 8px 16px rgba(255, 182, 193, 0.4); 
   background-color: white;
 }
 

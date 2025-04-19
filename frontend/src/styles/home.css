@@ -18,30 +18,28 @@ h2{
   position: relative; 
 }
 
-/* For smaller screens like phones */
 @media (max-width: 768px) {
 .hero {
-    background-position: top center;  /* Aligns the image to the top */
-    background-size: contain;  /* Ensures the image fits inside the container */
+    background-position: top center;  
+    background-size: contain;  
    
 }
 }
 
-/* For larger phones/small tablets (more than 480px width but less than 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
 .hero {
-    background-size: contain; /* Keeps the entire image visible */
-    background-position: top center; /* Aligns the image to the top */
+    background-size: contain; 
+    background-position: top center; 
    
 }
 }
 
-/* For very small screens (up to 480px width) */
+
 @media (max-width: 480px) {
 .hero {
-    background-size: contain; /* Keep the image contained */
-    background-position: top center; /* Aligns the image to the top */
-    height: 100vh; /* Ensure the hero section takes full height */
+    background-size: contain; 
+    background-position: top center; 
+    height: 100vh; 
 }
 }
 
@@ -92,11 +90,11 @@ h2{
   .suggestions {
         list-style: none;
         position: absolute;
-        top: 100%; /* Place dropdown just below input field */
-        left: 50%; /* Start from the center */
-        transform: translateX(-50%); /* Shift back by 50% of its own width */
-        width: 100%; /* Match input width */
-        max-width: 400px; /* Set a max width */
+        top: 100%; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        width: 100%; 
+        max-width: 400px;
         background: ivory;
         border: 1px solid #ffffffa6;
         border-radius: 5px;
@@ -291,14 +289,14 @@ input{
     50% { transform: translateY(-5px); }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .services-container {
         flex-direction: column;
         align-items: center;
     }
 }
-  /* Service Card */
+
 .service-card {
     background: #fffdf9;
     padding: 25px 20px;

@@ -8,12 +8,7 @@ const RequestFormModal = ({ isOpen, onClose, caregiverName, caregiverId, provide
   const today = new Date().toISOString().split("T")[0];
   const [pets,setPets]=useState([])
   const [requestData, setRequestData] = useState(null);
-  
-  // const userPets = [
-  //   { id: 1, name: "Bella" },
-  //   { id: 2, name: "Max" },
-  //   { id: 3, name: "Luna" },
-  // ];
+
   useEffect (()=>{
     const fetchdata= async()=>{
       const res = await axios.get("http://localhost:5000/getPet",{
