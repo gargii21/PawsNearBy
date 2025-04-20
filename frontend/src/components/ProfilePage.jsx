@@ -138,7 +138,7 @@ import "../styles/ProfilePage.css";
 import axios from "axios";
 
 const ProfilePage = () => {
-  const [dname, setDname] = useState({
+  const [profileData, setProfileData] = useState({
     daycare_name: "",
     address: "",
     email: "",
@@ -147,8 +147,11 @@ const ProfilePage = () => {
     fees: "",
     experience: "",
     description: "",
+    rating: "", // added rating
   });
-  const prId = useParams();
+
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const showRequest = queryParams.get("request") === "true";
@@ -158,15 +161,15 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/getPrInfo', {
-          id: prId.id,
-        }, {
-          withCredentials: true,
-        });
+        const response = await axios.post(
+          "http://localhost:5000/getPrInfo",
+          { id },
+          { withCredentials: true }
+        );
 
-        // Setting the fetched data to state
         const temp = response.data;
-        setDname({
+
+        setProfileData({
           daycare_name: temp.daycare_name,
           address: temp.address,
           email: temp.email,
@@ -175,74 +178,80 @@ const ProfilePage = () => {
           fees: temp.fees,
           experience: temp.experience,
           description: temp.description,
+          rating: temp.rating, // include this from backend
         });
-
       } catch (error) {
         console.log("Error fetching profiles. Backend might be down.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchdata();
-  }, [prId.id]);
+  }, [id]);
 
   return (
     <div className="profile-fullscreen">
       <div className="profile-banner">
-        <img src='/images/banner3.png' alt="Banner" />
+        <img src="/images/banner3.png" alt="Banner" />
       </div>
 
-      <div className="profile-page-container">
-        <div className="profile-header">
-          <div className="profile-avatar">
-            <img src='/images/pfp2.png' alt={dname.daycare_name} />
+      {loading ? (
+        <div className="loading-message">Loading profile...</div>
+      ) : (
+        <div className="profile-page-container">
+          <div className="profile-header">
+            <div className="profile-avatar">
+              <img src="/images/pfp2.png" alt={profileData.daycare_name} />
+            </div>
+            <div className="profile-info">
+              <h2>{profileData.daycare_name}</h2>
+              <p><strong>Location:</strong> {profileData.address}</p>
+              <p><strong>Email:</strong> {profileData.email}</p>
+              <p><strong>Phone:</strong> {profileData.phone}</p>
+              <button onClick={() => setShowForm(true)}>Request</button>
+            </div>
           </div>
-          <div className="profile-info">
-            <h2>{dname.daycare_name}</h2>
-            <p><strong>Location:</strong> {dname.address}</p>
-            <p><strong>Email:</strong> {dname.email}</p>
-            <p><strong>Phone:</strong> {dname.phone}</p>
-            <button onClick={() => setShowForm(true)}>Request</button>
-          </div>
-        </div>
 
-        <div className="profile-stats">
-          <div className="stat-box">
-            <h4>Service</h4>
-            <p>{dname.service}</p>
+          <div className="profile-stats">
+            <div className="stat-box">
+              <h4>Service</h4>
+              <p>{profileData.service}</p>
+            </div>
+            <div className="stat-box">
+              <h4>Fees</h4>
+              <p>₹{profileData.fees}/hr</p>
+            </div>
+            <div className="stat-box">
+              <h4>Rating</h4>
+              <p>⭐ {profileData.rating || "N/A"}</p>
+            </div>
+            <div className="stat-box">
+              <h4>Experience</h4>
+              <p>{profileData.experience}</p>
+            </div>
           </div>
-          <div className="stat-box">
-            <h4>Fees</h4>
-            <p>₹{dname.fees}/hr</p>
-          </div>
-          <div className="stat-box">
-            <h4>Rating</h4>
-            <p>⭐ {dname.rating || "N/A"}</p>
-          </div>
-          <div className="stat-box">
-            <h4>Experience</h4>
-            <p>{dname.experience}</p>
-          </div>
-        </div>
 
-        <div className="bio">
-          <h3>About</h3>
-          <p>{dname.description}</p>
-        </div>
+          <div className="bio">
+            <h3>About</h3>
+            <p>{profileData.description}</p>
+          </div>
 
-        <div className="reviews-section">
-          <h3>Reviews</h3>
-          <div className="reviews-placeholder">
-            No reviews yet. Be the first to leave a review!
+          <div className="reviews-section">
+            <h3>Reviews</h3>
+            <div className="reviews-placeholder">
+              No reviews yet. Be the first to leave a review!
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {showForm && (
         <RequestFormModal
-          providerId={prId.id}
+          providerId={id}
           isOpen={showForm}
           onClose={() => setShowForm(false)}
-          caregiverName={dname.daycare_name}
+          caregiverName={profileData.daycare_name}
         />
       )}
     </div>
