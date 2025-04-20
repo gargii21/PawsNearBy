@@ -21,7 +21,8 @@ h2{
 @media (max-width: 768px) {
 .hero {
     background-position: top center;  
-    background-size: contain;  
+    background-size: contain;
+    height:50vh; 
    
 }
 }
@@ -29,7 +30,8 @@ h2{
 @media (min-width: 481px) and (max-width: 768px) {
 .hero {
     background-size: contain; 
-    background-position: top center; 
+    background-position: top center;
+    height:50vh;  
    
 }
 }
@@ -39,7 +41,7 @@ h2{
 .hero {
     background-size: contain; 
     background-position: top center; 
-    height: 100vh; 
+    height: 50vh; 
 }
 }
 
