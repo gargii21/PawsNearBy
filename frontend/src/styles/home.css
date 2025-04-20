@@ -52,7 +52,7 @@ h2{
     font-weight: bold;
     border-style: dashed;
     position: absolute;
-    bottom: 40px;
+    bottom: 7vh;
     transition: all 0.3s ease-in-out;
     
 }

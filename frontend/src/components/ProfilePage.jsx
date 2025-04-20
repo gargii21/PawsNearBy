@@ -192,7 +192,7 @@ const ProfilePage = () => {
   return (
     <div className="profile-fullscreen">
       <div className="profile-banner">
-        <img src="/images/banner3.png" alt="Banner" />
+        <img src="/PawsNearBy/images/banner3.png" alt="Banner" />
       </div>
 
       {loading ? (
@@ -201,7 +201,7 @@ const ProfilePage = () => {
         <div className="profile-page-container">
           <div className="profile-header">
             <div className="profile-avatar">
-              <img src="/images/pfp2.png" alt={profileData.daycare_name} />
+              <img src="/PawsNearBy/images/pfp2.png" alt={profileData.daycare_name} />
             </div>
             <div className="profile-info">
               <h2>{profileData.daycare_name}</h2>

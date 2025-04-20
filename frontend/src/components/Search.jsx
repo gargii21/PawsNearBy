@@ -68,7 +68,7 @@ const Search = () => {
               className={service === item ? "selected" : ""}
               onClick={() => setService(item)}
             >
-              <img src={`/icons/${item}.png`} alt={item} className="icon" />
+              <img src={`/PawsNearBy/icons/${item}.png`} alt={item} className="icon" />
               {item.replace("-", " ").replace(/\b\w/g, (char) => char.toUpperCase())}
             </button>
           ))}

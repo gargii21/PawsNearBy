@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 
 const customIcon = new L.Icon({
-  iconUrl: "/icons/paw-location.png",
+  iconUrl: "/PawsNearBy/icons/paw-location.png",
   iconSize: [30, 30],
   iconAnchor: [15, 40],
   popupAnchor: [0, -40],

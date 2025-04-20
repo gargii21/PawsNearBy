@@ -74,17 +74,17 @@ const BecomeCaregiver = () => {
         <h2>Why Join PawsNearby?</h2>
         <div className="benefits-container">
           <div className="benefit-card">
-            <img src="/images/flexible.png" alt="Flexible Schedule" />
+            <img src="/PawsNearBy/images/flexible.png" alt="Flexible Schedule" />
             <h3>Flexible Schedule</h3>
             <p>Choose when and how often you want to provide care.</p>
           </div>
           <div className="benefit-card">
-            <img src="/images/income.png" alt="Earn Extra Income" />
+            <img src="/PawsNearBy/images/income.png" alt="Earn Extra Income" />
             <h3>Earn Extra Income</h3>
             <p>Get paid for doing what you love.</p>
           </div>
           <div className="benefit-card">
-            <img src="/images/community.png" alt="Community" />
+            <img src="/PawsNearBy/images/community.png" alt="Community" />
             <h3>Pet Lover Community</h3>
             <p>Connect with other pet lovers in your area.</p>
           </div>

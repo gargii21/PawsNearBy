@@ -215,7 +215,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(true); // add this
           <div className="panel profile-panel">
             <h2>Your Profile</h2>
             <div className="profile-header">
-              <img src="/images/pfp.png" alt="User Avatar" className="avatar" />
+              <img src="/PawsNearBy/images/pfp.png" alt="User Avatar" className="avatar" />
               <div className="user-info">
                 <h2>Hello, {user.name}</h2>
                 <span className={`role-badge ${user.role}`}>

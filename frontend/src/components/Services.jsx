@@ -3,9 +3,9 @@ import React from "react";
 
 function Services() {
   const services = [
-    { title: "Pet Sitting", text: "Loving care at home.", img: "/images/pet-sitting.jpg" },
-    { title: "Dog Walking", text: "Fun outdoor walks for your pup.", img: "/images/dog-walking.jpg" },
-    { title: "Pet Boarding", text: "Overnight stays with trusted sitters.", img: "/images/pet-boarding.jpg" },
+    { title: "Pet Sitting", text: "Loving care at home.", img: "/PawsNearBy/images/pet-sitting.jpg" },
+    { title: "Dog Walking", text: "Fun outdoor walks for your pup.", img: "/PawsNearBy/images/dog-walking.jpg" },
+    { title: "Pet Boarding", text: "Overnight stays with trusted sitters.", img: "/PawsNearBy/images/pet-boarding.jpg" },
   ];
 
   return (

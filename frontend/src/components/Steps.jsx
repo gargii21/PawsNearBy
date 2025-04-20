@@ -2,10 +2,10 @@ import React from "react";
 
 function Steps() {
   const steps = [
-    { title: "Search", text: "Find the best pet sitters near you..", img: "/images/search.jpg" },
-    { title: "Choose a Caregiver", text: "Choose based on vibe & reviews.", img: "/images/choose.png" },
-    { title: "Set the Date", text: "Send a detailed request based on your pet’s needs.", img: "/images/book.png" },
-    { title: "Relax", text: "Your pet is in loving hands!", img: "/images/relax.jpg" },
+    { title: "Search", text: "Find the best pet sitters near you..", img: "/PawsNearBy/images/search.jpg" },
+    { title: "Choose a Caregiver", text: "Choose based on vibe & reviews.", img: "/PawsNearBy/images/choose.png" },
+    { title: "Set the Date", text: "Send a detailed request based on your pet’s needs.", img: "/PawsNearBy/images/book.png" },
+    { title: "Relax", text: "Your pet is in loving hands!", img: "/PawsNearBy/images/relax.jpg" },
   ];
 
   return (
