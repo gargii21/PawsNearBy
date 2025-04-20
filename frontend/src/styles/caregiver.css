@@ -19,6 +19,7 @@
   .caregiver-header {
       background-position: top center;  
       background-size: contain;  
+      height: 50vh;
      
   }
   }
@@ -28,6 +29,7 @@
   .caregiver-header {
       background-size: contain; 
       background-position: top center;
+      height:50vh;
      
   }
   }
@@ -36,7 +38,8 @@
   .caregiver-header {
       background-size: contain; 
       background-position: top center; 
-      height: 100vh; 
+      height: 50vh; 
+
   }
   }
 
@@ -50,7 +53,7 @@
   font-weight: bold;
   border-style: dashed;
   position: absolute;
-  bottom: 40px;
+  bottom: 7vh;
   transition: all 0.3s ease-in-out;
 }
 
