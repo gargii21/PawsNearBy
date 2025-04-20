@@ -178,7 +178,6 @@ const ProfilePage = () => {
           fees: temp.fees,
           experience: temp.experience,
           description: temp.description,
-          rating: temp.rating, // include this from backend
         });
       } catch (error) {
         console.log("Error fetching profiles. Backend might be down.");
@@ -224,7 +223,7 @@ const ProfilePage = () => {
             </div>
             <div className="stat-box">
               <h4>Rating</h4>
-              <p>⭐ {profileData.rating || "N/A"}</p>
+              <p>⭐4</p>
             </div>
             <div className="stat-box">
               <h4>Experience</h4>

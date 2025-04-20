@@ -127,9 +127,8 @@ const SearchResults = () => {
             service: temp[i].service,
             lat: temp[i].prLatitude,
             lng: temp[i].prLongitude,
-            city: temp[i].city,             // make sure backend sends this
-            fees: temp[i].fees,
-            rating: temp[i].rating
+            address: temp[i].address,             // make sure backend sends this
+            fees: temp[i].fees
           };
           list.push(obj);
         }

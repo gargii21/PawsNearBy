@@ -17,7 +17,7 @@ import "./styles/styles.css";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/PawsNearBy">
       <Navbar />
       <div className="content">
         <Routes>
